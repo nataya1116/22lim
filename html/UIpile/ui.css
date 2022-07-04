@@ -1,0 +1,12 @@
+#startPage{
+    background-image: url("/image/1.jfif");
+    background-repeat:no-repeat
+}
+#game-over{
+    background-image: url("/image/2.jfif");
+    background-repeat:no-repeat
+}
+#container-box{
+    width:1024;
+    height: 576;
+}
