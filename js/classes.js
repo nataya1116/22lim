@@ -13,8 +13,7 @@ class Stuff {
     constructor({ ctx, name, x, y, width, height, item, infoMsg }){
         this.ctx = ctx;
         this.name = name;
-        this.x = x;
-        this.y = y;
+        this.position = { x, y }; // x/y 값을 가짐
         this.width = width
         this.height = height;
         this.item = item;
@@ -55,7 +54,7 @@ class Stuff {
     // 플레이어가 아이템을 사용했을 때 불러질 함수이다. 기본은 아무 반응이 없다는 메세지를 보낸다.
     // 플레이어 인벤토리에서 아이템을 사용하면 인벤토리에서는 삭제되고 putItem에 아이템 변수가 들어오게 된다.
     // 플레이어 인벤토리에서 아이템을 사용하면 인벤토리에서 삭제 안했다가 반응이 있을 경우 삭제할 수 도 있다. 
-    // { msg : this.inactionMsg, item : item } 객체로 만들어 리턴(반응이 없으므로 아이템을 다시 플레이어에게 돌려준다.)
+    // { msg : this.inactionMsg,  item : item } 객체로 만들어 리턴(반응이 없으므로 아이템을 다시 플레이어에게 돌려준다.)
     putItem(item){
 
     }
@@ -65,8 +64,8 @@ class Stuff {
 
 // 아이템을 넣으면 힌트를 주는 클래스로 Stuff의 자식 클래스이다.
 class StuffHint extends Stuff {
-    constructor({ ctx, name, x, y, width, height, item, infoMsg, hintMsg }){
-        super({ ctx, name, x, y, width, height, item, infoMsg });
+    constructor({ ctx, name, position, width, height, item, infoMsg, hintMsg }){
+        super({ ctx, name, position, width, height, item, infoMsg });
         this.hintMsg = hintMsg;
     }
 
@@ -79,8 +78,8 @@ class StuffHint extends Stuff {
 
 // 구급함(세이브) 클래스
 class SavePoint extends Stuff {
-    constructor({ ctx, name, x, y, width, height, item, infoMsg, save }){
-        super({ ctx, name, x, y, width, height, item, infoMsg });
+    constructor({ ctx, name, position, width, height, item, infoMsg, save }){
+        super({ ctx, name, position, width, height, item, infoMsg });
         this.save = save;
         this.succeseMsg = "저장되었다.";
         this.failureMsg = "저장에 실패하였다.";
@@ -107,9 +106,10 @@ class SavePoint extends Stuff {
 
 // 문(엘리베이터 포함) 클래스
 class Door extends Stuff {
-    constructor({ ctx, name, x, y, width, height, item, infoMsg, pw, isPortal, isDead, nextStage, notAvailableMsg }){
-        super({ ctx, name, x, y, width, height, item, infoMsg });
+    constructor({ ctx, name, position, width, height, item, infoMsg, pw, isPwInput, isPortal, isDead, nextStage, notAvailableMsg }){
+        super({ ctx, name, position, width, height, item, infoMsg });
         this.pw = pw;
+        this.isPwInput = isPwInput;
         this.isPortal = isPortal;
         this.isDead = isDead;
         this.nextStage = nextStage;
