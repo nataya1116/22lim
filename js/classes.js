@@ -109,7 +109,7 @@ class Stuff {
     // 사물 객체에 아이템이 없을 경우 리턴해줄 내용을 객체로 생성한다.
     // { msg : this.info, item : "" } 객체를 만들어 리턴한다.
     emptyItemMsg(){
-        return { msg : this.info, item : "" }
+        return { msg : this.info, item : "" };
     }
 
     // 사물 객체에서 아이템을 제거할 때 사용할 함수로 리턴해줄 내용을 객체로 생성한다.
