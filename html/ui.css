@@ -328,7 +328,13 @@
 
 
 /* 저장슬롯_ 팝업 */
-#Loadfiled {}
+#loadFiled {
+    background-image: url("/img/background/cat2.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 1024;
+    height: 576;
+}
 
 /* 기본 텍스트 박스_대화 */
 #text-box {}
