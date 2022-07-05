@@ -250,3 +250,18 @@ class Save {
     delete(){}
 
 }
+
+class Inventory {
+    constructor(list){
+        this.list = list;
+    }
+
+    // 인벤토리 리스트에 아이템 추가
+    insert(){}
+
+    // 인벤토리 리스트에서 아이템 꺼내기
+    out(){}
+
+    // 인벤토리 리스트 가져오기
+    importList(){}
+}
