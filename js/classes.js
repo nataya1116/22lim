@@ -5,7 +5,74 @@ class Player {
 
 // 맵 클래스
 class Map {
+<<<<<<< HEAD
     constructor();
+=======
+    constructor(){
+
+    }
+    
+    // 배열의 width를 70타일씩 자르고 싶을떄
+    arrCut(){
+        for (let i=0; i<collisions.lenth; i+=70){    
+            collisions.slice(i, 70+i) 
+        }
+    } 
+    
+    // 현재 반복하고 있는 기호가 1025와 같을 때만 경계를 그리고 싶을때 
+    boundaryLine() {
+        collisionsMap.forEach((row, i) => {
+            row.forEach((symbol, j) => {
+                if (symbol === 1025) 
+                    boundaries.push(new Boundary({
+                        postion: {
+                            x: j * Boundary.width + offset.x,
+                            y: i *Boundary.height + offset.y
+                        }
+                    }))
+            })
+        })
+    }
+    
+    // 고정된 이미지가 아니라 반복되는 이미지를 draw() 하고 싶을때
+    animate(){
+       window.requestAnimationFrame(animate)
+    }
+    
+    
+    portalJump(){
+        // 해당위치에서 keyDown했을떄 다음 맵으로 넘어가는 기능을 사용하고 싶을때 
+    }
+    
+    trapZone(){
+        // 플레이어가 해당 좌표에 닿았을때 trap 이벤트 발생 
+        // 이차원 배열 필요
+    }
+    
+    tileMap(url ){
+
+    }
+}
+
+class Boundary {
+    // 정적속성
+    static width =48 	
+    static height =48
+    constructor({position}) {
+        this.postion = position
+        // 지도 내에 생성되는 경계블록의 크기 예시에서는 12x12를 사용하였지만 여기서 400%확대한
+        this.width=48        
+        // 이미지를 가져왔기 때문에 12x4= 48 즉 48x48이 원하는 크기가 된다.
+        this.height=48	
+    }
+    // 처음에 선언한 const c = canvas.getContext('2d') 캔버스 컨텍스트를 선택한다.
+    draw() {
+    // 처음 tiled에서 설정한것과 동일하게 red로 확인가능 더 확실하게는 rgba를 이용
+    c.fillStyle = 'red' 
+    // 첫번째 인수 x, 두번째 인수y, 세번째 인수 width, 네번째 인수 height 를 참조하여 캔버스에 drow
+    c.fillRect(this.position.x, this.position.y, this.width, this.height)
+    }
+>>>>>>> 9e32d0c (클래스파일명 수정 및 내용 수정)
 }
 
 // 사물 클래스
