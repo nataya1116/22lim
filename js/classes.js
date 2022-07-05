@@ -161,3 +161,38 @@ class Door extends Stuff {
     }
 
 }
+
+class Save {
+    constructor(){}
+
+    // 세이브 파일 저장
+    create(){}
+
+    // 세이브 파일 불러오기(1개)
+    selet(){}
+
+    // 세이브 파일 목록 불러오기
+    selectAll(){}
+
+    // 세이브 파일 업데이트 하기(1개, 사용하지 않을 수 있음)
+    update(){}
+
+    // 세이브 파일 삭제하기(1개)
+    delete(){}
+
+}
+
+class Inventory {
+    constructor(list){
+        this.list = list;
+    }
+
+    // 인벤토리 리스트에 아이템 추가
+    insert(){}
+
+    // 인벤토리 리스트에서 아이템 꺼내기
+    out(){}
+
+    // 인벤토리 리스트 가져오기
+    importList(){}
+}
