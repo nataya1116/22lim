@@ -6,12 +6,17 @@ const stuffData = [
         "name":"서랍",
         "properties":[
                {
-                "name":"infoMsg",
+                "name":"info",
                 "type":"string",
                 "value":"서랍 안에는 무엇이 들어있을까"
                }, 
                {
-                "name":"item",
+                "name":"itemInfo",
+                "type":"string",
+                "value":""
+               }, 
+               {
+                "name":"itemName",
                 "type":"string",
                 "value":""
                }],
@@ -28,12 +33,17 @@ const stuffData = [
         "name":"서랍장",
         "properties":[
                {
-                "name":"infoMsg",
+                "name":"info",
                 "type":"string",
                 "value":"낡아보이는 서랍이다. 무엇이 들어있을까"
                }, 
                {
-                "name":"item",
+                "name":"itemInfo",
+                "type":"string",
+                "value":""
+               }, 
+               {
+                "name":"itemName",
                 "type":"string",
                 "value":""
                }],
@@ -50,14 +60,19 @@ const stuffData = [
         "name":"협탁",
         "properties":[
                {
-                "name":"infoMsg",
+                "name":"info",
                 "type":"string",
                 "value":"낡은 조화가 올라가 있는 협탁"
                }, 
                {
-                "name":"item",
-                "type":"object",
-                "value":0
+                "name":"itemInfo",
+                "type":"string",
+                "value":""
+               }, 
+               {
+                "name":"itemName",
+                "type":"string",
+                "value":""
                }],
         "rotation":0,
         "visible":true,
@@ -70,6 +85,22 @@ const stuffData = [
         "height":23.75,
         "id":17,
         "name":"협탁",
+        "properties":[
+               {
+                "name":"info",
+                "type":"string",
+                "value":"조화가 놓여져 있는 협탁"
+               }, 
+               {
+                "name":"itemInfo",
+                "type":"string",
+                "value":""
+               }, 
+               {
+                "name":"itemName",
+                "type":"string",
+                "value":""
+               }],
         "rotation":0,
         "visible":true,
         "width":16.25,
@@ -83,12 +114,17 @@ const stuffData = [
         "name":"링거",
         "properties":[
                {
-                "name":"infoMsg",
+                "name":"info",
                 "type":"string",
                 "value":"혈액팩 낡은 링거. 녹슬어보인다. "
                }, 
                {
-                "name":"item",
+                "name":"itemInfo",
+                "type":"string",
+                "value":""
+               }, 
+               {
+                "name":"itemName",
                 "type":"string",
                 "value":""
                }],
@@ -105,14 +141,19 @@ const stuffData = [
         "name":"링거",
         "properties":[
                {
-                "name":"infoMsg",
+                "name":"info",
                 "type":"string",
                 "value":"낡은 링거. 녹슬어보인다."
                }, 
                {
-                "name":"item",
+                "name":"itemInfo",
                 "type":"string",
-                "value":"구급약"
+                "value":""
+               }, 
+               {
+                "name":"itemName",
+                "type":"string",
+                "value":""
                }],
         "rotation":0,
         "visible":true,
@@ -127,12 +168,17 @@ const stuffData = [
         "name":"서랍장",
         "properties":[
                {
-                "name":"infoMsg",
+                "name":"info",
                 "type":"string",
-                "value":"낡아보이는 서랍이다. 무엇이 들어있을까"
+                "value":"낡아보이는 서랍이다."
                }, 
                {
-                "name":"item",
+                "name":"itemInfo",
+                "type":"string",
+                "value":""
+               }, 
+               {
+                "name":"itemName",
                 "type":"string",
                 "value":""
                }],
@@ -149,12 +195,17 @@ const stuffData = [
         "name":"개수대",
         "properties":[
                {
-                "name":"infoMsg",
+                "name":"info",
                 "type":"string",
                 "value":" 낡은 개수대 불쾌해보이는 무언가가 말라붙은 자국이 보인다."
                }, 
                {
-                "name":"item",
+                "name":"itemInfo",
+                "type":"string",
+                "value":""
+               }, 
+               {
+                "name":"itemName",
                 "type":"string",
                 "value":""
                }],
@@ -171,12 +222,17 @@ const stuffData = [
         "name":"서랍장",
         "properties":[
                {
-                "name":"infoMsg",
+                "name":"info",
                 "type":"string",
-                "value":"낡아보이는 서랍이다. 무엇이 들어있을까"
+                "value":"낡아보이는 서랍이다."
                }, 
                {
-                "name":"item",
+                "name":"itemInfo",
+                "type":"string",
+                "value":""
+               }, 
+               {
+                "name":"itemName",
                 "type":"string",
                 "value":""
                }],
@@ -193,12 +249,17 @@ const stuffData = [
         "name":"서랍장",
         "properties":[
                {
-                "name":"infoMsg",
+                "name":"info",
                 "type":"string",
-                "value":"낡아보이는 서랍이다. 무엇이 들어있을까"
+                "value":"낡아보이는 서랍이다."
                }, 
                {
-                "name":"item",
+                "name":"itemInfo",
+                "type":"string",
+                "value":"엑스레이 필름을 어디서 사용할까?"
+               }, 
+               {
+                "name":"itemName",
                 "type":"string",
                 "value":"엑스레이 필름"
                }],
@@ -215,12 +276,17 @@ const stuffData = [
         "name":"서랍장",
         "properties":[
                {
-                "name":"infoMsg",
+                "name":"info",
                 "type":"string",
-                "value":"낡아보이는 서랍이다. 무엇이 들어있을까"
+                "value":"낡아보이는 서랍이다."
                }, 
                {
-                "name":"item",
+                "name":"itemInfo",
+                "type":"string",
+                "value":""
+               }, 
+               {
+                "name":"itemName",
                 "type":"string",
                 "value":""
                }],
@@ -237,12 +303,17 @@ const stuffData = [
         "name":"시계",
         "properties":[
                {
-                "name":"infoMsg",
+                "name":"info",
                 "type":"string",
                 "value":"고장난 시계"
                }, 
                {
-                "name":"item",
+                "name":"itemInfo",
+                "type":"string",
+                "value":""
+               }, 
+               {
+                "name":"itemName",
                 "type":"string",
                 "value":""
                }],
@@ -259,12 +330,17 @@ const stuffData = [
         "name":"게시판",
         "properties":[
                {
-                "name":"infoMsg",
+                "name":"info",
                 "type":"string",
                 "value":"낡아보이는 게시판 자세히 보면 뭔가가 보일 것 같다. 'body'라고 모서리에 적혀있다."
                }, 
                {
-                "name":"item",
+                "name":"itemInfo",
+                "type":"string",
+                "value":""
+               }, 
+               {
+                "name":"itemName",
                 "type":"string",
                 "value":""
                }],
@@ -281,7 +357,17 @@ const stuffData = [
         "name":"구급함",
         "properties":[
                {
-                "name":"item",
+                "name":"info",
+                "type":"string",
+                "value":"구급함이다 아이템을 넣어둘 수 있다."
+               }, 
+               {
+                "name":"itemInfo",
+                "type":"string",
+                "value":"제 자리에 놓아보자."
+               }, 
+               {
+                "name":"itemName",
                 "type":"string",
                 "value":"구급약"
                }],
@@ -298,12 +384,17 @@ const stuffData = [
         "name":"숨겨진 쪽지",
         "properties":[
                {
-                "name":"infoMsg",
+                "name":"info",
                 "type":"string",
                 "value":"1975년 6월 5일 오늘도 4명이 견디지 못하고 죽어버렸다… 언제까지 이짓을 해야할까.."
                }, 
                {
-                "name":"item",
+                "name":"itemInfo",
+                "type":"string",
+                "value":""
+               }, 
+               {
+                "name":"itemName",
                 "type":"string",
                 "value":""
                }],
