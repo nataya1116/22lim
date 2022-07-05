@@ -127,7 +127,7 @@ class Stuff {
     // 플레이어가 아이템을 사용했을 때 불러질 함수이다. 기본은 아무 반응이 없다는 메세지를 보낸다.
     // 플레이어 인벤토리에서 아이템을 사용하면 인벤토리에서는 삭제되고 putItem에 아이템 변수가 들어오게 된다.
     // 플레이어 인벤토리에서 아이템을 사용하면 인벤토리에서 삭제 안했다가 반응이 있을 경우 삭제할 수 도 있다. 
-    // { msg : this.inactionMsg,  item : item } 객체로 만들어 리턴(반응이 없으므로 아이템을 다시 플레이어에게 돌려준다.)
+    // { msg : this.inactionMsg,  item : item } 객체로 만들어 리턴(기본적으로 반응이 없으므로 아이템을 다시 플레이어에게 돌려준다.)
     putItem(item){
         return { msg : this.inactionMsg,  item : item };
     }
