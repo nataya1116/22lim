@@ -55,7 +55,7 @@ class Map {
     }
     
     tileMap(url, ){
-        
+
     }
 }
 
@@ -129,8 +129,6 @@ class Stuff {
     putItem(item){
 
     }
-
-
 }
 
 // 아이템을 넣으면 힌트를 주는 클래스로 Stuff의 자식 클래스이다.
@@ -230,5 +228,25 @@ class Door extends Stuff {
     contact(){
 
     }
+
+}
+
+class Save {
+    constructor(){}
+
+    // 세이브 파일 저장
+    create(){}
+
+    // 세이브 파일 불러오기(1개)
+    selet(){}
+
+    // 세이브 파일 목록 불러오기
+    selectAll(){}
+
+    // 세이브 파일 업데이트 하기(1개, 사용하지 않을 수 있음)
+    update(){}
+
+    // 세이브 파일 삭제하기(1개)
+    delete(){}
 
 }
