@@ -54,7 +54,7 @@ class Map {
         // 이차원 배열 필요
     }
     
-    tileMap(url, ){
+    tileMap(url ){
 
     }
 }
