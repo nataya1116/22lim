@@ -172,7 +172,3 @@ const stuffData = [
      "x":371.708,
      "y":227.958
     }];
-
-    console.log(JSON.stringify(stuffData));
-    console.log();
-    console.log(stuffData);

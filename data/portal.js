@@ -119,7 +119,3 @@ const portalData = [
      "x":780.542,
      "y":145.125
     }]
-
-    console.log(JSON.stringify(portalData));
-    console.log();
-    console.log(portalData);
