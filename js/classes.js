@@ -1,6 +1,6 @@
 // 플레이어 클래스
 class Player {
-    constructor();
+    constructor(){}
 
     //move()
 
