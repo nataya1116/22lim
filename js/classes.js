@@ -115,7 +115,7 @@ class Stuff {
     // 사물 객체에서 아이템을 제거할 때 사용할 함수로 리턴해줄 내용을 객체로 생성한다.
     // { msg : this.item+this.takeMsg, item : "" }  객체를 만들어 리턴한다.
     exportItemMsg(){
-
+        return { msg : this.item.name+this.takeMsg, item : "" };
     }
 
     // 플레이어가 스페이스를 눌렀을 때 불러질 함수
