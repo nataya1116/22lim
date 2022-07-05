@@ -62,7 +62,7 @@
     box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
     box-sizing: border-box;
     color: #36395A;
-    cursor: pointer;    
+    cursor: pointer;
     height: 48px;
     line-height: 1;
     list-style: none;
@@ -111,6 +111,7 @@
 
 
 
+
 /* 인벤토리_ 팝업 */
 #inventory {
     background-image: url("/img/background/cat2.jpeg");
@@ -120,8 +121,8 @@
     height: 576;
     display: flex;
     flex-direction: column;
-    justify-content:flex-end;
-    align-items:center;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 #tag_inventory {
@@ -183,34 +184,34 @@
 }
 
 #item_use button {
-  font-family: 'NeoDunggeunmo';
-  font-size: 20px;
-  background-color: #f8f9fa;
-  border: 1px solid #f8f9fa;
-  border-radius: 50px;
-  color: #3c4043;
-  cursor: pointer;
-  height: 36px;
-  line-height: 27px;
-  min-width: 54px;
-  padding: 0 16px;
-  text-align: center;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: pre;
+    font-family: 'NeoDunggeunmo';
+    font-size: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #f8f9fa;
+    border-radius: 50px;
+    color: #3c4043;
+    cursor: pointer;
+    height: 36px;
+    line-height: 27px;
+    min-width: 54px;
+    padding: 0 16px;
+    text-align: center;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: pre;
 }
 
 #item_use button:hover {
-  border-color: #dadce0;
-  border-radius: 50px;
-  box-shadow: rgba(0, 0, 0, .1) 0 2px 2px;
-  color: #202124;
+    border-color: #dadce0;
+    border-radius: 50px;
+    box-shadow: rgba(0, 0, 0, .1) 0 2px 2px;
+    color: #202124;
 }
 
 #item table {
     display: flex;
-    align-items:center;
+    align-items: center;
     font-family: 'NeoDunggeunmo';
     font-size: 20px;
     color: white;
@@ -230,18 +231,40 @@
 
 
 /* 설정창_ 팝업 */
-#settingBord {
+#settingBoard {
     background-image: url("/img/background/cat2.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
     width: 1024;
     height: 576;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+#tag_setting {
+    width: 100%;
+}
+
+#tag_s {
+    font-family: 'NeoDunggeunmo';
+    font-size: 19px;
+    background-color: white;
+    width: 100px;
+    height: 35px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    text-align: center;
+    padding-top: 12px;
+    margin-left: 260px;
+}
+
 #setting {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
     width: 550px;
     height: 300px;
     border: 5px solid white;
@@ -250,14 +273,65 @@
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* 저장슬롯_ 팝업 */
-#Loadfiled {
-
+#btn_setting {
+    display: flex;
+    flex-direction: column;
 }
+
+#btn_setting button {
+    width: 112px;
+    height: 56px;
+    margin-bottom:15px;
+    font-family: 'NeoDunggeunmo';
+    background-color: #202020;
+    border-radius: 4px;
+    border: 0;
+    box-shadow: rgba(53, 53, 53, 0.5) 0 -1px 3px 0 inset, rgba(98, 98, 98, 0.1) 0 3px 6px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inherit;
+    font-size: 18px;
+    line-height: 24px;
+    min-height: 40px;
+    min-width: 80px;
+    padding: 16px 20px;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    transition: all .2s cubic-bezier(.22, .61, .36, 1);
+}
+
+#setting button:hover {
+    background-color: #000000;
+    transform: translateY(-2px);
+}
+
+#sound_setting {
+    width: 100%;
+    text-align: center;
+}
+
+#sound {
+    font-family: 'NeoDunggeunmo';
+    font-size: 20px;
+    color: #fff;
+    padding-bottom: 10px;
+}
+
+
+
+
+
+
+
+/* 저장슬롯_ 팝업 */
+#Loadfiled {}
 
 /* 기본 텍스트 박스_대화 */
 #text-box {}
 
 /* 퀴즈 정답 입력 박스 */
 #quize-box {}
-
