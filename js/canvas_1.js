@@ -70,10 +70,12 @@ knifeImage2.src = '/img/playimage/knife.png';
 
 
 
-
+// 게임 오버 되는 부분
 let gameover = function(){
     // console.log(mapState);
+    // 맵 스테이트가 게임오버창이 아닐때
     if(mapState !== "_game_over")return;
+    // 스타트 페이지로 일정시간이 지나면 돌아가게 만든다
     setTimeout(() => {
         mapState = "_start_page";
         if(mapState ==="_start_page"){
@@ -696,4 +698,3 @@ function smash (player, knife2){
         knife2.draw();
     }
 }
-
