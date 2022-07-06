@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div id="container-box">
+    <div id="container_box">
         <!-- 메인페이지 그림(+게임로고) -->
         <div id="startPage">
             <!-- <img src="/image/1.jfif" alt=""> -->
@@ -32,7 +32,7 @@
             </div>
         </div>
         <!-- 게임오버창 -->
-        <div id="game-over">
+        <div id="game_over">
             <!-- <img src="/image/2.jfif" alt="game-overImg"> -->
             <div>Game over</div>
         </div>
@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div id="tag_inventory">
-                <div id="tag">
+                <div id="tag_i">
                     <span>INVENTORY</span>
                 </div>
             </div>
@@ -71,55 +71,149 @@
 
 
         <!-- 설정창 -->
-        <div id="settingBord">
+        <div id="settingBoard">
+            <div id="tag_setting">
+                <div id="tag_s">
+                    <span>SETTING</span>
+                </div>
+            </div>
             <div id="setting">
-                <div>
-                    <Button>Lobby</Button>
+                <div id="btn_setting">
+                    <div>
+                        <Button>Main</Button>
+                    </div>
+                    <div>
+                        <Button>Savefile</Button>
+                    </div>
                 </div>
-                <div>
-                    <Button>SaveFile</Button>
-                </div>
-                <div>
-                    <div>Sound</div>
+                <div id="sound_setting">
+                    <div id="sound">Sound</div>
                     <input type="range">
                 </div>
             </div>
         </div>
 
 
-        <!--저장슬롯 load & save-->
+        <!--저장슬롯 load -->
         <div id="loadFiled">
             <div id="tag_loadFiled">
                 <div id="tag_L">
-                    <span>Loadfiled</span>
+                    <span>LOAD FILED</span>
                 </div>  
             </div>
-            <button>
-                <div>save</div>
-            </button>
-            <button>
-                <div>save</div>
-            </button>
-            <button>
-                <div>save</div>
-            </button>
-            <button>
-                <div>save</div>
-            </button>
+            <div id="loadList">
+                <ul>
+                    <li>
+                        <p>file 1</p>
+                        <div class="character"></div>
+                        <span>병원 1층 로비</span>
+                        <span>19 : 35 : 22</span>
+                        <button>load</button>
+                    </li>
+                    <li>
+                        <p>file 2</p>
+                        <div class="character"></div>
+                        <span>병원 1층 로비</span>
+                        <span>저장시간</span>
+                        <button>load</button>
+                    </li>
+                    <li>
+                        <p>file 3</p>
+                        <div class="character"></div>
+                        <span>병원 1층 로비</span>
+                        <span>저장시간</span>
+                        <button>load</button>
+                    </li>
+                    <li>
+                        <p>file 4</p>
+                        <div class="character"></div>
+                        <span>병원 1층 로비</span>
+                        <span>저장시간</span>
+                        <button>load</button>
+                    </li>
+                    <li>
+                        <p>file 5</p>
+                        <div class="character"></div>
+                        <span>병원 1층 로비</span>
+                        <span>저장시간</span>
+                        <button>load</button>
+                    </li>
+                </ul>
+            </div>
         </div>
+
+
+        <!--저장슬롯 save -->
+        <div id="saveFiled">
+            <div id="tag_saveFiled">
+                <div id="tag_save">
+                    <span>SAVE FILED</span>
+                </div>  
+            </div>
+            <div id="saveList">
+                <ul>
+                    <li>
+                        <p>file 1</p>
+                        <div class="character"></div>
+                        <span>병원 1층 로비</span>
+                        <span>19 : 35 : 22</span>
+                        <button>save</button>
+                    </li>
+                    <li>
+                        <p>file 2</p>
+                        <div class="character"></div>
+                        <span>병원 1층 로비</span>
+                        <span id="test">저장시간</span>
+                        <button>save</button>
+                    </li>
+                    <li>
+                        <p>file 3</p>
+                        <div class="character"></div>
+                        <span>병원 1층 로비</span>
+                        <span>저장시간</span>
+                        <button>save</button>
+                    </li>
+                    <li>
+                        <p>file 4</p>
+                        <div class="character"></div>
+                        <span>병원 1층 로비</span>
+                        <span>저장시간</span>
+                        <button>save</button>
+                    </li>
+                    <li>
+                        <p>file 5</p>
+                        <div class="character"></div>
+                        <span>병원 1층 로비</span>
+                        <span>저장시간</span>
+                        <button>save</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
 
 
         <!--기본 텍스트 박스 -->
-        <div id="text-box">
-            <div id="box-text">가나다라마바사</div>
-        </div>
-        <!--퀴즈 인풋 박스 -->
-        <div id="quize-box">
-            <div>
-                <div>정답은?</div>
-                <input type="text"><button>확인</button>
+        <div id="text_box">
+            <div id="box_t">
+                <div id="text">구급약을 찾았다.</div>
             </div>
         </div>
+
+
+
+        <!--퀴즈 인풋 박스 -->
+        <div id="quize_box">
+            <div id="box_q">
+                <div id="answer">암호 입력 후 enter를 누르세요.</div>
+                <div id="answer_text">
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </body>
 

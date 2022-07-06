@@ -4,8 +4,13 @@
     font-weight: normal;
     font-style: normal;
 }
+<<<<<<< HEAD
 /* ========================================================================================변경요소 */
 #container-box {
+=======
+
+#container_box {
+>>>>>>> 6ec3383d4fdc2b74a28271511dfe5ff92ca655cc
     width: 1024;
     height: 576;
     position: relative;
@@ -69,7 +74,7 @@
     box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
     box-sizing: border-box;
     color: #36395A;
-    cursor: pointer;    
+    cursor: pointer;
     height: 48px;
     line-height: 1;
     list-style: none;
@@ -104,7 +109,7 @@
 
 
 /* 게임오버 창 */
-#game-over {
+#game_over {
     background-image: url("/img/background/cat2.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -118,24 +123,25 @@
 
 
 
+
 /* 인벤토리_ 팝업 */
 #inventory {
-    background-image: url("/img/background/cat2.jpeg");
+    background-image: url("/img/background/game_test_shot.png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
     height: 576;
     display: flex;
     flex-direction: column;
-    justify-content:flex-end;
-    align-items:center;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 #tag_inventory {
     width: 100%;
 }
 
-#tag {
+#tag_i {
     font-family: 'NeoDunggeunmo';
     font-size: 19px;
     background-color: white;
@@ -145,7 +151,7 @@
     border-top-right-radius: 8px;
     text-align: center;
     padding-top: 12px;
-    margin-left: 90px;
+    margin-left: 100px;
 }
 
 #item {
@@ -190,34 +196,34 @@
 }
 
 #item_use button {
-  font-family: 'NeoDunggeunmo';
-  font-size: 20px;
-  background-color: #f8f9fa;
-  border: 1px solid #f8f9fa;
-  border-radius: 50px;
-  color: #3c4043;
-  cursor: pointer;
-  height: 36px;
-  line-height: 27px;
-  min-width: 54px;
-  padding: 0 16px;
-  text-align: center;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: pre;
+    font-family: 'NeoDunggeunmo';
+    font-size: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #f8f9fa;
+    border-radius: 50px;
+    color: #000000;
+    cursor: pointer;
+    height: 36px;
+    line-height: 27px;
+    min-width: 54px;
+    padding: 0 16px;
+    text-align: center;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: pre;
 }
 
 #item_use button:hover {
-  border-color: #dadce0;
-  border-radius: 50px;
-  box-shadow: rgba(0, 0, 0, .1) 0 2px 2px;
-  color: #202124;
+    border-color: #dadce0;
+    border-radius: 50px;
+    box-shadow: rgba(0, 0, 0, .2) 0 2px 2px;
+    color: #d90000;
 }
 
 #item table {
     display: flex;
-    align-items:center;
+    align-items: center;
     font-family: 'NeoDunggeunmo';
     font-size: 20px;
     color: white;
@@ -230,25 +236,47 @@
 }
 
 #item td:hover {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     border-radius: 10px;
 }
 
 
 
 /* 설정창_ 팝업 */
-#settingBord {
-    background-image: url("/img/background/cat2.jpeg");
+#settingBoard {
+    background-image: url("/img/background/game_test_shot.png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 1024;
     height: 576;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+#tag_setting {
+    width: 100%;
+}
+
+#tag_s {
+    font-family: 'NeoDunggeunmo';
+    font-size: 19px;
+    background-color: white;
+    width: 100px;
+    height: 35px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    text-align: center;
+    padding-top: 12px;
+    margin-left: 270px;
+}
+
 #setting {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
     width: 550px;
     height: 300px;
     border: 5px solid white;
@@ -257,20 +285,337 @@
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* 저장슬롯_ 팝업 */
+#btn_setting {
+    display: flex;
+    flex-direction: column;
+}
+
+#btn_setting button {
+    width: 112px;
+    height: 50px;
+    margin-bottom:15px;
+    font-family: 'NeoDunggeunmo';
+    font-size: 18px;
+    background-color: #202020;
+    border-radius: 4px;
+    border: 0;
+    box-shadow: rgba(53, 53, 53, 0.5) 0 -1px 3px 0 inset, rgba(98, 98, 98, 0.1) 0 3px 6px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inherit;
+    line-height: 24px;
+    min-height: 40px;
+    min-width: 80px;
+    padding: 14gitpx 20px;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    transition: all .2s cubic-bezier(.22, .61, .36, 1);
+}
+
+#setting button:hover {
+    background-color: #000000;
+    transform: translateY(-2px);
+}
+
+#sound_setting {
+    width: 100%;
+    text-align: center;
+}
+
+#sound {
+    font-family: 'NeoDunggeunmo';
+    font-size: 20px;
+    color: #fff;
+    padding-bottom: 10px;
+}
+
+
+
+
+
+
+
+/* 저장슬롯 load_ 팝업 */
 #loadFiled {
-    background-image: url("/img/background/cat2.jpeg");
+    background-image: url("/img/background/game_test_shot.png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 1024;
     height: 576;
-/* >>>>>>> ef6601e (7월 5일 작업본) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+#tag_loadFiled {
+    width: 100%;
+}
+
+#tag_L{
+    font-family: 'NeoDunggeunmo';
+    font-size: 19px;
+    background-color: white;
+    width: 115px;
+    height: 35px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    text-align: center;
+    padding-top: 12px;
+    margin-left: 170px;
+}
+
+#loadList {
+    font-family: 'NeoDunggeunmo';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 750px;
+    height: 400px;
+    border: 5px solid white;
+    border-style: double;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+
+#loadList li {
+    width: 600px;
+    font-family: 'NeoDunggeunmo';
+    font-size: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#loadList li:nth-child(-n+4) {
+    margin-bottom: 15px;
+}
+
+.character {
+    background-image: url(/img/character/load/Dr\ Frankenstein\ Face.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 30px;
+    width: 50px;
+    height: 50px;
+}
+
+#loadList span {
+    width: 150px;
+}
+
+#loadList button {
+  font-family: 'NeoDunggeunmo';
+  font-size: 18px;
+  background-color: #fff;
+  border: 0 solid #e2e8f0;
+  border-radius: 50px;
+  box-sizing: border-box;
+  color: #0d172a;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none #0d172a solid;
+  text-decoration-thickness: auto;
+  transition: all .1s cubic-bezier(.4, 0, .2, 1);
+  box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#loadList button:hover {
+  background-color: #0b0b0c;
+  color: #fff;
+}
+
+
+
+
+/* 저장슬롯 save_ 팝업 */
+#saveFiled {
+    background-image: url("/img/background/game_test_shot.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 1024;
+    height: 576;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#tag_saveFiled {
+    width: 100%;
+}
+
+#tag_save{
+    font-family: 'NeoDunggeunmo';
+    font-size: 19px;
+    background-color: white;
+    width: 115px;
+    height: 35px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    text-align: center;
+    padding-top: 12px;
+    margin-left: 170px;
+}
+
+#saveList {
+    font-family: 'NeoDunggeunmo';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 750px;
+    height: 400px;
+    border: 5px solid white;
+    border-style: double;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+
+#saveList li {
+    width: 600px;
+    font-family: 'NeoDunggeunmo';
+    font-size: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#saveList li:nth-child(-n+4) {
+    margin-bottom: 15px;
+}
+
+.character {
+    background-image: url(/img/character/load/Dr\ Frankenstein\ Face.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 30px;
+    width: 50px;
+    height: 50px;
+}
+
+
+#saveList span {
+    width: 150px;
+}
+
+
+#saveList button {
+  font-family: 'NeoDunggeunmo';
+  font-size: 18px;
+  background-color: #fff;
+  border: 0 solid #e2e8f0;
+  border-radius: 50px;
+  box-sizing: border-box;
+  color: #0d172a;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none #0d172a solid;
+  text-decoration-thickness: auto;
+  transition: all .1s cubic-bezier(.4, 0, .2, 1);
+  box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#saveList button:hover {
+  background-color: #0b0b0c;
+  color: #fff;
+}
+
+
+
+
+
+
 /* 기본 텍스트 박스_대화 */
-#text-box {}
+#text_box {
+    background-image: url("/img/background/game_test_shot.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 576;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#box_t {
+    display: flex;
+    width: 900px;
+    height: 230px;
+    border: 5px solid white;
+    border-style: double;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+#text {
+    font-family: 'NeoDunggeunmo';
+    font-size: 20px;
+    color: white;
+}
 
 /* 퀴즈 정답 입력 박스 */
-#quize-box {}
+#quize_box {
+    background-image: url("/img/background/game_test_shot.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 576;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
 
+#box_q {
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+    height: 230px;
+    border: 5px solid white;
+    border-style: double;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+#answer {
+    font-family: 'NeoDunggeunmo';
+    font-size: 20px;
+    color: white;
+    padding-bottom: 15px;
+}
+
+#answer_text input {
+    width: 200px;
+    height: 40px;
+    background-color: rgba(144, 144, 144, 0.5);
+}
 
