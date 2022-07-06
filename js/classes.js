@@ -1,11 +1,82 @@
 // 플레이어 클래스
 class Player {
-    constructor();
+    constructor(){}
+
+    //move()
+
+    //collision()
+
+    //interation()
+
+    //door()
 }
 
 // 맵 클래스
 class Map {
-    constructor();
+    constructor(){
+
+    }
+    
+    // 배열의 width를 70타일씩 자르고 싶을떄
+    arrCut(){
+        for (let i=0; i<collisions.lenth; i+=70){    
+            collisions.slice(i, 70+i) 
+        }
+    } 
+    
+    // 현재 반복하고 있는 기호가 1025와 같을 때만 경계를 그리고 싶을때 
+    boundaryLine() {
+        collisionsMap.forEach((row, i) => {
+            row.forEach((symbol, j) => {
+                if (symbol === 1025) 
+                    boundaries.push(new Boundary({
+                        postion: {
+                            x: j * Boundary.width + offset.x,
+                            y: i *Boundary.height + offset.y
+                        }
+                    }))
+            })
+        })
+    }
+    
+    // 고정된 이미지가 아니라 반복되는 이미지를 draw() 하고 싶을때
+    animate(){
+       window.requestAnimationFrame(animate)
+    }
+    
+    
+    portalJump(){
+        // 해당위치에서 keyDown했을떄 다음 맵으로 넘어가는 기능을 사용하고 싶을때 
+    }
+    
+    trapZone(){
+        // 플레이어가 해당 좌표에 닿았을때 trap 이벤트 발생 
+        // 이차원 배열 필요
+    }
+    
+    tileMap(url ){
+
+    }
+}
+
+class Boundary {
+    // 정적속성
+    static width =48 	
+    static height =48
+    constructor({position}) {
+        this.postion = position
+        // 지도 내에 생성되는 경계블록의 크기 예시에서는 12x12를 사용하였지만 여기서 400%확대한
+        this.width=48        
+        // 이미지를 가져왔기 때문에 12x4= 48 즉 48x48이 원하는 크기가 된다.
+        this.height=48	
+    }
+    // 처음에 선언한 const c = canvas.getContext('2d') 캔버스 컨텍스트를 선택한다.
+    draw() {
+    // 처음 tiled에서 설정한것과 동일하게 red로 확인가능 더 확실하게는 rgba를 이용
+    c.fillStyle = 'red' 
+    // 첫번째 인수 x, 두번째 인수y, 세번째 인수 width, 네번째 인수 height 를 참조하여 캔버스에 drow
+    c.fillRect(this.position.x, this.position.y, this.width, this.height)
+    }
 }
 
 // 사물 클래스
@@ -13,12 +84,11 @@ class Stuff {
     constructor({ ctx, name, x, y, width, height, item, infoMsg }){
         this.ctx = ctx;
         this.name = name;
-        this.x = x;
-        this.y = y;
+        this.position = { x, y }; // x/y 값을 가짐
         this.width = width
         this.height = height;
         this.item = item;
-        this.infoMsg = infoMsg;
+        this.infoMsg = infoMsg; // 기본 설명 메세지(ex : “고장난 시계다.”, “낡아보이는 서랍장이다.”, “낡은 게시판 \n body”) 
         this.inactionMsg = "아무일도 일어나지 않는다.";
         this.takeMsg = "을(를) 찾았다.";
     }
@@ -55,18 +125,16 @@ class Stuff {
     // 플레이어가 아이템을 사용했을 때 불러질 함수이다. 기본은 아무 반응이 없다는 메세지를 보낸다.
     // 플레이어 인벤토리에서 아이템을 사용하면 인벤토리에서는 삭제되고 putItem에 아이템 변수가 들어오게 된다.
     // 플레이어 인벤토리에서 아이템을 사용하면 인벤토리에서 삭제 안했다가 반응이 있을 경우 삭제할 수 도 있다. 
-    // { msg : this.inactionMsg, item : item } 객체로 만들어 리턴(반응이 없으므로 아이템을 다시 플레이어에게 돌려준다.)
+    // { msg : this.inactionMsg,  item : item } 객체로 만들어 리턴(반응이 없으므로 아이템을 다시 플레이어에게 돌려준다.)
     putItem(item){
 
     }
-
-
 }
 
 // 아이템을 넣으면 힌트를 주는 클래스로 Stuff의 자식 클래스이다.
 class StuffHint extends Stuff {
-    constructor({ ctx, name, x, y, width, height, item, infoMsg, hintMsg }){
-        super({ ctx, name, x, y, width, height, item, infoMsg });
+    constructor({ ctx, name, position, width, height, item, infoMsg, hintMsg }){
+        super({ ctx, name, position, width, height, item, infoMsg });
         this.hintMsg = hintMsg;
     }
 
@@ -79,8 +147,8 @@ class StuffHint extends Stuff {
 
 // 구급함(세이브) 클래스
 class SavePoint extends Stuff {
-    constructor({ ctx, name, x, y, width, height, item, infoMsg, save }){
-        super({ ctx, name, x, y, width, height, item, infoMsg });
+    constructor({ ctx, name, position, width, height, item, infoMsg, save }){
+        super({ ctx, name, position, width, height, item, infoMsg });
         this.save = save;
         this.succeseMsg = "저장되었다.";
         this.failureMsg = "저장에 실패하였다.";
@@ -107,9 +175,10 @@ class SavePoint extends Stuff {
 
 // 문(엘리베이터 포함) 클래스
 class Door extends Stuff {
-    constructor({ ctx, name, x, y, width, height, item, infoMsg, pw, isPortal, isDead, nextStage, notAvailableMsg }){
-        super({ ctx, name, x, y, width, height, item, infoMsg });
+    constructor({ ctx, name, position, width, height, item, infoMsg, pw, isKeybord, isPortal, isDead, nextStage, notAvailableMsg }){
+        super({ ctx, name, position, width, height, item, infoMsg });
         this.pw = pw;
+        this.isKeybord = isKeybord;
         this.isPortal = isPortal;
         this.isDead = isDead;
         this.nextStage = nextStage;
@@ -160,4 +229,39 @@ class Door extends Stuff {
 
     }
 
+}
+
+class Save {
+    constructor(){}
+
+    // 세이브 파일 저장
+    create(){}
+
+    // 세이브 파일 불러오기(1개)
+    selet(){}
+
+    // 세이브 파일 목록 불러오기
+    selectAll(){}
+
+    // 세이브 파일 업데이트 하기(1개, 사용하지 않을 수 있음)
+    update(){}
+
+    // 세이브 파일 삭제하기(1개)
+    delete(){}
+
+}
+
+class Inventory {
+    constructor(list){
+        this.list = list;
+    }
+
+    // 인벤토리 리스트에 아이템 추가
+    insert(){}
+
+    // 인벤토리 리스트에서 아이템 꺼내기
+    out(){}
+
+    // 인벤토리 리스트 가져오기
+    importList(){}
 }
