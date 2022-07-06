@@ -81,39 +81,41 @@ class Boundary {
 
 // 사물 클래스
 class Stuff {
-    constructor({ ctx, name, x, y, width, height, item, infoMsg }){
+    constructor({ ctx, name, info, x, y, width, height, itemName, itemInfo}){
         this.ctx = ctx;
         this.name = name;
         this.position = { x, y }; // x/y 값을 가짐
         this.width = width
         this.height = height;
-        this.item = item;
-        this.infoMsg = infoMsg; // 기본 설명 메세지(ex : “고장난 시계다.”, “낡아보이는 서랍장이다.”, “낡은 게시판 \n body”) 
+        this.item = { name : itemName, info : itemInfo };
+        this.info = info; // 기본 설명 메세지(ex : “고장난 시계다.”, “낡아보이는 서랍장이다.”, “낡은 게시판 \n body”) 
         this.inactionMsg = "아무일도 일어나지 않는다.";
         this.takeMsg = "을(를) 찾았다.";
     }
 
     // ctx 객체를 이용해 캔버스에 그려준다.(이미지를 직접적으로 그려주는 것이 아닌 색상을 채워주는 방식으로 만든다.)
+    // 준우님이 해주시기로
     draw(){
 
     }
 
     // 사물 객체에서 item을 제거한다.
-    // item 값을 ""(빈 값)로 바꿔준다.
+    // itemName/itemInfo 값을 ""(빈 값)로 바꿔준다.
     emptyItem(){
-
+        this.item.name = "";
+        this.item.info = "";
     }
 
     // 사물 객체에 아이템이 없을 경우 리턴해줄 내용을 객체로 생성한다.
-    // { msg : this.infoMsg, item : "" } 객체를 만들어 리턴한다.
+    // { msg : this.info, item : "" } 객체를 만들어 리턴한다.
     emptyItemMsg(){
-
+        return { msg : this.info, item : "" };
     }
 
     // 사물 객체에서 아이템을 제거할 때 사용할 함수로 리턴해줄 내용을 객체로 생성한다.
     // { msg : this.item+this.takeMsg, item : "" }  객체를 만들어 리턴한다.
     exportItemMsg(){
-
+        return { msg : this.item.name+this.takeMsg, item : "" };
     }
 
     // 플레이어가 스페이스를 눌렀을 때 불러질 함수
@@ -125,21 +127,21 @@ class Stuff {
     // 플레이어가 아이템을 사용했을 때 불러질 함수이다. 기본은 아무 반응이 없다는 메세지를 보낸다.
     // 플레이어 인벤토리에서 아이템을 사용하면 인벤토리에서는 삭제되고 putItem에 아이템 변수가 들어오게 된다.
     // 플레이어 인벤토리에서 아이템을 사용하면 인벤토리에서 삭제 안했다가 반응이 있을 경우 삭제할 수 도 있다. 
-    // { msg : this.inactionMsg,  item : item } 객체로 만들어 리턴(반응이 없으므로 아이템을 다시 플레이어에게 돌려준다.)
+    // { msg : this.inactionMsg,  item : item } 객체로 만들어 리턴(기본적으로 반응이 없으므로 아이템을 다시 플레이어에게 돌려준다.)
     putItem(item){
-
+        return { msg : this.inactionMsg,  item : item };
     }
 }
 
 // 아이템을 넣으면 힌트를 주는 클래스로 Stuff의 자식 클래스이다.
 class StuffHint extends Stuff {
-    constructor({ ctx, name, position, width, height, item, infoMsg, hintMsg }){
-        super({ ctx, name, position, width, height, item, infoMsg });
+    constructor({ ctx, name, info, x, y, width, height, itemName, itemInfo, hintMsg }){
+        super({ctx, name, info, x, y, width, height, itemName, itemInfo });
         this.hintMsg = hintMsg;
     }
 
     // 플레이어가 아이템을 사용했을 때 불러질 함수이다.
-    // this.item이 인자로 받은 item과 동일하다면. this.infoMsg+=this.hintMsg 하고 this.emptyItemMsg()를 실행해서 결과값을 리턴한다.
+    // this.item이 인자로 받은 item과 동일하다면. this.info+=this.hintMsg 하고 this.emptyItemMsg()를 실행해서 결과값을 리턴한다.
     putItem(item){
 
     }
@@ -147,8 +149,8 @@ class StuffHint extends Stuff {
 
 // 구급함(세이브) 클래스
 class SavePoint extends Stuff {
-    constructor({ ctx, name, position, width, height, item, infoMsg, save }){
-        super({ ctx, name, position, width, height, item, infoMsg });
+    constructor({ ctx, name, info, x, y, width, height, itemName, itemInfo, save }){
+        super({ ctx, name, info, x, y, width, height, itemName, itemInfo });
         this.save = save;
         this.succeseMsg = "저장되었다.";
         this.failureMsg = "저장에 실패하였다.";
@@ -167,18 +169,23 @@ class SavePoint extends Stuff {
     
     }
 
+    contact(){
+        // selectAll();
+    }
+
     // this.item이 인자로 받은 item과 동일하다면. save.LocalStorage() 실행 후 this.saveMsg()를 실행해서 결과값을 리턴한다.
+    // 구급약이 있는 상태에서 상호작용을 하면 저장화면이 바로 뜨게 작업할 것
     putItem(item){
 
     }
 }
 
 // 문(엘리베이터 포함) 클래스
-class Door extends Stuff {
-    constructor({ ctx, name, position, width, height, item, infoMsg, pw, isKeybord, isPortal, isDead, nextStage, notAvailableMsg }){
-        super({ ctx, name, position, width, height, item, infoMsg });
+class Portal extends Stuff {
+    constructor({ ctx, name, info, x, y, width, height, itemName, itemInfo, pw, isKeyboard, isPortal, isDead, nextStage, notAvailableMsg }){
+        super({ ctx, name, info, x, y, width, height, itemName, itemInfo });
         this.pw = pw;
-        this.isKeybord = isKeybord;
+        this.isKeyboard = isKeyboard;
         this.isPortal = isPortal;
         this.isDead = isDead;
         this.nextStage = nextStage;
@@ -188,7 +195,7 @@ class Door extends Stuff {
 
     // 플레이어가 아이템을 사용했을 때 불러질 함수이다.
     // 문 클래스에서 아이템은 키이다.
-    // this.item이 인자로 받은 item과 동일하다면. this.infoMsg+=this.hintMsg 하고 this.emptyItemMsg()를 실행해서 결과값을 리턴한다.
+    // this.item이 인자로 받은 item과 동일하다면. this.info+=this.hintMsg 하고 this.emptyItemMsg()를 실행해서 결과값을 리턴한다.
     putItem(item){
 
     }
