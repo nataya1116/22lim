@@ -67,12 +67,12 @@ const stuffsStg1 = [
                {
                 "name":"itemInfo",
                 "type":"string",
-                "value":""
+                "value":"구급약이다. 더 이상의 설명은 생략한다."
                }, 
                {
                 "name":"itemName",
                 "type":"string",
-                "value":""
+                "value":"구급약"
                }],
         "rotation":0,
         "visible":true,
