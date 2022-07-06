@@ -1,4 +1,4 @@
-const portalStg1 = [
+const portalsStg1 = [
        {
         "class":"",
         "height":14.75,
@@ -283,4 +283,4 @@ const portalStg1 = [
         "width":25.75,
         "x":778.625,
         "y":145.625
-       }]
+       }];
