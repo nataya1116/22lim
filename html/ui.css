@@ -114,7 +114,7 @@
 
 /* 인벤토리_ 팝업 */
 #inventory {
-    background-image: url("/img/background/cat2.jpeg");
+    background-image: url("/img/background/game_test_shot.png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
@@ -224,7 +224,7 @@
 }
 
 #item td:hover {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     border-radius: 10px;
 }
 
@@ -232,7 +232,7 @@
 
 /* 설정창_ 팝업 */
 #settingBoard {
-    background-image: url("/img/background/cat2.jpeg");
+    background-image: url("/img/background/game_test_shot.png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 1024;
@@ -329,7 +329,7 @@
 
 /* 저장슬롯 load_ 팝업 */
 #loadFiled {
-    background-image: url("/img/background/cat2.jpeg");
+    background-image: url("/img/background/game_test_shot.png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 1024;
@@ -432,7 +432,7 @@
 
 /* 저장슬롯 save_ 팝업 */
 #saveFiled {
-    background-image: url("/img/background/cat2.jpeg");
+    background-image: url("/img/background/game_test_shot.png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 1024;
@@ -539,7 +539,7 @@
 
 /* 기본 텍스트 박스_대화 */
 #text_box {
-    background-image: url("/img/background/cat2.jpeg");
+    background-image: url("/img/background/game_test_shot.png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
@@ -550,7 +550,7 @@
     align-items: center;
 }
 
-#box {
+#box_t {
     display: flex;
     width: 900px;
     height: 230px;
@@ -559,16 +559,51 @@
     border-radius: 20px;
     background-color: rgba(0, 0, 0, 0.5);
     margin-bottom: 30px;
+    padding: 20px;
 }
 
 #text {
     font-family: 'NeoDunggeunmo';
     font-size: 20px;
     color: white;
-    padding: 20px;
 }
 
 /* 퀴즈 정답 입력 박스 */
-#quize_box {}
+#quize_box {
+    background-image: url("/img/background/game_test_shot.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 576;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
 
+#box_q {
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+    height: 230px;
+    border: 5px solid white;
+    border-style: double;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+#answer {
+    font-family: 'NeoDunggeunmo';
+    font-size: 20px;
+    color: white;
+    padding-bottom: 15px;
+}
+
+#answer_text input {
+    width: 200px;
+    height: 40px;
+    background-color: rgba(144, 144, 144, 0.5);
+}
 
