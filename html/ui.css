@@ -251,17 +251,13 @@
 }
 
 /* 저장슬롯_ 팝업 */
-<<<<<<< HEAD
-#Loadfiled {
-
-=======
 #loadFiled {
     background-image: url("/img/background/cat2.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
     width: 1024;
     height: 576;
->>>>>>> ef6601e (7월 5일 작업본)
+/* >>>>>>> ef6601e (7월 5일 작업본) */
 }
 
 /* 기본 텍스트 박스_대화 */
