@@ -13,7 +13,6 @@ function createStuffObj(stuffData, ctx, save){
 
     stuffData.forEach(el => {
         name = el.name;
-        info = el.info;
         x = el.x;
         y = el.y;
         width = el.width;
@@ -42,7 +41,6 @@ function createStuffObj(stuffData, ctx, save){
         else{
             stuffArr.push(new Stuff({ctx, name, info, x, y, width, height, itemName, itemInfo}));
         }
-        console.log(el);
     });
     return stuffArr;
 }
@@ -68,7 +66,6 @@ function createPortalObj(portalData){
     
     portalData.forEach(el => {
         name = el.name;
-        info = el.info;
         x = el.x;
         y = el.y;
         width = el.width;
