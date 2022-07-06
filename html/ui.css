@@ -5,7 +5,7 @@
     font-style: normal;
 }
 
-#container-box {
+#container_box {
     width: 1024;
     height: 576;
 }
@@ -97,7 +97,7 @@
 
 
 /* 게임오버 창 */
-#game-over {
+#game_over {
     background-image: url("/img/background/cat2.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -129,7 +129,7 @@
     width: 100%;
 }
 
-#tag {
+#tag_i {
     font-family: 'NeoDunggeunmo';
     font-size: 19px;
     background-color: white;
@@ -283,6 +283,7 @@
     height: 50px;
     margin-bottom:15px;
     font-family: 'NeoDunggeunmo';
+    font-size: 18px;
     background-color: #202020;
     border-radius: 4px;
     border: 0;
@@ -291,7 +292,6 @@
     color: #fff;
     cursor: pointer;
     display: inherit;
-    font-size: 18px;
     line-height: 24px;
     min-height: 40px;
     min-width: 80px;
@@ -334,12 +334,96 @@
     background-size: cover;
     width: 1024;
     height: 576;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+#tag_loadFiled {
+    width: 100%;
+}
+
+#tag_L{
+    font-family: 'NeoDunggeunmo';
+    font-size: 19px;
+    background-color: white;
+    width: 115px;
+    height: 35px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    text-align: center;
+    padding-top: 12px;
+    margin-left: 260px;
+}
+
+#loadList {
+    font-family: 'NeoDunggeunmo';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 750px;
+    height: 400px;
+    border: 5px solid white;
+    border-style: double;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#loadList  li {
+    font-family: 'NeoDunggeunmo';
+    font-size: 20px;
+    color: white;
+}
+
+.character {
+    background-image: url(/img/character/load/Dr\ Frankenstein\ Face.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+}
+
+#loadList button {
+  font-family: 'NeoDunggeunmo';
+  font-size: 18px;
+  background-color: #fff;
+  border: 0 solid #e2e8f0;
+  border-radius: 50px;
+  box-sizing: border-box;
+  color: #0d172a;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none #0d172a solid;
+  text-decoration-thickness: auto;
+  transition: all .1s cubic-bezier(.4, 0, .2, 1);
+  box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#loadList button:hover {
+  background-color: #1e293b;
+  color: #fff;
+}
+
+
+
+
+
+
+
+
+
 /* 기본 텍스트 박스_대화 */
-#text-box {}
+#text_box {}
 
 /* 퀴즈 정답 입력 박스 */
-#quize-box {}
+#quize_box {}
 
 
