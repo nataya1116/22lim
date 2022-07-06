@@ -98,7 +98,7 @@ function createPortalObj(portalData){
                 notAvailableMsg = el2.value;
             }
             if(el2.name === "pw"){
-                infoInfo = el2.value;
+                pw = el2.value;
             }
             
         });
