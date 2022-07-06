@@ -108,20 +108,24 @@ class Stuff {
 
     // 사물 객체에 아이템이 없을 경우 리턴해줄 내용을 객체로 생성한다.
     // { msg : this.info, item : "" } 객체를 만들어 리턴한다.
+    // =========== 보류 =============
     emptyItemMsg(){
         return { msg : this.info, item : "" };
     }
+    // =========== 보류 =============
 
     // 사물 객체에서 아이템을 제거할 때 사용할 함수로 리턴해줄 내용을 객체로 생성한다.
     // { msg : this.item+this.takeMsg, item : "" }  객체를 만들어 리턴한다.
+    // =========== 보류 =============
     exportItemMsg(){
         return { msg : this.item.name+this.takeMsg, item : "" };
     }
+    // =========== 보류 =============
 
     // 플레이어가 스페이스를 눌렀을 때 불러질 함수
     // this.item이 빈 값이 아닌 경우 this.exportItemMsg()를 실행해 결과값을 저장해 두었다가 this.emptyItem()를 실행하여 값을 비워준 후 결과값을 리턴한다. this.item이 빈값인 경우 this.emptyItemMsg()를 실행하고 결과값을 리턴한다.
     contact(){
-
+        // 
     }
 
     // 플레이어가 아이템을 사용했을 때 불러질 함수이다. 기본은 아무 반응이 없다는 메세지를 보낸다.
@@ -143,7 +147,13 @@ class StuffHint extends Stuff {
     // 플레이어가 아이템을 사용했을 때 불러질 함수이다.
     // this.item이 인자로 받은 item과 동일하다면. this.info+=this.hintMsg 하고 this.emptyItemMsg()를 실행해서 결과값을 리턴한다.
     putItem(item){
-
+        if(this.item.name === item.name){
+            this.info+=`<br>${this.hintMsg}`;
+            super.emptyItem();
+            return { msg : this.info, item : "" };
+        }else{
+            return super.putItem(item);
+        }
     }
 }
 
@@ -158,16 +168,20 @@ class SavePoint extends Stuff {
 
     // 세이브 성공 시 리턴값(객체) 만들어줌
     // { msg : this.succeseMsg, item : "" } 객체를 만들어 리턴한다.
-    succeseMsg(){
-        
+    // =========== 보류 =============
+    succeseReturn(){
+        return { msg : this.succeseMsg, item : "" };
     }
+    // =========== 보류 =============
 
     
     // 세이브 실패 시 리턴값(객체) 만들어줌
     // { msg : this.failureMsg, item : "" } 객체를 만들어 리턴한다.
+    // =========== 보류 =============
     failureMsg(){
     
     }
+    // =========== 보류 =============
 
     contact(){
         // selectAll();
@@ -207,15 +221,19 @@ class Portal extends Stuff {
 
     // 문을 사용할 수 없을 때 리턴할 객체를 생성
     // {msg : *notAvailable, item : ""} 객체로 만들어 리턴
+    // =========== 보류 =============
     notAvailable(){
 
     }
+    // =========== 보류 =============
 
     // 비밀번호가 틀렸을 때 리턴할 객체를 생성
     // {msg : *wrongPwMsg, item : ""} 객체로 만들어서 리턴
+    // =========== 보류 =============
     wrongPwMsg(){
 
     }
+    // =========== 보류 =============
 
     // this.pw와 인자로 받은 pw가 동일하면 true 아니면 false리턴
     samePw(pw){
