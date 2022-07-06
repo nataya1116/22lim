@@ -4,23 +4,12 @@
     font-weight: normal;
     font-style: normal;
 }
-<<<<<<< HEAD
-/* ========================================================================================변경요소 */
-#container-box {
-=======
 
 #container_box {
->>>>>>> 6ec3383d4fdc2b74a28271511dfe5ff92ca655cc
     width: 1024;
     height: 576;
-    position: relative;
 }
-/* box와 div사이에 그냥 띄어쓰기 하면 자손요소 > 들어가면 자식요소 */
-#container-box>div {
-       position: absolute;
-       z-index: -1;
-}
-/*====================================================================================== 변경요소 */
+
 /* border-style: double; */
 
 /* 게임시작 창 */
@@ -31,7 +20,6 @@
     width: 1024;
     height: 576;
     text-align: center;
-    z-index: 1!important;
 }
 
 #title {
