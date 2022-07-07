@@ -10,7 +10,6 @@
     height: 576;
 }
 
-/* border-style: double; */
 
 /* 게임시작 창 */
 #startPage {
@@ -70,8 +69,6 @@
     padding-left: 16px;
     padding-right: 16px;
     position: relative;
-    /* text-align: left; */
-    /* text-decoration: none; */
     transition: box-shadow .15s, transform .15s;
     user-select: none;
     -webkit-user-select: none;
@@ -388,7 +385,7 @@
 }
 
 .character {
-    background-image: url(/img/character/load/Dr\ Frankenstein\ Face.png);
+    background-image: url("/img/character/load/Dr\ Frankenstein\ Face.png");
     background-repeat: no-repeat;
     background-size: cover;
     margin-right: 30px;
@@ -491,7 +488,7 @@
 }
 
 .character {
-    background-image: url(/img/character/load/Dr\ Frankenstein\ Face.png);
+    background-image: url("/img/character/load/Dr\ Frankenstein\ Face.png");
     background-repeat: no-repeat;
     background-size: cover;
     margin-right: 30px;
