@@ -8,8 +8,14 @@
 #container_box {
     width: 1024;
     height: 576;
+    position: relative;
 }
-
+/* box와 div사이에 그냥 띄어쓰기 하면 자손요소 > 들어가면 자식요소 */
+#container-box>div {
+       position: absolute;
+       z-index: -1;
+}
+/*====================================================================================== 변경요소 */
 /* border-style: double; */
 
 /* 게임시작 창 */
@@ -20,6 +26,7 @@
     width: 1024;
     height: 576;
     text-align: center;
+    z-index: 1!important;
 }
 
 #title {
@@ -164,7 +171,6 @@
 }
 
 #item_text {
-    /* z-index: 10; */
     width: 900px;
     height: 80px;
     border: 5px solid white;
