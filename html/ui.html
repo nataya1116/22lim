@@ -1,26 +1,37 @@
-<html lang="ko">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="styleSheet" href="./reset.css">
-    <link rel="stylesheet" type="text/css" href="/html/ui.css">
-
-
+    <link rel="styleSheet" href="/reset.css">
+    <link rel="stylesheet" type="text/css" href="/ui.css">
+    <style>
+         body{
+            display: flex;
+            background-color: rgb(17, 17, 17);
+            justify-content: center;
+            align-items: center;
+        }
+  
+    </style>
 </head>
-
 <body>
     <div id="container_box">
+        <!-- 게임 화면창  -->
+        <div id="_playPage" class="_playPage">
+            <canvas id="stg2"></canvas>
+            <script src="/data/collisionsStg2.js"></script>
+            <script src="classes.js"></script> 
+            <script src="/map-2.js"></script>
+       </div>
         <!-- 메인페이지 그림(+게임로고) -->
-        <div id="startPage">
-            <!-- <img src="/image/1.jfif" alt=""> -->
-            <div id="title"><span>22임</span></div>
+        <div id="_startPage">
+            <div id="title"><span>paranoia</span></div>
             <div id="btn_list">
                 <ul>
                     <li>
-                        <button>Game Start</button>
+                        <button id="startBtn">Game Start</button>
                     </li>
                     <li>
                         <button>Log in</button>
@@ -32,20 +43,20 @@
             </div>
         </div>
         <!-- 게임오버창 -->
-        <div id="game_over">
-            <!-- <img src="/image/2.jfif" alt="game-overImg"> -->
+        <div id="_game_over">
             <div>Game over</div>
         </div>
 
         <!-- 인벤토리창 -->
-        <div id="inventory">
+        <div id="_inventory">
             <!-- 아이템 use 버튼 창 -->
-            <div id="item_use">
+            <div id="_item_use">
                 <div id="item_text">
                     <span>엑스레이 보드에 대볼 수 있다.</span>
                     <button>USE</button>
                 </div>
             </div>
+          <div id="lowInven">
             <div id="tag_inventory">
                 <div id="tag_i">
                     <span>INVENTORY</span>
@@ -54,24 +65,25 @@
             <div id="item">
                 <table>
                     <tr>
-                        <td>엑스레이 필름</td>
-                        <td>사진</td>
+                        <td class="item_td"></td>
+                        <td class="item_td"></td>
                     </tr>
                     <tr>
-                        <td>열쇠</td>
-                        <td>돌멩이</td>
+                        <td class="item_td"></td>
+                        <td class="item_td"></td>
                     </tr>
                     <tr>
-                        <td>백신</td>
-                        <td>빈 물병</td>
+                        <td class="item_td"></td>
+                        <td class="item_td"></td>
                     </tr>
                 </table>
             </div>
+          </div>
         </div>
 
 
         <!-- 설정창 -->
-        <div id="settingBoard">
+        <div id="_settingBoard">
             <div id="tag_setting">
                 <div id="tag_s">
                     <span>SETTING</span>
@@ -80,10 +92,10 @@
             <div id="setting">
                 <div id="btn_setting">
                     <div>
-                        <Button>Main</Button>
+                        <Button id="main_button">Main</Button>
                     </div>
                     <div>
-                        <Button>Savefile</Button>
+                        <Button id="loadfile_button">Loadfile</Button>
                     </div>
                 </div>
                 <div id="sound_setting">
@@ -95,7 +107,7 @@
 
 
         <!--저장슬롯 load -->
-        <div id="loadFiled">
+        <div id="_loadFiled">
             <div id="tag_loadFiled">
                 <div id="tag_L">
                     <span>LOAD FILED</span>
@@ -103,6 +115,7 @@
             </div>
             <div id="loadList">
                 <ul>
+
                     <li>
                         <p>file 1</p>
                         <div class="character"></div>
@@ -141,10 +154,8 @@
                 </ul>
             </div>
         </div>
-
-
         <!--저장슬롯 save -->
-        <div id="saveFiled">
+        <div id="_saveFiled">
             <div id="tag_saveFiled">
                 <div id="tag_save">
                     <span>SAVE FILED</span>
@@ -191,20 +202,15 @@
             </div>
         </div>
 
-
-
-
         <!--기본 텍스트 박스 -->
-        <div id="text_box">
+         <div id="_text_box">
             <div id="box_t">
                 <div id="text">구급약을 찾았다.</div>
             </div>
         </div>
 
-
-
         <!--퀴즈 인풋 박스 -->
-        <div id="quize_box">
+        <div id="_quize_box">
             <div id="box_q">
                 <div id="answer">암호 입력 후 enter를 누르세요.</div>
                 <div id="answer_text">
@@ -214,7 +220,21 @@
         </div>
 
 
+        <!-- 프롤로그 텍스트 -->
+        <div id="_prolog">
+            <div id="prolog_box">
+                <div id="prolog_text">1972년 경기도 연천에 한 폐병원에서 비명소리가 들렸다는 신고가 들어온다.
+
+                    해당 병원은 1970년 6월 6일 병원장이 약물 과다 복용으로 사망한 뒤 계속 비워져 있는 것으로 확인되어 신고를 받은 상황실에서는 비를 피해 들어간 노숙자의 고성방가인 것으로 추측했지만
+                    
+                    1971년 2월 1일 해당 지역 인근에서 발생한 시체 집단 유기 사건과 관련이 있다고 파악한 한 형사는 해당 병원을 조사하게 되는데…
+                </div>
+                    <button class="prolSkip" role="button">SKIP&nbsp;>></button>
+            </div>
+        </div>
     </div>
+
+<script src="/uiClass.js"></script>
 </body>
 
 </html>

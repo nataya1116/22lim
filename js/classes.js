@@ -1,81 +1,61 @@
-// 플레이어 클래스
-class Player {
-    constructor(){}
+class Sprite {
+    constructor({position, velocity, image, frames ={max:1}, sprites }){  
+        this.position = position
+        this.image = image
+        this.frames = {...frames, val: 0, elapsed: 0 }
 
-    //move()
-
-    //collision()
-
-    //interation()
-
-    //door()
-}
-
-// 맵 클래스
-class Map {
-    constructor(){
-
-    }
-    
-    // 배열의 width를 70타일씩 자르고 싶을떄
-    arrCut(){
-        for (let i=0; i<collisions.lenth; i+=70){    
-            collisions.slice(i, 70+i) 
+        this.image.onload = () => {
+            this.width = this.image.width / this.frames.max
+            this.height = this.image.height 
+            // console.log(this.width);
+            // console.log(this.height);
         }
-    } 
-    
-    // 현재 반복하고 있는 기호가 1025와 같을 때만 경계를 그리고 싶을때 
-    boundaryLine() {
-        collisionsMap.forEach((row, i) => {
-            row.forEach((symbol, j) => {
-                if (symbol === 1025) 
-                    boundaries.push(new Boundary({
-                        postion: {
-                            x: j * Boundary.width + offset.x,
-                            y: i *Boundary.height + offset.y
-                        }
-                    }))
-            })
-        })
+        this.moving = false
+        this.Sprite = sprites
     }
-    
-    // 고정된 이미지가 아니라 반복되는 이미지를 draw() 하고 싶을때
-    animate(){
-       window.requestAnimationFrame(animate)
-    }
-    
-    
-    portalJump(){
-        // 해당위치에서 keyDown했을떄 다음 맵으로 넘어가는 기능을 사용하고 싶을때 
-    }
-    
-    trapZone(){
-        // 플레이어가 해당 좌표에 닿았을때 trap 이벤트 발생 
-        // 이차원 배열 필요
-    }
-    
-    tileMap(url ){
-
+    draw(){
+        // c.drawImage(this.image, this.position.x, this.position.y );
+        c.drawImage(
+                this.image,
+                //       4      x      48      = 192 이미지 총 가로길이
+                this.frames.val * this.width,  // 캐릭터는 48px
+                0, 
+                this.image.width / this.frames.max,  
+                this.image.height,  
+                this.position.x,
+                this.position.y,
+                // canvas.width / 2 - (this.image.width / 4) /2, 
+                // canvas.height /2 - this.image.height / 2, 
+                this.image.width / this.frames.max, 
+                this.image.height 
+            )
+            if(!this.moving) return
+            
+                if(this.frames.max > 1){
+                    this.frames.elapsed++
+                }
+                if(this.frames.elapsed%10 ===0 ){
+                //          1                 4
+                if(this.frames.val < this.frames.max - 1) this.frames.val++
+                else this.frames.val = 0
+            }
+        
     }
 }
 
+// 클래스 안에서는 따로 fuction 으로 함수를 선언 해주지 않아도 된다.
+// 
 class Boundary {
-    // 정적속성
-    static width =48 	
-    static height =48
-    constructor({position}) {
-        this.postion = position
-        // 지도 내에 생성되는 경계블록의 크기 예시에서는 12x12를 사용하였지만 여기서 400%확대한
-        this.width=48        
-        // 이미지를 가져왔기 때문에 12x4= 48 즉 48x48이 원하는 크기가 된다.
-        this.height=48	
+    static width =40
+    static height =40
+    constructor({position}){
+        this.position = position
+        this.width = 40
+        this.height = 40
     }
-    // 처음에 선언한 const c = canvas.getContext('2d') 캔버스 컨텍스트를 선택한다.
-    draw() {
-    // 처음 tiled에서 설정한것과 동일하게 red로 확인가능 더 확실하게는 rgba를 이용
-    c.fillStyle = 'red' 
-    // 첫번째 인수 x, 두번째 인수y, 세번째 인수 width, 네번째 인수 height 를 참조하여 캔버스에 drow
-    c.fillRect(this.position.x, this.position.y, this.width, this.height)
+    draw(){
+        c.fillStyle = 'rgba(255, 0, 0, 0.0)' // 확인용
+        c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 }
 
@@ -99,6 +79,7 @@ class Stuff {
 
     }
 
+    // 교수님
     // 사물 객체에서 item을 제거한다.
     // itemName/itemInfo 값을 ""(빈 값)로 바꿔준다.
     emptyItem(){
@@ -106,12 +87,14 @@ class Stuff {
         this.item.info = "";
     }
 
+    // 교수님
     // 사물 객체에 아이템이 없을 경우 리턴해줄 내용을 객체로 생성한다.
     // { msg : this.info, item : "" } 객체를 만들어 리턴한다.
     emptyItemMsg(){
         return { msg : this.info, item : "" };
     }
 
+    // 교수님
     // 사물 객체에서 아이템을 제거할 때 사용할 함수로 리턴해줄 내용을 객체로 생성한다.
     // { msg : this.item+this.takeMsg, item : "" }  객체를 만들어 리턴한다.
     exportItemMsg(){
@@ -197,7 +180,7 @@ class Portal extends Stuff {
     // 문 클래스에서 아이템은 키이다.
     // this.item이 인자로 받은 item과 동일하다면. this.info+=this.hintMsg 하고 this.emptyItemMsg()를 실행해서 결과값을 리턴한다.
     putItem(item){
-
+        
     }
 
     // this.nextStage에 저장된 스테이지로 이동
@@ -242,7 +225,9 @@ class Save {
     constructor(){}
 
     // 세이브 파일 저장
-    create(){}
+    create(){
+
+    }
 
     // 세이브 파일 불러오기(1개)
     selet(){}
@@ -263,12 +248,25 @@ class Inventory {
         this.list = list;
     }
 
+    // 교수님
     // 인벤토리 리스트에 아이템 추가
-    insert(){}
+    insert(item){
+        this.list.push(item);
+    }
 
     // 인벤토리 리스트에서 아이템 꺼내기
     out(){}
 
     // 인벤토리 리스트 가져오기
-    importList(){}
+    importList(){
+        return this.list;
+    }
+}
+
+// 교수님
+class Item {
+    constructor(name, text){
+        this.name = name;
+        this.text = text;
+    }
 }
