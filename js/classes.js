@@ -125,14 +125,21 @@ class Stuff {
     // 플레이어가 스페이스를 눌렀을 때 불러질 함수
     // this.item이 빈 값이 아닌 경우 this.exportItemMsg()를 실행해 결과값을 저장해 두었다가 this.emptyItem()를 실행하여 값을 비워준 후 결과값을 리턴한다. this.item이 빈값인 경우 this.emptyItemMsg()를 실행하고 결과값을 리턴한다.
     contact(){
+        // if(!!this.item.name){
+        //     console.log(this.item.name+this.takeMsg);
+        //     const res = this.item;
+        //     this.emptyItem();
+        //     return res;
+        // }else{
+        //     console.log(this.info);
+        //     return this.item;
+        // }
         if(!!this.item.name){
-            console.log(this.item.name+this.takeMsg);
-            const res = this.item;
+            let ret = { msg : this.item.name+this.takeMsg, item : this.item };
             this.emptyItem();
-            return res;
-        }else{
-            console.log(this.info);
-            return this.item;
+            return ret;
+        } else {
+            return { msg : this.info, item : this.item };
         }
     }
 
@@ -152,6 +159,11 @@ class StuffHint extends Stuff {
         this.hintMsg = hintMsg;
     }
 
+    // 소개 메세지만 리턴
+    contact(){
+        return { msg : this.info, item : {name : "", info : "" } };
+    }
+
     // 플레이어가 아이템을 사용했을 때 불러질 함수이다.
     // this.item이 인자로 받은 item과 동일하다면. this.info+=this.hintMsg 하고 this.emptyItemMsg()를 실행해서 결과값을 리턴한다.
     putItem(item){
@@ -159,7 +171,7 @@ class StuffHint extends Stuff {
             this.info+=`<br>${this.hintMsg}`;
             super.emptyItem();
             console.log(this.info);
-            return this.info;
+            return { msg : this.info, item : this.item };
         }else{
             return super.putItem(item);
         }
@@ -192,15 +204,16 @@ class SavePoint extends Stuff {
     // }
     // =========== 보류 =============
 
+    // 인벤토리에서 구급약이 있는지 확인해야 한다. 리턴값으로 구급약 item을 리턴해서 인벤토리에서 비교하게 시킨다.
     contact(){
-        // selectAll();
+        return { item : this.item };
     }
 
     // this.item이 인자로 받은 item과 동일하다면. save.LocalStorage() 실행 후 this.saveMsg()를 실행해서 결과값을 리턴한다.
     // 구급약이 있는 상태에서 상호작용을 하면 저장화면이 바로 뜨게 작업할 것
-    putItem(item){
-
-    }
+    // putItem(item){
+        
+    // }   
 }
 
 // 문(엘리베이터 포함) 클래스
