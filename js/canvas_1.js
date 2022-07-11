@@ -104,8 +104,6 @@ const player = new Sprite({
 })
 
 
-
-
 const playerCol = new Boundary({
     position: {
         // 맵 가운데에 위치하게 고정
@@ -124,6 +122,8 @@ const background = new Sprite({
     },
     image: image
 })
+
+
 const foreground = new Sprite({
     position: {
         x: offset.x,
@@ -180,6 +180,8 @@ function rectangularCollision({rectangle1, rectangle2}) {
 //         col.contact();
 //     }
 // }
+
+
 function animate() {
     window.requestAnimationFrame(animate);
     background.draw();
@@ -274,10 +276,10 @@ function animate() {
     else if (keys.s.pressed && lastKey === 's') {
 		//s 입력했을때 keys.s.pressed
         // player.moving 이동중이라는것
-        player.moving = true
+        player.moving = true;
         // player.image 밑에 이미지로 교체
-        player.image = player.Sprite.down
-		 player.raycast_direction = "down";
+        player.image = player.Sprite.down;
+		player.raycast_direction = "down";
         //20220710 이미지 Y축 인덱스
         player.frames.valY = 0;
         //충돌체 갯수만큼 돌아 벽
@@ -332,6 +334,7 @@ function animate() {
                 break;
             }
         }
+        //배경이동
         if (moving) 
             movables.forEach((movable) => {
                 movable.position.x -= 3
@@ -355,6 +358,7 @@ function animate() {
                     }
                 }
             })
+            // 레이캐스트 확인 하는 부분(벽에 맞으면 나옴)
             if (col) {
                 console.log(col + " : 맞은 블럭임 이거");
                 console.log('레이저 맞았다..')
@@ -431,6 +435,8 @@ window.addEventListener(
         // console.log(keys)
     }
 )
+
+
 window.addEventListener(
     'keyup',
     (e) => { // keydown시 true로 바뀌어 다시 돌아오지 않기 때문에 keyup도 따로 설정해준다.
