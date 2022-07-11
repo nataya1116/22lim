@@ -374,7 +374,7 @@ const playPage = document.getElementById("_play_page");
 window.addEventListener(  
     'keydown',
     (e) => { // (e)는 이벤트를 나타내는 미리 채워진 개체 (개발자의 경우 이를 e 라고 부름 걍)
-        // if(mapState === "_play_page")
+        if(mapState !== "_play_page") return;
         //console.log(e.key))
         switch (e.key) {
             case 'w':
