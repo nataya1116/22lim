@@ -18,7 +18,7 @@
     
 }
 #_start_page {
-    background-image: url("./image/startPage.png");
+    background-image: url("/img/background/startPage.png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 1024;
@@ -107,7 +107,7 @@
 
 /* 게임오버 창 */
 #_game_over {
-    background-image: url("./image/ded\ image.png");
+    background-image: url("/img/background/ded\ image.png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 1024;
@@ -505,7 +505,7 @@
 }
 
 .character {
-    background-image: url(./image/character/load/Dr\ Frankenstein\ Face.png);
+    background-image: url("/img/character/load/Dr\ Frankenstein\ Face.png");
     background-repeat: no-repeat;
     background-size: cover;
     margin-right: 30px;
@@ -677,7 +677,7 @@
   
   .prolSkip:hover {
     background-repeat: no-repeat;
-    background-image: url(./image/findIt.png);
+    background-image: url("/img/playImage/findIt.png");
     filter: none;
     color: rgba(0, 0, 0, 0);
     background-color: transparent;

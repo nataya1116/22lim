@@ -59,18 +59,13 @@ console.log(boundaries);
 
 // 이미지 불러온 부분
 const image = new Image()
-image.src = './image/backGroundStg2.png';
+image.src = '/img/background/backGroundStg2.png';
 
 const foregroundImage = new Image()
-foregroundImage.src = './image/foreGroundStg2.png';
+foregroundImage.src = '/img/background/foreGroundStg2.png';
 //20220710 통 플레이어 이미지
 const playerImage = new Image();
-playerImage.src = './image/$Dr Frankenstien (resizing).png'
-
-
-
-
-
+playerImage.src = '/img/character/$Dr Frankenstien (resizing).png'
 
 
 
@@ -383,7 +378,7 @@ const playPage = document.getElementById("_play_page");
 window.addEventListener(  
     'keydown',
     (e) => { // (e)는 이벤트를 나타내는 미리 채워진 개체 (개발자의 경우 이를 e 라고 부름 걍)
-        // if(mapState === "_play_page")
+        if(mapState !== "_play_page") return;
         //console.log(e.key))
         switch (e.key) {
             case 'w':
