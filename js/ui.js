@@ -14,19 +14,20 @@ const itemList = []
 
 
 window.onload =function(){
-    _startPage.style.zIndex = 999;
+    _start_page.style.zIndex = 999;
 
 }
 
 // const mainButton = false
-main_button.onclick = function(){
-        _settingBoard.style.zIndex = 0;
-        _startPage.style.zIndex = 999;
+_main_button.onclick = function(){
+        _setting_board.style.zIndex = 0;
+        _start_page.style.zIndex = 999;
+        location.reload("_play_page");
 }
 // }======================================================================
-loadfile_button.onclick = function(){
-    _settingBoard.style.zIndex = 0;
-    _loadFiled.style.zIndex = 999;
+_loadfile_button.onclick = function(){
+    _setting_board.style.zIndex = 0;
+    _load_filed.style.zIndex = 999;
 //     // if(loadFiled.style.zIndex = 999){
 //         console.log("들어오긴하냐?2");
         
@@ -46,7 +47,7 @@ loadfile_button.onclick = function(){
 //======================================================================
 
 
-startBtn.onclick = function(){
+_start_btn.onclick = function(){
         // if(!playPage.classList.contains("test")){
         //     playPage.classList.add("test")
         //     startPage.classList.add("test2")
@@ -55,6 +56,7 @@ startBtn.onclick = function(){
         //     playPage.classList.remove("test")
         //     startPage.classList.remove("test2")
         // }
+        paragraph(prologText)
         document.querySelectorAll('#container_box>div').forEach(el => {
             el.style.zIndex = "";
         })
@@ -64,7 +66,18 @@ startBtn.onclick = function(){
     };
     // 하위 인벤토리 창이 먼저 뜨고 거기에 엑스레이 필름을 누르면  상위 보드 뜨게 하기
 
+_load_btn.onclick = function(){
 
+        // document.querySelectorAll('#container_box>div').forEach(el => {
+        //     el.style.zIndex = "";
+        // })
+
+        _load_list.style.zIndex = 999;
+        mapState = "_load_list";
+        
+};
+
+//===============================================================
     
 let isSettingBoardView = false;
 let isInventoryView = false;
@@ -80,7 +93,7 @@ function itemget(){
     // tr.appendChild(td2);
     // item.appendChild(tr);
     // query 반환값 배열
-    let items = item.querySelectorAll('.item_td');
+    let items = _item.querySelectorAll(".item_td");
     isInventory.insert(new Item("사과","맛있다"));
     // isInventory.insert(new Item("바나나","맛없다"));
     // isInventory.insert(new Item("애플","하"));
@@ -94,7 +107,7 @@ function itemget(){
             items[i].classList.add('have');
             items[i].onclick = function(){
                 _item_use.style.zIndex = 9999;
-                item_text.querySelector('span').innerHTML = arr[i].text;            
+                _item_text.querySelector('span').innerHTML = arr[i].text;            
             };
         }   
         else{
@@ -105,8 +118,8 @@ function itemget(){
 }
 
 window.addEventListener('keydown',function(e){
-    if(mapState === "_playPage")
-    if(e.keyCode === 32)
+    if(mapState !== "_play_page") return
+    if(e.key === ' ')
     {
         // 아이템 추가 함수
         itemget();
@@ -116,34 +129,34 @@ window.addEventListener('keydown',function(e){
 let settingBoardView = false
 console.log(isInventory.importList());
 window.onkeydown = function(event){
-    if(mapState === "_playPage")
+    if(mapState !== "_play_page") return;
     if(event.key == "i"){
         if(isInventoryView){
-            console.log(lowInven);
+            console.log(_low_inven);
             _item_use.style.zIndex = 0;
-            lowInven.style.zIndex = 0;
+            _low_inven.style.zIndex = 0;
             isPopupOpen = false;
             isInventoryView = false;
         }else if(isPopupOpen === false){
-            lowInven.style.zIndex = 999;
+            _low_inven.style.zIndex = 999;
             isPopupOpen = true;
             isInventoryView = true;
         }
         
     }
-    if(mapState === "_playPage")
+    if(mapState !== "_play_page") return;
     if(event.key == "Escape"){
         if(settingBoardView){
-            _settingBoard.style.zIndex = 0;
+            _setting_board.style.zIndex = 0;
             isPopupOpen = false;
             settingBoardView= false;
         }else if(isPopupOpen === false){
-            _settingBoard.style.zIndex = 999;
+            _setting_board.style.zIndex = 999;
             isPopupOpen = true;
             settingBoardView = true;
         }
-        if(_loadFiled.style.zIndex="999"){
-            _loadFiled.style.zIndex = 0 ;
+        if(_load_filed.style.zIndex="999"){
+            _load_filed.style.zIndex = 0 ;
         }
     }
 }
@@ -181,9 +194,9 @@ prolSkip.onclick = function(){
     document.querySelectorAll('#container_box>div').forEach(el => {
             el.style.zIndex = "";
         })
-        _playPage.style.zIndex = 999;
+        _play_page.style.zIndex = 999;
         
-        mapState = "_playPage";
+        mapState = "_play_page";
         // // setTimeout(function() {
         // //     // event.prolSkip.style.fontSize = "27px";
         // //     console.log("됨?")
@@ -193,22 +206,22 @@ prolSkip.onclick = function(){
 }
 
 function paragraph(element) {
-  const array = element.innerText.split('')
-  const special = ['~', '@', '!', '#', '$', '%', '^', '&', '*']
-  const exception = [' ', '\n', '.', ',']
-  const random = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) + min)
-  }
-
-  const numArray = []
-  array.forEach(char => {
-    const num = random(5, 40)
-    numArray.push(num)
-  })
-
-  let completeCount
-  let newText
-  const timer = setInterval(() => {
+    const array = element.innerText.split('')
+    const special = ['~', '@', '!', '#', '$', '%', '^', '&', '*']
+    const exception = [' ', '\n', '.', ',']
+    const random = (min, max) => {
+        return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+    
+    const numArray = []
+    array.forEach(char => {
+        const num = random(5, 40)
+        numArray.push(num)
+    })
+    
+    let completeCount
+    let newText
+    const timer = setInterval(() => { 
     completeCount = 0
     newText = ''
     numArray.forEach((num, i) => {
@@ -226,13 +239,4 @@ function paragraph(element) {
   }, 120)
 }
 
-const prologText = document.getElementById('prolog_text')
-paragraph(prologText);
-
-const divArr = document.querySelectorAll('container_box>div');
-// forEach 이용
-
-console.log(divArr);
-document.querySelectorAll('container_box>div').forEach(el => {
-    el.style.zIndex = "";
-})
+const prologText = document.getElementById('_prolog_text');
