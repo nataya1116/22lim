@@ -106,3 +106,15 @@ function createPortalObj(portalData){
     });
     return portalArr;
 }
+
+
+function textBoxView(text){
+    _text_box.style.zIndex = 999;
+    _text.innerHTML = text;
+}
+
+function textBoxHidden(){
+    _text_box.style.zIndex = 0;
+    _text.innerHTML = "";
+}
+
