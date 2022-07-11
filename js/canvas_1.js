@@ -59,22 +59,13 @@ console.log(boundaries);
 
 // 이미지 불러온 부분
 const image = new Image()
-image.src = './image/backGroundStg2.png';
+image.src = '/img/background/backGroundStg2.png';
 
 const foregroundImage = new Image()
-foregroundImage.src = './image/foreGroundStg2.png';
+foregroundImage.src = '/img/background/foreGroundStg2.png';
 //20220710 통 플레이어 이미지
 const playerImage = new Image();
-playerImage.src = './image/$Dr Frankenstien (resizing).png'
-
-
-
-
-
-
-
-
-
+playerImage.src = '/img/character/$Dr Frankenstien (resizing).png';
 
 
 
