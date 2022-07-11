@@ -18,8 +18,8 @@ for (let i = 0; i < collisionsStg2.length; i += 70) {
 const boundaries = []
 // const objCols = [];
 const offset = {
-    x: -925,
-    y: -740
+    x: -1464,
+    y: -180
 }
 
 
@@ -42,7 +42,7 @@ const offset = {
 // 충돌 부분 2차원배열 만들어주는 부분
 collisionsMap.forEach((row, i) => {
     row.forEach((symbol, j) => {
-        if (symbol === 23346) 
+        if (symbol === 1337) 
             boundaries.push(new Boundary({
                 position: {
 				  //  Boundary.width, Boundary.height는 바운더리 클래스에서 쓴 정적 메서드로
@@ -59,10 +59,10 @@ console.log(boundaries);
 
 // 이미지 불러온 부분
 const image = new Image()
-image.src = '/img/background/backGroundStg2.png';
+image.src = '/img/background/backGroundBeforeStg1.png';
 
 const foregroundImage = new Image()
-foregroundImage.src = '/img/background/foreGroundStg2.png';
+foregroundImage.src = '/img/background/foreGroundBeforeStg1.png';
 //20220710 통 플레이어 이미지
 const playerImage = new Image();
 playerImage.src = '/img/character/$Dr Frankenstien (resizing).png';
@@ -85,7 +85,7 @@ const player = new Sprite({
         //20220710 이미지 Y축 나눌 갯수
         maxY: 4,
         //20220710 이미지 Y축 인덱스(아래로 나눈거의 몇번째인지)
-        valY:3,
+        valY:0,
         // 이미지 X축 인덱스
         valX:1
     },
@@ -301,7 +301,10 @@ function animate() {
                 movable.position.y -= 3
             })
     } 
-    
+    // 오브젝트 위치값 forEach 써서 키값으로 같이 
+    //이동 배경이 이동하기 때문에 오브젝트 값도 같이 옮겨 줘야 한다.
+    //헷갈리면 포켓몬 참고
+    // movable 도 참고 같이 넣는건 불가능
     
     // d키 --------------------------------------------------------------------------------------------------
     else if (keys.d.pressed && lastKey === 'd') {
@@ -360,6 +363,9 @@ function animate() {
         }
         keys.space.pressed = false;
     }
+    // if(player.raycast()===true){
+    //     itemget()
+    // }
 }
 
 // 반복하려는 함수의 무한 루프를 생성

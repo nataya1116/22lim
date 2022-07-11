@@ -137,7 +137,7 @@ class Boundary {
         this.height = height;
     }
     draw(){
-        c.fillStyle = 'rgba(255, 0, 0, 0.0)' // 확인용
+        c.fillStyle = 'rgba(255, 0, 0, 0.2)' // 확인용
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 }

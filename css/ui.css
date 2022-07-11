@@ -9,14 +9,14 @@
 #container_box {
     width: 1024;
     height: 576;
-    position: relative;
+    /* position: relative; */
 }
 
 /* box와 div사이에 그냥 띄어쓰기 하면 자손요소 > 들어가면 자식요소 */
-#container_box>div {
+/* #container_box>div {
     position: absolute;
     
-}
+} */
 #_start_page {
     background-image: url("/img/background/startPage.png");
     background-repeat: no-repeat;
