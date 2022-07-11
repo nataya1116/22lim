@@ -1,99 +1,484 @@
-//===============================================================
-// const canvas = document.querySelector('canvas');
-// const c = canvas.getContext('2d')
+const canvas = document.querySelector('canvas');
+const c = canvas.getContext('2d');
 
-// canvas.width = 1000;
-// const image = new Image()
-// image.src = './image/untitled.png';
-// canvas.height = 1000;
-//===============================================================
+// console.log(collisions);
+canvas.width = 1024;
+canvas.height = 576;
+let mapState = "_start_page";
 
-// 맵 관련 클래스
-// 클래스는 노트, 그 안에 들어가는 메모들은 함수 등등
-  class Map {
-    // 생성자 함수 (받을 파라미터)
-    constructor(name){ 
-        // this는 맵 그자체 (클래스를 가리킴)
-        // 값을 받아야하는 것은 =으로 넣어주고
-        this.name = name;
-        // 밑에와 같이 함수에서 리턴을 받아 값을 가져올 필요가 없는것은 ;세미콜론으로 닫아준다
-        this.mapArr;
+
+// 팝업창
+let isPopupOpen = false;
+
+
+
+const collisionsMap = []
+// 70인 이유는 tiled상 지도의 너비가 70이기 때문
+for (let i = 0; i < collisionsStg2.length; i += 70) {
+    collisionsMap.push(collisionsStg2.slice(i, 70 + i))
+    // console.log(collisions.slice(i, 70 + i)); 이렇게 반복하면서 배열안에 타일번호를 콘솔로
+    // 확인할 수 있다.
+}
+
+const boundaries = []
+// const objCols = [];
+const offset = {
+    x: -925,
+    y: -740
+}
+
+// let objCol = objects;
+// objCol.forEach(el => {
+//     if(el.isCol === true)
+//     {
+//         objCols.push(new Boundary({
+//             width:500,
+//             height:500,
+//             position: {
+//                 x: el.width + el.x,
+//                 y: el.height + el.y
+//             },
+//             type : el.name,
+//         }))
+//     }
+// });
+
+// 충돌 부분 2차원배열 만들어주는 부분
+collisionsMap.forEach((row, i) => {
+    row.forEach((symbol, j) => {
+        if (symbol === 23346) 
+            boundaries.push(new Boundary({
+                position: {
+                    //  Boundary.width, Boundary.height는 바운더리 클래스에서 쓴 정적 메서드로
+                        // new 인스턴스 생성 없이 호출해온 것이다.
+                    x: j * Boundary.width + offset.x,
+                    y: i * Boundary.height + offset.y
+                },
+            }))
+    })
+})
+console.log(boundaries);
+// console.log(objCols);
+
+
+// 이미지 불러온 부분
+const image = new Image()
+image.src = './image/backGroundStg2.png';
+
+const foregroundImage = new Image()
+foregroundImage.src = './image//foreGroundStg2.png';
+//20220710 통 플레이어 이미지
+const playerImage = new Image();
+playerImage.src = './image/$Dr Frankenstien (resizing).png'
+
+
+
+
+const player = new Sprite({
+    position: {
+        // 맵 가운데에 위치하게 고정
+        x: canvas.width / 2 - 180 / 4 / 2,
+        y: canvas.height / 2 - 320 / 6
+        // x: canvas.width / 2 - 192 / 4 / 2, 포켓몬 사이즈였음
+        // y: canvas.height / 2 - 68 / 2
+    },
+    image: playerImage,
+    frames: {
+        // 이미지 X축 나눌 갯수
+        max: 3,
+        //20220710 이미지 Y축 나눌 갯수
+        maxY: 4,
+        //20220710 이미지 Y축 인덱스(아래로 나눈거의 몇번째인지)
+        valY:3,
+        // 이미지 X축 인덱스
+        valX:1
+    },
+    sprites: {
+        up: playerImage,
+        left: playerImage,
+        right: playerImage,
+        down: playerImage
+    },
+    //20220710 레이케스트 이미지
+    rayImg : playerImage
+})
+
+
+
+
+const playerCol = new Boundary({
+    position: {
+        // 맵 가운데에 위치하게 고정
+        x: player.position.x + playerImage.width / 15,
+        y: player.position.y + playerImage.height / 7.3
+    },
+    width : 30,
+    height : 30
+
+})
+
+
+
+const background = new Sprite({
+    position: {
+        x: offset.x,
+        y: offset.y
+    },
+    image: image
+})
+
+
+
+const foreground = new Sprite({
+    position: {
+        x: offset.x,
+        y: offset.y
+    },
+    image: foregroundImage
+})
+
+// 키가 눌리지 않았을 때
+const keys = {
+    w: {
+        pressed: false
+    },
+    a: {
+        pressed: false
+    },
+    s: {
+        pressed: false
+    },
+    d: {
+        pressed: false
+    },
+    space: {
+        pressed: false
     }
-    // (재사용이 가능하다) 배열을 잘라주는 함수
-    arryCut(Arr){
-        // 배열을 담아줄 빈배열을 선언한다
-        // collisionsMap을 선언하고 아래 포문의 배열을 collisionsMap으로 가져온다.
-        const collisionsMap = [];
-// collisions.lenth의 크기는 대략 천개정도의 항목이라 추측가능히다 천개의 배열을 반복하는것은 비효율적이라 i의 크기를 70까지만 증가시킨다.
-// 여기서 70까지만 증가 시키는 이유는 지도의 width가 70타일이기 때문
-        for (let i = 0; i < Arr.length; i += 70) {
-	// 결과적으로 이방정식은 70~140으로 슬라이싱 됨, silce 메서드 호출 0~70까지의 요소(i=0) => 확인이 필요하다면 해당 식을 console.log()로 확인해준다.
-            collisionsMap.push(Arr.slice(i, 70 + i))
+    // 이 안에서 콘솔 찍어서 확인 가능
+}
+
+
+const movables = [
+    background, ...boundaries,
+    foreground
+]
+
+// 플레이어와 충돌 처리 한 부분 값 비교해서 충돌 여부 확인해주는 곳
+// rectangle1가 플레이어 이미지
+function rectangularCollision({rectangle1, rectangle2}) {
+    if( rectangle1.position.x + rectangle1.width >= rectangle2.position.x && 
+        rectangle1.position.x <= rectangle2.position.x + rectangle2.width && 
+        rectangle1.position.y <= rectangle2.position.y + rectangle2.height &&
+        rectangle1.position.y + rectangle1.height >= rectangle2.position.y)
+        {
+            return  rectangle2;
         }
-        this.mapArr = collisionsMap;
-    }
-    // 배열 안에 offset으로 위치를 잡고 collisione 을 그려주는 함수
-    Collis(cols) {
-        const offset = {
-            x: -930,
-            y: -600
-        }
-    // 충돌맵의 각행에 대해 화살표 함수를 호출
-        cols.forEach((row, i) => {
-            row.forEach((symbol, j) => {
-                // 현재 반복하고 있는 기호가 23346와 같을 때 경계를 그리고 싶기 때문에 해당 if문을 완성시켜준다.
-                if (symbol === 23346) 
-                // 위에서 지정한 constructor({postion)}의 값을 가져온다. 
-                boundaries.push(new Boundary({
+}
+
+
+
+function animate() {
+    window.requestAnimationFrame(animate);
+    background.draw();
+    boundaries.forEach((boundary) => {
+        boundary.draw();
+    })
+    // objCols.forEach((boundary) => {
+    //     boundary.draw()
+    // })
+    
+    player.draw();
+    playerCol.draw();
+    foreground.draw();
+    let moving = true;
+    player.moving = false;
+    // 플레이어 w,a,d,s 이동시 백그라운드 포지션 변경 실제로는 배경이 이동하지만
+    // 화면상 캐릭터가 움직이는것 처럼 보이게함
+    // w키 --------------------------------------------------------------------------------------------------
+    if (keys.w.pressed && lastKey === 'w') {
+        // 플레이어 움직일 때
+        player.moving = true
+        player.image = player.Sprite.up
+        player.raycast_direction = "up";
+        //20220710 이미지 Y축 인덱스
+        player.frames.valY = 3;
+        // 23346타일이 담긴 boundaries 길이 만큼 돌아준다
+        
+        for (let i = 0; i < boundaries.length; i++) {
+            const boundary = boundaries[i]
+            // 캐릭터와 맵 충돌 부분
+            if (rectangularCollision({
+                rectangle1: playerCol,
+                // 충돌 부분과 position을 넣어준다
+                rectangle2: {
+                    ...boundary,
+                    // w키를 눌렀을 때 Y축으로 맵이 내려가야하기때문에
+                    // boundary.position.y에 3을 더해준다
                     position: {
-                        // 여기에 왜 + offset을 삽입한것인지는 아래를 확인
-                        x: j * Boundary.width + offset.x,
-                        // 사용되는 크기 값 여기서 시간이 지난후 48이 어떠한 값인지 헷갈릴 수 있으므로 위 Boundary 클래스에 정적 키워드를 사용하여 정적 속성을 만들고 호출한다.
-                        y: i * Boundary.height + offset.y
+                        x: boundary.position.x,
+                        y: boundary.position.y + 3
                     }
-                }))
+                }
+            }))
+            {
+                // 부딪혔을때 콘솔에 보여줌
+                console.log('colliding')
+                moving = false;
+                break;
+            }
+        }
+        if (moving) 
+            movables.forEach((movable) => {
+                movable.position.y += 3
             })
-        })
     }
-  }
-  // Class Map에 firstMap을 넣어주고 name을 지정해 준다.
-  let firstMap = new Map("첫번째 맵");
-  let firstMap2 = new Map("두번째 맵");
-  // firstMap에 arrCut 함수를 넣어준다.
-  // firstMap에 arryCut 함수를  collisions에 사용한다.
-  firstMap.arryCut(collisions);
+     
+    
 
-  firstMap.mapArr;
-  let maps = [firstMap,firstMap2];
-  // ...스프레드 오퍼레이터(연산자) =>
-  let maps2 = [...maps, firstMap3]
-  maps.forEach((e,idx)=>{
-    // indexNumber 1
-    if(idx === 1)
-    {
+    // a키 --------------------------------------------------------------------------------------------------
+    else if (keys.a.pressed && lastKey === 'a') {
+        player.moving = true
+        player.image = player.Sprite.left
+        player.raycast_direction = "left";
+        //20220710 이미지 Y축 인덱스
+        player.frames.valY = 1;
+        let el = {width: player.width/3,height: player.height/3,position:{x:player.position.x,y:player.position.y}}
 
+        for (let i = 0; i < boundaries.length; i++) {
+            const boundary = boundaries[i]
+            if (rectangularCollision({
+                rectangle1: playerCol,
+                rectangle2: {
+                    ...boundary,
+                    position: {
+                        x: boundary.position.x + 3,
+                        y: boundary.position.y
+                    }
+                }
+            })) {
+                console.log('colliding')
+                moving = false;
+                break;
+            }
+        }
+        if (moving) 
+            movables.forEach((movable) => {
+                //배경 이동
+                movable.position.x += 3
+            })
     }
-    if(e.name === "첫번째 맵")
-    {
+    
 
+    // s키 --------------------------------------------------------------------------------------------------
+    else if (keys.s.pressed && lastKey === 's') {
+        //s 입력했을때 keys.s.pressed
+        // player.moving 이동중이라는것
+        player.moving = true
+        // player.image 밑에 이미지로 교체
+        player.image = player.Sprite.down
+        player.raycast_direction = "down";
+        //20220710 이미지 Y축 인덱스
+        player.frames.valY = 0;
+        //충돌체 갯수만큼 돌아 벽
+        let el = {width: player.width/3,height: player.height/3,position:{x:player.position.x,y:player.position.y}}
+        for (let i = 0; i < boundaries.length; i++) {
+            const boundary = boundaries[i]
+            if (rectangularCollision({
+                rectangle1: playerCol,
+                rectangle2: {
+                    ...boundary,
+                    position: {
+                        x: boundary.position.x,
+                        y: boundary.position.y - 3
+                    }
+                }
+            })) {
+                console.log('colliding')
+                moving = false;
+                break;
+            }
+        }
+        if (moving) 
+            movables.forEach((movable) => {
+                //배경이동
+                movable.position.y -= 3
+            })
     }
-  });
+    
 
-  class Boundary {
-    static width =40
-    static height =40
-    constructor({position}){
-        this.position = position
-        this.width = 40
-        this.height = 40
-    }
+    // d키 --------------------------------------------------------------------------------------------------
+    else if (keys.d.pressed && lastKey === 'd') {
+        player.moving = true
+        player.image = player.Sprite.right
+        player.raycast_direction = "right";
+        //20220710 이미지 Y축 인덱스
+        player.frames.valY = 2;
+        let el = {width: player.width/3,height: player.height/3,position:{x:player.position.x,y:player.position.y}}
 
-    draw(){
-        c.fillStyle = 'rgba(255, 0, 0, 0.0)' //  collisions 확인용
-        c.fillRect(this.position.x, this.position.y, this.width, this.height)
+        for (let i = 0; i < boundaries.length; i++) {
+            const boundary = boundaries[i]
+            if (rectangularCollision({
+                rectangle1: playerCol,
+                rectangle2: {
+                    ...boundary,
+                    position: {
+                        x: boundary.position.x - 3,
+                        y: boundary.position.y
+                    }
+                }
+            })) {
+                console.log('colliding')
+                moving = false;
+                break;
+            }
+        }
+        if (moving) 
+            movables.forEach((movable) => {
+                movable.position.x -= 3
+            })
+            // console.log(background.position.y)
+        }
+
+
+        
+    //20220710 레이케스트 스페이스바////////////////////////////
+    else if (keys.space.pressed && lastKey === 'space') {
+        player.raycast();
+        for (let i = 0; i < boundaries.length; i++) {
+            // boundaries[i] 저장된 갯수 인덱스
+            const boundary = boundaries[i]
+            let col = rectangularCollision({
+                rectangle1: player.raycast(),
+                rectangle2: {
+                    ...boundary,
+                    position: {
+                        x: boundary.position.x - 3,
+                        y: boundary.position.y
+                    }
+                }
+            })
+            if (col) {
+                console.log(col + " : 맞은 블럭임 이거");
+                console.log('레이저 맞았다..')
+                moving = false;
+                break;
+            }
+        }
+        keys.space.pressed = false;
     }
 }
 
-  
+// 반복하려는 함수의 무한 루프를 생성
+animate();
+
+let lastKey = ''
+
+const playPage = document.getElementById("_play_page");
 
 
+
+window.addEventListener(  
+    'keydown',
+    (e) => { // (e)는 이벤트를 나타내는 미리 채워진 개체 (개발자의 경우 이를 e 라고 부름 걍)
+        // if(mapState === "_play_page")
+        //console.log(e.key)
+        switch (e.key) {
+            case 'w':
+                // console.log('pressed w key')
+                keys.w.pressed = true
+                lastKey = 'w' // 해당키를 누르고 있다가 다른키를 누르면 다른키로 변경됨 위에 if문 확인
+                break;
+            case 'a':
+                // console.log('pressed a key')
+                keys.a.pressed = true
+                lastKey = 'a'
+                break;
+            case 's':
+                // console.log('pressed s key')
+                keys.s.pressed = true
+                lastKey = 's'
+                break;
+            case 'd':
+                // console.log('pressed d key')
+                keys.d.pressed = true
+                lastKey = 'd'
+                break;
+            //20220710 레이케스트 스페이스바
+            case ' ':
+                keys.space.pressed = true
+                lastKey = 'space'
+                break;
+            // 한글 키 추가
+            case 'ㅈ':
+                // console.log('pressed w key')
+                keys.w.pressed = true
+                lastKey = 'w' // 해당키를 누르고 있다가 다른키를 누르면 다른키로 변경됨 위에 if문 확인
+                break;
+            case 'ㅁ':
+                // console.log('pressed a key')
+                keys.a.pressed = true
+                lastKey = 'a'
+                break;
+            case 'ㄴ':
+                // console.log('pressed s key')
+                keys.s.pressed = true
+                lastKey = 's'
+                break;
+            case 'ㅇ':
+                // console.log('pressed d key')
+                keys.d.pressed = true
+                lastKey = 'd'
+                break;
+        }
+        //console.log(keys)
+    }
+)
+window.addEventListener(
+    'keyup',
+    (e) => { // keydown시 true로 바뀌어 다시 돌아오지 않기 때문에 keyup도 따로 설정해준다.
+        switch (e.key) {
+            case 'w':
+                keys.w.pressed = false
+                break;
+            case 'a':
+                keys.a.pressed = false
+                break;
+            case 's':
+                keys.s.pressed = false
+                break;
+            case 'd':
+                keys.d.pressed = false
+                break;
+            // 한글 키 추가
+            case 'ㅈ':
+                keys.w.pressed = false
+                break;
+            case 'ㅁ':
+                keys.a.pressed = false
+                break;
+            case 'ㄴ':
+                keys.s.pressed = false
+                break;
+            case 'ㅇ':
+                keys.d.pressed = false
+                break;
+        }
+        console.log(keys)
+    }
+)
+
+// const inventory = [
+//     {
+//         name: "구급약",
+//         info: "아파?"
+//     }, {
+//         name: "엑스레이 필름",
+//         info: ""
+//     }, {
+//         name: "실험실열쇠",
+//         info: "3스테이지에서 4스테이지로 넘어갈 수 있게 해주는 아이템"
+//     }, {
+//         name: "실험체 데이터 파일",
+//         info: "진엔딩 필수 아이템"
+//     }
+// ]
