@@ -348,8 +348,8 @@ class Inventory {
 
 // 교수님
 class Item {
-    constructor(name, text){
+    constructor(name, info){
         this.name = name;
-        this.text = text;
+        this.info = info;
     }
 }
