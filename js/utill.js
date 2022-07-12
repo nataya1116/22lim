@@ -191,6 +191,8 @@ function paragraph(element) {
   }, 120)
 }
 
+
+// +++++++++++++++++++++++++++++++++++++
 function itemget(name, info, useing){
     let items = _item.querySelectorAll(".item_td");
     // 아이템 정보를 만들어 주고(넣어주고)
@@ -229,7 +231,14 @@ function updateItem(arr){
                         // 위에서 선언한 removeItem 함수를 가져와서
                         // 배열안에 false인 useing 값을 가지고 있는 객체의 이름을 지워준다.     
                         removeItem( arr[i].name);
+                        // 이름이 삭제 될때 인벤토리 창이 같이 없어진다.
+                        if(isInventoryView){
+                            inventoryHidden();
+                        }else if(isPopupOpen === false){
+                            inventoryView();
+                        }
                     }
+                
                 }      
             };
         }   
