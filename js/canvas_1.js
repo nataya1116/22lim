@@ -72,11 +72,9 @@ playerImage.src = '/img/character/$Dr Frankenstien (resizing).png'
 
 
 
-
-
 const player = new Sprite({
     position: {
-      // 맵 가운데에 위치하게 고정
+        // 맵 가운데에 위치하게 고정
         x: canvas.width / 2 - 180 / 4 / 2,
         y: canvas.height / 2 - 320 / 6
         // x: canvas.width / 2 - 192 / 4 / 2, 포켓몬 사이즈였음
@@ -84,7 +82,7 @@ const player = new Sprite({
     },
     image: playerImage,
     frames: {
-            // 이미지 X축 나눌 갯수
+        // 이미지 X축 나눌 갯수
         max: 3,
         //20220710 이미지 Y축 나눌 갯수
         maxY: 4,
@@ -99,16 +97,34 @@ const player = new Sprite({
         right: playerImage,
         down: playerImage
     },
-//20220710 레이케스트 이미지
-    rayImg : playerImage
+    //20220710 레이케스트 이미지
+    
 })
 
+//내가 따로 만들어준 부분/////////////////////////////////
+// const playerRay = new Boundary({
+//     position: {
+//         // 맵 가운데에 위치하게 고정
+//         x: player.position.x + playerImage.width / 15,
+//         y: player.position.y + playerImage.height / 7.3
+//     },
+//     width : 30,
+//     height : 30
+// })
 
+const playerRaycast = new Character({});
+
+
+// ///////////////////////////////////
+console.log(player.position.x);
+console.log(player.position.y);
+console.log(player.height);
+console.log(player.width);
 const playerCol = new Boundary({
     position: {
         // 맵 가운데에 위치하게 고정
-        x: player.position.x + playerImage.width / 15,
-        y: player.position.y + playerImage.height / 7.3
+        x: player.position.x + player.width / 4.8,
+        y: player.position.y + player.height / 1.8
     },
     width : 30,
     height : 30
@@ -197,6 +213,7 @@ function animate() {
     foreground.draw();
 	let moving = true;
     player.moving = false;
+
     // 플레이어 w,a,d,s 이동시 백그라운드 포지션 변경 실제로는 배경이 이동하지만
     // 화면상 캐릭터가 움직이는것 처럼 보이게함
     // w키 --------------------------------------------------------------------------------------------------
@@ -204,7 +221,8 @@ function animate() {
 		// 플레이어 움직일 때
         player.moving = true
         player.image = player.Sprite.up
-		 player.raycast_direction = "up";
+        // 래이캐스트 방향
+		playerRaycast.raycast_direction = "up";
         //20220710 이미지 Y축 인덱스
         player.frames.valY = 3;
         // 23346타일이 담긴 boundaries 길이 만큼 돌아준다
@@ -242,7 +260,7 @@ function animate() {
     else if (keys.a.pressed && lastKey === 'a') {
 		player.moving = true
         player.image = player.Sprite.left
-		 player.raycast_direction = "left";
+        playerRaycast.raycast_direction = "left";
         //20220710 이미지 Y축 인덱스
         player.frames.valY = 1;
         let el = {width: player.width/3,height: player.height/3,position:{x:player.position.x,y:player.position.y}}
@@ -279,11 +297,11 @@ function animate() {
         player.moving = true;
         // player.image 밑에 이미지로 교체
         player.image = player.Sprite.down;
-		player.raycast_direction = "down";
+		playerRaycast.raycast_direction = "down";
         //20220710 이미지 Y축 인덱스
         player.frames.valY = 0;
         //충돌체 갯수만큼 돌아 벽
-		 let el = {width: player.width/3,height: player.height/3,position:{x:player.position.x,y:player.position.y}}
+		//  let el = {width: player.width/3,height: player.height/3,position:{x:player.position.x,y:player.position.y}}
         for (let i = 0; i < boundaries.length; i++) {
             const boundary = boundaries[i]
             if (rectangularCollision({
@@ -313,7 +331,7 @@ function animate() {
     else if (keys.d.pressed && lastKey === 'd') {
 		player.moving = true
         player.image = player.Sprite.right
-		 player.raycast_direction = "right";
+		playerRaycast.raycast_direction = "right";
         //20220710 이미지 Y축 인덱스
         player.frames.valY = 2;
         let el = {width: player.width/3,height: player.height/3,position:{x:player.position.x,y:player.position.y}}
@@ -344,12 +362,12 @@ function animate() {
      
 	 //20220710 레이케스트 스페이스바////////////////////////////
     else if (keys.space.pressed && lastKey === 'space') {
-        player.raycast();
+        playerRaycast.raycast();
         for (let i = 0; i < boundaries.length; i++) {
             // boundaries[i] 저장된 갯수 인덱스
             const boundary = boundaries[i]
             let col = rectangularCollision({
-                rectangle1: player.raycast(),
+                rectangle1: playerRaycast.raycast(),
                 rectangle2: {
                     ...boundary,
                     position: {
@@ -360,6 +378,7 @@ function animate() {
             })
             // 레이캐스트 확인 하는 부분(벽에 맞으면 나옴)
             if (col) {
+                // 수진언니가 준 함수를 나중에 여기다가 넣어준다.
                 console.log(col + " : 맞은 블럭임 이거");
                 console.log('레이저 맞았다..')
                 moving = false;

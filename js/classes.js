@@ -6,20 +6,23 @@ class Sprite {
 	    this.position = position
         this.image = image
         //20220710 레이케스트 이미지
-        this.rayImg = rayImg;
+       
         this.frames = {...frames, elapsed: 0, raycastspeed:0  }
+        this.width = this.image.width / this.frames.max
+        this.height = this.image.height / this.frames.maxY
         
-		this.image.onload = () => {
-            this.width = this.image.width / this.frames.max
-            //20220710 이미지 Y축 나눈 크기
-            this.height = this.image.height / this.frames.maxY
-            // console.log(this.image.width / this.frames.max);
-            // console.log(this.image.height / this.frames.maxY);     
-        }
+        // 웹페이지가 다 로드 되고 나서 이부분이 로드된다.
+		// this.image.onload = () => {
+        //     //                   180      /      3
+        //     //20220710 이미지 Y축 나눈 크기
+        //     //                  320         /        4
+        //     // console.log(this.image.width / this.frames.max);
+        //     // console.log(this.image.height / this.frames.maxY);     
+        // }
         this.moving = false;
         this.Sprite = sprites;
         //20220710 플레이어가 맵에 로드 되었을 때 기본 레이케스트 방향 결정
-        this.raycast_direction = "up";
+        
     }
     
     draw(){
@@ -59,131 +62,7 @@ class Sprite {
     
     }
 	//20220710 레이케스트 4방향
-    raycast(){
-        switch (this.raycast_direction) {
-            case 'up':
-                c.drawImage(
-                    // 그려줄 이미지 요소
-                    this.rayImg,
-                    this.width,
-                    0,
-                    this.width,  
-                    this.height,
-                    // 그려지는 위치
-                    this.position.x ,
-                    this.position.y - this.height,
-                    this.width,
-                    this.height
-                )
-                return {width : this.width, height:this.height, position:{x:this.position.x, y:this.position.y - this.height}}
-            case 'left':
-                c.drawImage(
-                    this.rayImg,
-                    this.width,
-                    0,
-                    this.width,  
-                    this.height,  
-                    this.position.x - this.width,
-                    this.position.y ,
-                    this.width,
-                    this.height
-                )
-                return {width : this.width, height:this.height,position:{x:this.position.x - this.width, y:this.position.y}}
-            case 'right':
-                c.drawImage(
-                    this.rayImg,
-                    this.width,
-                    0,
-                    this.width,  
-                    this.height,  
-                    this.position.x + this.width,
-                    this.position.y ,
-                    this.width,
-                    this.height
-                )
-                return {width : this.width, height:this.height,position:{x:this.position.x + this.width, y:this.position.y}}
-            case 'down':
-                c.drawImage(
-                    this.rayImg,
-                    this.width,
-                    0,
-                    this.width,  
-                    this.height,  
-                    this.position.x ,
-                    this.position.y + this.height,
-                    this.width,
-                    this.height
-                )
-                return {width : this.width, height:this.height,position:{x:this.position.x, y:this.position.y + this.height}}
-            // 위에서 맞는 케이스 없으면 여기로
-            default:
-                break;
-        }
-    }
-    //20220710 레이케스트 4방향
-    raycast(){
-        switch (this.raycast_direction) {
-            case 'up':
-                c.drawImage(
-                    // 그려줄 이미지 요소
-                    this.rayImg,
-                    this.width,
-                    0,
-                    this.width,  
-                    this.height,
-                    // 그려지는 위치
-                    this.position.x ,
-                    this.position.y - this.height,
-                    this.width,
-                    this.height
-                )
-                return {width : this.width, height:this.height, position:{x:this.position.x, y:this.position.y - this.height}}
-            case 'left':
-                c.drawImage(
-                    this.rayImg,
-                    this.width,
-                    0,
-                    this.width,  
-                    this.height,  
-                    this.position.x - this.width,
-                    this.position.y ,
-                    this.width,
-                    this.height
-                )
-                return {width : this.width, height:this.height,position:{x:this.position.x - this.width, y:this.position.y}}
-            case 'right':
-                c.drawImage(
-                    this.rayImg,
-                    this.width,
-                    0,
-                    this.width,  
-                    this.height,  
-                    this.position.x + this.width,
-                    this.position.y ,
-                    this.width,
-                    this.height
-                )
-                return {width : this.width, height:this.height,position:{x:this.position.x + this.width, y:this.position.y}}
-            case 'down':
-                c.drawImage(
-                    this.rayImg,
-                    this.width,
-                    0,
-                    this.width,  
-                    this.height,  
-                    this.position.x ,
-                    this.position.y + this.height,
-                    this.width,
-                    this.height
-                )
-                return {width : this.width, height:this.height,position:{x:this.position.x, y:this.position.y + this.height}}
-            // 위에서 맞는 케이스 없으면 여기로
-            default:
-                break;
-        }
-    }
-}
-
+}    
 
 
 // 클래스 안에서는 따로 fuction 으로 함수를 선언 해주지 않아도 된다.
