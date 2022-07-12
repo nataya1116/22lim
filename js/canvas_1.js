@@ -53,6 +53,14 @@ collisionsMap.forEach((row, i) => {
             }))
     })
 })
+console.log(boundaries);
+const stuffMapSt1 = createStuffObj(stuffsStg1, c);
+console.log(stuffMapSt1);
+
+
+
+const stuffMapSt2 = createStuffObj(stuffsStg2, c);
+console.log(stuffMapSt2);
 
 console.log(boundaries);
 // console.log(objCols);
@@ -176,12 +184,28 @@ function rectangularCollision({rectangle1, rectangle2}) {
 //         col.contact();
 //     }
 // }
+
+//  ===============브젝트 충돌체를 그려주는 함수 ====================
 function animate() {
     window.requestAnimationFrame(animate);
     background.draw();
+    // c.fillStyle = 'rgba(0, 255, 0, 0.5)' // 확인용
+    // c.fillRect(778.625*2.5+offset.x,145.625*2.5+offset.y,25.75*2.5,14.75*2.5)
+    // "x":753,
+    // "y":144.25
     boundaries.forEach((boundary) => {
         boundary.draw();
     })
+
+    stuffMapSt1.forEach((stuff) => {
+        // c.fillStyle = 'rgba(255, 0, 0, 0.2)' // 확인용
+        // c.fillRect(this.position.x * 2.5 + x, this.position.y * 2.5 + y, this.width * 2.5, this.height * 2.5);
+        // c.fillStyle = 'rgba(0, 255, 0, 0.2)' // 확인용
+        // c.fillRect(stuff.position.x * 2.5+offset.x, stuff.position.y * 2.5+offset.y, stuff.width * 2.5, stuff.height * 2.5);
+        stuff.draw(offset.x, offset.y);
+    })
+//  ===============브젝트 충돌체를 그려주는 함수 끝 ==================
+
     // objCols.forEach((boundary) => {
     //     boundary.draw()
     // })
@@ -225,10 +249,14 @@ function animate() {
                 break;
             }
         }
-        if (moving) 
+        if (moving) {
             movables.forEach((movable) => {
                 movable.position.y += 3
-            })
+            });
+            stuffMapSt1.forEach((stuff) => {
+                stuff.position.y += 3;
+            });
+        }
             // background.position.y = background.position.y +=3
         // testBoundary.position.y +=3
     }
@@ -257,11 +285,15 @@ function animate() {
                 break;
             }
         }
-        if (moving) 
+        if (moving) {
             movables.forEach((movable) => {
                 //배경 이동
-                movable.position.x += 3
+                movable.position.x += 3;
             })
+            stuffMapSt1.forEach((stuff) => {
+                stuff.position.x += 3;
+            });
+        }
     } 
     
     
@@ -295,11 +327,15 @@ function animate() {
                 break;
             }
         }
-        if (moving) 
+        if (moving) {
             movables.forEach((movable) => {
                 //배경이동
-                movable.position.y -= 3
-            })
+                movable.position.y -= 3;
+            });
+            stuffMapSt1.forEach((stuff) => {
+                stuff.position.y -= 3;
+            });
+        }
     } 
     // 오브젝트 위치값 forEach 써서 키값으로 같이 
     //이동 배경이 이동하기 때문에 오브젝트 값도 같이 옮겨 줘야 한다.
@@ -331,12 +367,16 @@ function animate() {
                 break;
             }
         }
-        if (moving) 
+        if (moving) {
             movables.forEach((movable) => {
                 movable.position.x -= 3
-            })
-            // console.log(background.position.y)
+            });
+            console.log(background.position.y)
+            stuffMapSt1.forEach((stuff) => {
+                stuff.position.x -= 3
+            });
         }
+    }
      
 	 //20220710 레이케스트 스페이스바////////////////////////////
     else if (keys.space.pressed && lastKey === 'space') {
@@ -346,18 +386,114 @@ function animate() {
             const boundary = boundaries[i]
             let col = rectangularCollision({
                 rectangle1: player.raycast(),
+                // rectangle2: {
+                //     ...boundary,
+                //     position: {
+                //         x: boundary.position.x - 3,
+                //         y: boundary.position.y
+                //     }
+                // }
+//============================================================================================
+            //     rectangle2: {
+            //         name:"협탁",
+            //         width:15,
+            //         height:15.75,
+            //         properties:[
+            //                {
+            //                 name:"info",
+            //                 type:"string",
+            //                 value:"낡은 조화가 올라가 있는 협탁"
+            //                }, 
+            //                {
+            //                 name:"itemInfo",
+            //                 type:"string",
+            //                 value:"구급약이다. 더 이상의 설명은 생략한다."
+            //                }, 
+            //                {
+            //                 name:"itemName",
+            //                 type:"string",
+            //                 value:"구급약"
+            //                }],
+            //         position: {
+            //             x: 1980+offset.x,
+            //             y: 400+ offset.y
+            //         }
+            //     }
+            // })
                 rectangle2: {
-                    ...boundary,
+                    "name":"문",
+                    "properties":[
+                           {
+                            "name":"info",
+                            "type":"string",
+                            "value":"어디로 연결되는 문일까?"
+                           }, 
+                           {
+                            "name":"isDead",
+                            "type":"bool",
+                            "value":true
+                           }, 
+                           {
+                            "name":"isKeyboard",
+                            "type":"bool",
+                            "value":false
+                           }, 
+                           {
+                            "name":"isPortal",
+                            "type":"bool",
+                            "value":false
+                           }, 
+                           {
+                            "name":"itemInfo",
+                            "type":"string",
+                            "value":""
+                           }, 
+                           {
+                            "name":"itemName",
+                            "type":"string",
+                            "value":""
+                           }, 
+                           {
+                            "name":"nextStage",
+                            "type":"string",
+                            "value":""
+                           }, 
+                           {
+                            "name":"notAvailableMsg",
+                            "type":"string",
+                            "value":"나갈 수 없습니다."
+                           }, 
+                           {
+                            "name":"pw",
+                            "type":"string",
+                            "value":""
+                           }],
                     position: {
-                        x: boundary.position.x - 3,
-                        y: boundary.position.y
+                        x: 778.625*2.5+offset.x,
+                        y: 145.625*2.5+offset.y
                     }
+                    //=====================
                 }
             })
+
+             // 충돌 부분과 position을 넣어준다
+				// rectangle2: {
+                //     ...boundary,
+				// 	// w키를 눌렀을 때 Y축으로 맵이 내려가야하기때문에
+                //     // boundary.position.y에 3을 더해준다
+				// 	position: {
+                //         x: boundary.position.x,
+                //         y: boundary.position.y + 3
+                //     }
+                // }
+//=============================================================================================
             if (col) {
-                console.log(col + " : 맞은 블럭임 이거");
-                console.log('레이저 맞았다..')
-                moving = false;
+                if(col.properties[2].value !== "")
+                {
+                    itemget(col.properties[2].value,col.properties[1].value,false);
+                    console.log('레이저 맞았다..')
+                    moving = false;
+                }
                 break;
             }
         }
