@@ -201,11 +201,11 @@ class Stuff {
         //     return this.item;
         // }
         if(!!this.item.name){
-            let ret = { msg : this.item.name+this.takeMsg, item : this.item };
+            let ret = { msg : this.item.name + this.takeMsg, item : {...this.item} };
             this.emptyItem();
             return ret;
         } else {
-            return { msg : this.info, item : this.item };
+            return { msg : this.info, item : {...this.item} };
         }
     }
 
@@ -227,7 +227,7 @@ class StuffHint extends Stuff {
 
     // 소개 메세지만 리턴
     contact(){
-        return { msg : this.info, item : {name : "", info : "" } };
+        return { msg : [...this.info], item : {name : "", info : "" } };
     }
 
     // 플레이어가 아이템을 사용했을 때 불러질 함수이다.
@@ -237,7 +237,7 @@ class StuffHint extends Stuff {
             this.info+=`<br>${this.hintMsg}`;
             super.emptyItem();
             console.log(this.info);
-            return { msg : this.info, item : this.item };
+            return { msg : this.info, item : {...this.item} };
         }else{
             return super.putItem(item);
         }
@@ -272,7 +272,7 @@ class SavePoint extends Stuff {
 
     // 인벤토리에서 구급약이 있는지 확인해야 한다. 리턴값으로 구급약 item을 리턴해서 인벤토리에서 비교하게 시킨다.
     contact(){
-        return { item : this.item };
+        return { item : {...this.item} };
     }
 
     // this.item이 인자로 받은 item과 동일하다면. save.LocalStorage() 실행 후 this.saveMsg()를 실행해서 결과값을 리턴한다.
@@ -332,7 +332,7 @@ class Portal extends Stuff {
     // samePw(pw)를 실행시켜서 결과값이 true이면 this.nextStage() 실행
     // false이면 this.wrongPwMsg() 실행해서 결과값을 리턴함.
     inputPw(pw){
-        return this.samePw(pw) ? this.movingNextStage() : {msg : this.wrongPwMsg, item : this.item};
+        return this.samePw(pw) ? this.movingNextStage() : {msg : this.wrongPwMsg};
     }
 
     // this.pw 값이 없고 this.isPortal이 true일  경우 this.nextStage() 실행
@@ -341,7 +341,7 @@ class Portal extends Stuff {
     contact(pw){
         
         if(this.isPortal === false && this.isKeyboard === false) {
-            return {msg : this.notAvailableMsg, item : this.item};
+            return {msg : this.notAvailableMsg, item : {...this.item}};
         }
         
         if(this.isKeyboard){
@@ -376,8 +376,8 @@ class Save {
 }
 
 class Inventory {
-    constructor(list){
-        this.list = list;
+    constructor(){
+        this.list = [];
     }
 
     // 교수님

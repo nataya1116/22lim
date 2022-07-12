@@ -9,8 +9,8 @@ let mapState = "_start_page";
 let isPopupOpen = false;
 const collisionsMap = []
 // 70인 이유는 tiled상 지도의 너비가 70이기 때문
-for (let i = 0; i < collisionsStg2.length; i += 70) {
-    collisionsMap.push(collisionsStg2.slice(i, 70 + i))
+for (let i = 0; i < collisionsStg1.length; i += 70) {
+    collisionsMap.push(collisionsStg1.slice(i, 70 + i))
     // console.log(collisions.slice(i, 70 + i)); 이렇게 반복하면서 배열안에 타일번호를 콘솔로
     // 확인할 수 있다.
 }

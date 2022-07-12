@@ -56,7 +56,7 @@ _start_btn.onclick = function(){
         //     playPage.classList.remove("test")
         //     startPage.classList.remove("test2")
         // }
-        paragraph(prologText)
+        paragraph(prologText);
         document.querySelectorAll('#container_box>div').forEach(el => {
             el.style.zIndex = "";
         })
@@ -79,8 +79,7 @@ _load_btn.onclick = function(){
 
 //===============================================================
     
-let isSettingBoardView = false;
-let isInventoryView = false;
+
 let isInventory = new Inventory([]);
 
 function itemget(){
@@ -126,40 +125,70 @@ window.addEventListener('keydown',function(e){
     }
 })
 
-let settingBoardView = false
+// ++++++++++++++++++++++++++ 테스트 +++++++++++++++++++++++++++
+const ctx = "";
+
+const stuffTempArr = createStuffObj(stuffsStg1, ctx);
+console.log(stuffTempArr);
+// ++++++++++++++++++++++++++ 테스트 +++++++++++++++++++++++++++
+
+// let settingBoardView = false
 console.log(isInventory.importList());
 window.onkeydown = function(event){
     if(mapState !== "_play_page") return;
+
     if(event.key == "i"){
         if(isInventoryView){
-            console.log(_low_inven);
-            _item_use.style.zIndex = 0;
-            _low_inven.style.zIndex = 0;
-            isPopupOpen = false;
-            isInventoryView = false;
+            inventoryHidden();
         }else if(isPopupOpen === false){
-            _low_inven.style.zIndex = 999;
-            isPopupOpen = true;
-            isInventoryView = true;
+            inventoryView();
         }
         
     }
-    if(mapState !== "_play_page") return;
     if(event.key == "Escape"){
-        if(settingBoardView){
-            _setting_board.style.zIndex = 0;
-            isPopupOpen = false;
-            settingBoardView= false;
+        if(isSettingBoardView){
+            settingBoardHidden();
         }else if(isPopupOpen === false){
-            _setting_board.style.zIndex = 999;
-            isPopupOpen = true;
-            settingBoardView = true;
+            settingBoardView();
         }
         if(_load_filed.style.zIndex="999"){
             _load_filed.style.zIndex = 0 ;
         }
     }
+
+// ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
+    if(event.key == "z"){
+        if(isTextBoxView){
+            
+            textBoxHidden();
+        }else if(isPopupOpen === false){
+            console.log(stuffTempArr[12]);
+            const temp = stuffTempArr[12].contact();
+            console.log(temp);    
+            textBoxView(temp.msg);
+            isInventory.insert(temp.item);
+        }
+    }
+// ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
+// ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
+if(event.key == "x"){
+    if(isTextBoxView){
+        
+        textBoxHidden();
+    }else if(isPopupOpen === false){
+        console.log(stuffTempArr[2]);
+        const temp = stuffTempArr[2].contact();
+        console.log(temp);    
+        textBoxView(temp.msg);
+        isInventory.insert(temp.item);
+    }
 }
+// ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
+
+}
+
+
+
 
 // window.onkeydown = function(event){
 //     if(mapState === "playPage")
@@ -205,38 +234,6 @@ prolSkip.onclick = function(){
         
 }
 
-function paragraph(element) {
-    const array = element.innerText.split('')
-    const special = ['~', '@', '!', '#', '$', '%', '^', '&', '*']
-    const exception = [' ', '\n', '.', ',']
-    const random = (min, max) => {
-        return Math.floor(Math.random() * (max - min + 1) + min)
-    }
-    
-    const numArray = []
-    array.forEach(char => {
-        const num = random(5, 40)
-        numArray.push(num)
-    })
-    
-    let completeCount
-    let newText
-    const timer = setInterval(() => { 
-    completeCount = 0
-    newText = ''
-    numArray.forEach((num, i) => {
-      if (exception.includes(array[i]) || numArray[i] === 0) {
-        newText += array[i]
-        completeCount += 1
-      } else {
-        newText += special[numArray[i] % special.length]
-        numArray[i] = --num
-      }
-    })
 
-    element.innerText = newText
-    if (completeCount === numArray.length) clearInterval(timer)
-  }, 120)
-}
 
 const prologText = document.getElementById('_prolog_text');
