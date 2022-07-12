@@ -7,7 +7,7 @@ canvas.height = 576;
 let mapState = "_start_page";
 // 팝업창
 let isPopupOpen = false;
-const collisionsMap = []
+const collisionsMap = [];
 // 70인 이유는 tiled상 지도의 너비가 70이기 때문
 for (let i = 0; i < collisionsStg1.length; i += 70) {
     collisionsMap.push(collisionsStg1.slice(i, 70 + i))

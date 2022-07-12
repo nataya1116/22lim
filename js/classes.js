@@ -159,7 +159,7 @@ class Stuff {
     // ctx 객체를 이용해 캔버스에 그려준다.(이미지를 직접적으로 그려주는 것이 아닌 색상을 채워주는 방식으로 만든다.)
     // 준우님이 해주시기로
     draw(){
-
+        
     }
 
     // 교수님
@@ -406,4 +406,15 @@ class Item {
         this.count = 1;
     }
     
+    addCount(){
+        this.count++;
+    }
+
+    subCount(){
+        this.count--;
+    }
+
+    sameName(name){
+        return this.name === name ? true : false;
+    }
 }

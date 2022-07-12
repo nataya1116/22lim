@@ -151,6 +151,8 @@ const ctx = "";
 
 const stuffTempArr = createStuffObj(stuffsStg1, ctx);
 console.log(stuffTempArr);
+const stuffTempArr2 = createStuffObj(stuffsStg2, ctx);
+console.log(stuffTempArr2);
 // ++++++++++++++++++++++++++ 테스트 +++++++++++++++++++++++++++
 
 // let settingBoardView = false

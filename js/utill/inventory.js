@@ -30,6 +30,16 @@ function updateItem(arr){
                 _item_use.style.zIndex = 9999;
                 _item_text.querySelector('span').innerHTML = arr[i].info;       
                 _item_text.querySelector('button').onclick = function(){
+
+                    console.log("ㅅㅄㅄㅄㄷㄱㅄㅄㅂ");
+                    // 사물과 충돌 상태인지 체크
+                    console.log(arr[i]);
+                    // ---------------------테스트---------------------
+                    let ret = stuffTempArr2[1].putItem(arr[i]);
+                    if(!ret.item.name) arr[i].useing = false;
+                    console.log(ret);
+                    // ---------------------테스트---------------------
+
                     // 배열안에 useing 정보가 false면 
                     if(arr[i].useing === false)
                     {   
@@ -38,6 +48,8 @@ function updateItem(arr){
                         // 배열안에 false인 useing 값을 가지고 있는 객체의 이름을 지워준다.     
                         removeItem( arr[i].name);
                     }
+
+                    inventoryHidden();
                 }      
             };
         }   
