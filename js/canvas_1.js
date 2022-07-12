@@ -9,8 +9,8 @@ let mapState = "_start_page";
 let isPopupOpen = false;
 const collisionsMap = []
 // 70인 이유는 tiled상 지도의 너비가 70이기 때문
-for (let i = 0; i < collisionsStg2.length; i += 70) {
-    collisionsMap.push(collisionsStg2.slice(i, 70 + i))
+for (let i = 0; i < collisionsStg1.length; i += 70) {
+    collisionsMap.push(collisionsStg1.slice(i, 70 + i))
     // console.log(collisions.slice(i, 70 + i)); 이렇게 반복하면서 배열안에 타일번호를 콘솔로
     // 확인할 수 있다.
 }
@@ -59,10 +59,10 @@ console.log(boundaries);
 
 // 이미지 불러온 부분
 const image = new Image()
-image.src = '/img/background/backGroundBeforeStg1.png';
+image.src = '/img/background/backGroundAfterStg1.png';
 
 const foregroundImage = new Image()
-foregroundImage.src = '/img/background/foreGroundBeforeStg1.png';
+foregroundImage.src = '/img/background/foreGroundAfterStg1.png';
 //20220710 통 플레이어 이미지
 const playerImage = new Image();
 playerImage.src = '/img/character/$Dr Frankenstien (resizing).png';
