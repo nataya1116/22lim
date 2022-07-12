@@ -338,7 +338,9 @@ class Inventory {
     }
 
     // 인벤토리 리스트에서 아이템 꺼내기
-    out(){}
+    out(name){
+        this.list = this.list.filter(e => {if(e.name == name){return false}else{return true}});
+    }
 
     // 인벤토리 리스트 가져오기
     importList(){
@@ -348,8 +350,11 @@ class Inventory {
 
 // 교수님
 class Item {
-    constructor(name, info){
+    constructor(name, info , useing){
         this.name = name;
         this.info = info;
+        this.useing = useing;
+        this.count = 1;
     }
+    
 }

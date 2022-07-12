@@ -239,8 +239,18 @@
 #_item td.have:hover {
     background-color: rgba(243, 243, 243, 0.3);
     border-radius: 10px;
+    /* animation-fill-mode: forwards; */
 }
 
+#_item td.have.active {
+    background-color: rgba(243, 243, 243, 0.3);
+    border-radius: 10px;
+    /* animation-fill-mode: forwards; */
+}
+
+
+
+/* 여기여기여기! */
 
 
 /* 설정창_ 팝업 */

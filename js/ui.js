@@ -77,29 +77,33 @@ _load_btn.onclick = function(){
         
 };
 
-//===============================================================
-    
+//===========================================================아이템 제거 및 생성 관련 =======================================
 let isSettingBoardView = false;
 let isInventoryView = false;
 let isInventory = new Inventory([]);
 
-function itemget(){
-    // let tr = document.createElement('tr');
-    // let td = document.createElement('td');
-    // let td2 = document.createElement('td');
-    // td.id = "item_td";
-    // td2.id = "item_td";
-    // tr.appendChild(td);
-    // tr.appendChild(td2);
-    // item.appendChild(tr);
-    // query 반환값 배열
+function itemget(name, info, useing){
     let items = _item.querySelectorAll(".item_td");
-    isInventory.insert(new Item("사과","맛있다"));
-    // isInventory.insert(new Item("바나나","맛없다"));
-    // isInventory.insert(new Item("애플","하"));
-    // isInventory.insert(new Item("체리","집가고싶어"));
+    // 아이템 정보를 만들어 주고(넣어주고)
+    isInventory.insert(new Item(name, info, useing));
+    // 추가한 아이템의 배열을 가져오고
     let arr = isInventory.importList();
-    console.log(items);
+    // 추가한 아이템 배열(arr)을 updateItem 함수에 전달
+    updateItem(arr);
+}
+
+function removeItem(name){
+    // 추가한 아이템의 배열을 가져오고
+    // 가져온 배열에서 없앨 아이템을 이름으로 구분해서 제거한다.
+    isInventory.out(name); 
+    //why 중복?
+    let arr = isInventory.importList();
+     // 제거한 후 아이템 배열(arr)을 updateItem 함수에 전달
+    updateItem(arr);
+}
+
+function updateItem(arr){
+    let items = _item.querySelectorAll(".item_td");
     for (let i = 0; i < items.length; i++) {
         if(i < arr.length)
         {
@@ -107,7 +111,17 @@ function itemget(){
             items[i].classList.add('have');
             items[i].onclick = function(){
                 _item_use.style.zIndex = 9999;
-                _item_text.querySelector('span').innerHTML = arr[i].text;            
+                _item_text.querySelector('span').innerHTML = arr[i].info;       
+                _item_text.querySelector('button').onclick = function(){
+                    // 배열안에 useing 정보가 false면 
+                    if(arr[i].useing === false)
+                    {   
+                        // 삭제한다.
+                        // 위에서 선언한 removeItem 함수를 가져와서
+                        // 배열안에 false인 useing 값을 가지고 있는 객체의 이름을 지워준다.     
+                        removeItem( arr[i].name);
+                    }
+                }      
             };
         }   
         else{
@@ -115,17 +129,23 @@ function itemget(){
             items[i].classList.remove('have');
         }
     }
+    // 클릭후 현재 아이템 배열의 현황을 보여준다. 
+    // 즉 isInventory.importList() 현재 아이템 배열이라는 것을 알 수 있다.
+    console.log(isInventory.importList());
 }
 
 window.addEventListener('keydown',function(e){
     if(mapState !== "_play_page") return
+    // key = ' ' 는 스페이스바의 key 값
     if(e.key === ' ')
     {
-        // 아이템 추가 함수
-        itemget();
+        // 아이템 추가 함수 (위 itemget 함수 처럼 정보를 담아 주면 된다. false 면 삭제 true면 유지)
+        itemget("구급약","구급약이다. 더 이상의 설명은 생략한다.",true);
+        itemget("엑스레이 필름","엑스레이 필름을 어디서 사용할까?",true);
+        itemget(" ds","구급함이다 아이템을 넣어둘 수 있다.",false);
     }
 })
-
+//================================================================================================================
 let settingBoardView = false
 console.log(isInventory.importList());
 window.onkeydown = function(event){
@@ -240,3 +260,12 @@ function paragraph(element) {
 }
 
 const prologText = document.getElementById('_prolog_text');
+
+document.querySelectorAll('.item_td').forEach(e=>{
+    e.addEventListener('click',function(){
+        document.querySelectorAll('.item_td').forEach(e=>{
+            e.classList.remove('active')
+        })
+        this.classList.add('active');
+    })
+})

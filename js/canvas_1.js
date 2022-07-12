@@ -496,3 +496,13 @@ document.querySelectorAll('container_box>div').forEach(el => {
 //         info: "진엔딩 필수 아이템"
 //     }
 // ]
+// boundaries.push(new Boundary({
+//     position: {
+//       //  Boundary.width, Boundary.height는 바운더리 클래스에서 쓴 정적 메서드로
+//           // new 인스턴스 생성 없이 호출해온 것이다.
+//         x: j * Boundary.width + offset.x,
+//         y: i * Boundary.height + offset.y
+//     },
+// }))
+// })
+// })
