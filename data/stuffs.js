@@ -455,12 +455,12 @@ const stuffsStg2 =[
                      {
                      "name":"itemInfo",
                      "type":"string",
-                     "value":""
+                     "value":"엑스레이 필름이다."
                      }, 
                      {
                      "name":"itemName",
                      "type":"string",
-                     "value":""
+                     "value":"엑스레이 필름"
                      }],
               "rotation":0,
               "visible":true,
