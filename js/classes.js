@@ -173,21 +173,40 @@ class Stuff {
     // 교수님
     // 사물 객체에 아이템이 없을 경우 리턴해줄 내용을 객체로 생성한다.
     // { msg : this.info, item : "" } 객체를 만들어 리턴한다.
-    emptyItemMsg(){
-        return { msg : this.info, item : "" };
-    }
+    // =========== 보류 =============
+    // emptyItemMsg(){
+    //     return { msg : this.info, item : "" };
+    // }
+    // =========== 보류 =============
 
     // 교수님
     // 사물 객체에서 아이템을 제거할 때 사용할 함수로 리턴해줄 내용을 객체로 생성한다.
     // { msg : this.item+this.takeMsg, item : "" }  객체를 만들어 리턴한다.
-    exportItemMsg(){
-        return { msg : this.item.name+this.takeMsg, item : "" };
-    }
+    // =========== 보류 =============
+    // exportItemMsg(){
+    //     return { msg : this.item.name+this.takeMsg, item : "" };
+    // }
+    // =========== 보류 =============
 
     // 플레이어가 스페이스를 눌렀을 때 불러질 함수
     // this.item이 빈 값이 아닌 경우 this.exportItemMsg()를 실행해 결과값을 저장해 두었다가 this.emptyItem()를 실행하여 값을 비워준 후 결과값을 리턴한다. this.item이 빈값인 경우 this.emptyItemMsg()를 실행하고 결과값을 리턴한다.
     contact(){
-
+        // if(!!this.item.name){
+        //     console.log(this.item.name+this.takeMsg);
+        //     const res = this.item;
+        //     this.emptyItem();
+        //     return res;
+        // }else{
+        //     console.log(this.info);
+        //     return this.item;
+        // }
+        if(!!this.item.name){
+            let ret = { msg : this.item.name + this.takeMsg, item : {...this.item} };
+            this.emptyItem();
+            return ret;
+        } else {
+            return { msg : this.info, item : {...this.item} };
+        }
     }
 
     // 플레이어가 아이템을 사용했을 때 불러질 함수이다. 기본은 아무 반응이 없다는 메세지를 보낸다.
@@ -206,10 +225,22 @@ class StuffHint extends Stuff {
         this.hintMsg = hintMsg;
     }
 
+    // 소개 메세지만 리턴
+    contact(){
+        return { msg : [...this.info], item : {name : "", info : "" } };
+    }
+
     // 플레이어가 아이템을 사용했을 때 불러질 함수이다.
     // this.item이 인자로 받은 item과 동일하다면. this.info+=this.hintMsg 하고 this.emptyItemMsg()를 실행해서 결과값을 리턴한다.
     putItem(item){
-
+        if(this.item.name === item.name){
+            this.info+=`<br>${this.hintMsg}`;
+            super.emptyItem();
+            console.log(this.info);
+            return { msg : this.info, item : {...this.item} };
+        }else{
+            return super.putItem(item);
+        }
     }
 }
 
@@ -224,26 +255,31 @@ class SavePoint extends Stuff {
 
     // 세이브 성공 시 리턴값(객체) 만들어줌
     // { msg : this.succeseMsg, item : "" } 객체를 만들어 리턴한다.
-    succeseMsg(){
-        
-    }
+    // =========== 보류 =============
+    // succeseReturn(){
+    //     return { msg : this.succeseMsg, item : "" };
+    // }
+    // =========== 보류 =============
 
     
     // 세이브 실패 시 리턴값(객체) 만들어줌
     // { msg : this.failureMsg, item : "" } 객체를 만들어 리턴한다.
-    failureMsg(){
+    // =========== 보류 =============
+    // failureMsg(){
     
-    }
+    // }
+    // =========== 보류 =============
 
+    // 인벤토리에서 구급약이 있는지 확인해야 한다. 리턴값으로 구급약 item을 리턴해서 인벤토리에서 비교하게 시킨다.
     contact(){
-        // selectAll();
+        return { item : {...this.item} };
     }
 
     // this.item이 인자로 받은 item과 동일하다면. save.LocalStorage() 실행 후 this.saveMsg()를 실행해서 결과값을 리턴한다.
     // 구급약이 있는 상태에서 상호작용을 하면 저장화면이 바로 뜨게 작업할 것
-    putItem(item){
-
-    }
+    // putItem(item){
+        
+    // }   
 }
 
 // 문(엘리베이터 포함) 클래스
@@ -262,44 +298,57 @@ class Portal extends Stuff {
     // 플레이어가 아이템을 사용했을 때 불러질 함수이다.
     // 문 클래스에서 아이템은 키이다.
     // this.item이 인자로 받은 item과 동일하다면. this.info+=this.hintMsg 하고 this.emptyItemMsg()를 실행해서 결과값을 리턴한다.
-    putItem(item){
-        
-    }
+    // putItem(item){
+
+    // }
 
     // this.nextStage에 저장된 스테이지로 이동
-    nextStage(){
-
+    movingNextStage(){
+        console.log(`스테이지${this.nextStage}로 이동`);
     }
 
     // 문을 사용할 수 없을 때 리턴할 객체를 생성
     // {msg : *notAvailable, item : ""} 객체로 만들어 리턴
-    notAvailable(){
+    // =========== 보류 =============
+    // notAvailable(){
 
-    }
+    // }
+    // =========== 보류 =============
 
     // 비밀번호가 틀렸을 때 리턴할 객체를 생성
     // {msg : *wrongPwMsg, item : ""} 객체로 만들어서 리턴
-    wrongPwMsg(){
+    // =========== 보류 =============
+    // wrongPwMsg(){
 
-    }
+    // }
+    // =========== 보류 =============
 
     // this.pw와 인자로 받은 pw가 동일하면 true 아니면 false리턴
     samePw(pw){
-
+        return (this.pw !== "" && this.pw === pw )? true : false;
     }
 
     // 비밀번호 입력 받는 창 띄어야 될듯
     // samePw(pw)를 실행시켜서 결과값이 true이면 this.nextStage() 실행
     // false이면 this.wrongPwMsg() 실행해서 결과값을 리턴함.
     inputPw(pw){
-
+        return this.samePw(pw) ? this.movingNextStage() : {msg : this.wrongPwMsg};
     }
 
     // this.pw 값이 없고 this.isPortal이 true일  경우 this.nextStage() 실행
     // this.pw 값이 없고 this.isPortal이 false일 경우 this.notAvailable()실행해서 결과값 리턴
     // this.pw 값이 있는 경우 this.inputPw(pw) 실행해서 결과 값을 리턴   
-    contact(){
-
+    contact(pw){
+        
+        if(this.isPortal === false && this.isKeyboard === false) {
+            return {msg : this.notAvailableMsg, item : {...this.item}};
+        }
+        
+        if(this.isKeyboard){
+            return this.inputPw(pw);
+        }else{
+            return this.movingNextStage();
+        }
     }
 
 }
@@ -327,8 +376,8 @@ class Save {
 }
 
 class Inventory {
-    constructor(list){
-        this.list = list;
+    constructor(){
+        this.list = [];
     }
 
     // 교수님
