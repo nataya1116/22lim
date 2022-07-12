@@ -116,10 +116,10 @@ const playerRaycast = new Character({});
 
 
 // ///////////////////////////////////
-console.log(player.position.x);
-console.log(player.position.y);
-console.log(player.height);
-console.log(player.width);
+// console.log(player.position.x);
+// console.log(player.position.y);
+// console.log(player.height);
+// console.log(player.width);
 const playerCol = new Boundary({
     position: {
         // 맵 가운데에 위치하게 고정
