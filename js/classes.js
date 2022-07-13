@@ -147,9 +147,9 @@ class Stuff {
     constructor({ ctx, name, info, x, y, width, height, itemName, itemInfo}){
         this.ctx = ctx;
         this.name = name;
-        this.position = { x, y }; // x/y 값을 가짐
-        this.width = width
-        this.height = height;
+        this.position = { x : x * 2.5, y : y * 2.5 }; // x/y 값을 가짐
+        this.width = width * 2.5;
+        this.height = height * 2.5;
         this.item = { name : itemName, info : itemInfo };
         this.info = info; // 기본 설명 메세지(ex : “고장난 시계다.”, “낡아보이는 서랍장이다.”, “낡은 게시판 \n body”) 
         this.inactionMsg = "아무일도 일어나지 않는다.";
@@ -158,8 +158,9 @@ class Stuff {
 
     // ctx 객체를 이용해 캔버스에 그려준다.(이미지를 직접적으로 그려주는 것이 아닌 색상을 채워주는 방식으로 만든다.)
     // 준우님이 해주시기로
-    draw(){
-        
+    draw(x, y){
+        c.fillStyle = 'rgba(0, 255, 0, 0.2)' // 확인용
+        c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
     // 교수님
@@ -234,7 +235,7 @@ class StuffHint extends Stuff {
     // this.item이 인자로 받은 item과 동일하다면. this.info+=this.hintMsg 하고 this.emptyItemMsg()를 실행해서 결과값을 리턴한다.
     putItem(item){
         if(this.item.name === item.name){
-            this.info+=`<br>${this.hintMsg}`;
+            this.info+=`<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>${this.hintMsg}`;
             super.emptyItem();
             console.log(this.info);
             return { msg : this.info, item : {...this.item} };
@@ -304,7 +305,8 @@ class Portal extends Stuff {
 
     // this.nextStage에 저장된 스테이지로 이동
     movingNextStage(){
-        console.log(`스테이지${this.nextStage}로 이동`);
+        // console.log(`스테이지${this.nextStage}로 이동`);
+        return {move : true, msg : "다음 스테이지는 본 게임에서 만나요.^^"};
     }
 
     // 문을 사용할 수 없을 때 리턴할 객체를 생성
@@ -347,7 +349,7 @@ class Portal extends Stuff {
         if(this.isKeyboard){
             return this.inputPw(pw);
         }else{
-            return this.movingNextStage();
+            return movingNextStage();
         }
     }
 

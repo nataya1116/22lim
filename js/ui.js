@@ -185,33 +185,62 @@ window.onkeydown = function(event){
             
             textBoxHidden();
         }else if(isPopupOpen === false){
-            console.log(stuffTempArr[12]);
+
             const temp = stuffTempArr[12].contact();
-            console.log(temp);    
+   
             textBoxView(temp.msg);
             isInventory.insert(temp.item);
         }
     }
 // ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
-if(event.key == "x"){
-    if(isTextBoxView){
-        
-        textBoxHidden();
-    }else if(isPopupOpen === false){
-        console.log(stuffTempArr[2]);
-        const temp = stuffTempArr[2].contact();
-        console.log(temp);    
-        textBoxView(temp.msg);
-        isInventory.insert(temp.item);
+    if(event.key == "x"){
+        if(isTextBoxView){
+            
+            textBoxHidden();
+        }else if(isPopupOpen === false){
+            const temp = stuffTempArr[2].contact();
+ 
+            textBoxView(temp.msg);
+            isInventory.insert(temp.item);
+        }
     }
-}
+
+    if(event.key == "c"){
+        if(isTextBoxView){
+            
+            quizeBoxHidden();
+        }else if(isPopupOpen === false){
+
+            quizeBoxView("ㅅㅂ");
+        }
+    }
+
+
 // ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
 
 }
 
+// function textBoxView(text){
+//     isPopupOpen = true;
+//     isTextBoxView = true;
+//     _text_box.style.zIndex = 999;
+//     _text.innerHTML = text;
+// }
 
+function quizeBoxView(text){
+    isPopupOpen = true;
+    isQuizeBox = true;
+    _quize_box.style.zIndex = 999;
+    _answer.innerHTML = text;
+}
 
+function quizeBoxHidden(){
+    isPopupOpen = false;
+    isQuizeBox = false;
+    _quize_box.style.zIndex = 0;
+    _answer.innerHTML = "";
+}
 
 // window.onkeydown = function(event){
 //     if(mapState === "playPage")
@@ -254,7 +283,6 @@ prolSkip.onclick = function(){
         // //     console.log("됨?")
         // // }, 3000);
         // setTimeout(btnSkip,3000);
-        
 }
 
 

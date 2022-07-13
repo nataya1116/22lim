@@ -31,11 +31,11 @@ function updateItem(arr){
                 _item_text.querySelector('span').innerHTML = arr[i].info;       
                 _item_text.querySelector('button').onclick = function(){
 
-                    console.log("ㅅㅄㅄㅄㄷㄱㅄㅄㅂ");
-                    // 사물과 충돌 상태인지 체크
-                    console.log(arr[i]);
+
+                    // TODO 사물과 충돌 상태인지 체크 구현
+
                     // ---------------------테스트---------------------
-                    let ret = stuffTempArr2[1].putItem(arr[i]);
+                    let ret = stuffTempArr2[2].putItem(arr[i]);
                     if(!ret.item.name) arr[i].useing = false;
                     console.log(ret);
                     // ---------------------테스트---------------------
@@ -50,6 +50,7 @@ function updateItem(arr){
                     }
 
                     inventoryHidden();
+                    textBoxView(ret.msg);
                 }      
             };
         }   
