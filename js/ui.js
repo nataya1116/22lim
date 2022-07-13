@@ -137,13 +137,13 @@ let isInventory = new Inventory([]);
 window.addEventListener('keydown',function(e){
     if(mapState !== "_play_page") return
     // key = ' ' 는 스페이스바의 key 값
-    if(e.key === ' ')
-    {
-        // 아이템 추가 함수 (위 itemget 함수 처럼 정보를 담아 주면 된다. false 면 삭제 true면 유지)
-        itemget("구급약","구급약이다. 더 이상의 설명은 생략한다.",true);
-        itemget("엑스레이 필름","엑스레이 필름을 어디서 사용할까?",true);
-        itemget(" ds","구급함이다 아이템을 넣어둘 수 있다.",false);
-    }
+    // if(e.key === ' ')
+    // {
+    //     // 아이템 추가 함수 (위 itemget 함수 처럼 정보를 담아 주면 된다. false 면 삭제 true면 유지)
+    //     itemget("구급약","구급약이다. 더 이상의 설명은 생략한다.",true);
+    //     itemget("엑스레이 필름","엑스레이 필름을 어디서 사용할까?",true);
+    //     itemget(" ds","구급함이다 아이템을 넣어둘 수 있다.",false);
+    // }
 })
 
 // ++++++++++++++++++++++++++ 테스트 +++++++++++++++++++++++++++
@@ -159,19 +159,24 @@ console.log(stuffTempArr2);
 console.log(isInventory.importList());
 window.onkeydown = function(event){
     if(mapState !== "_play_page") return;
+    textBoxHidden();
 
     if(event.key == "i" || event.key == "ㅑ"){
         if(isInventoryView){
+            isPopupOpen = false;
             inventoryHidden();
         }else if(isPopupOpen === false){
+            isPopupOpen = true;
             inventoryView();
         }
         
     }
     if(event.key == "Escape"){
         if(isSettingBoardView){
+            isPopupOpen = false;
             settingBoardHidden();
         }else if(isPopupOpen === false){
+            isPopupOpen = true;
             settingBoardView();
         }
         if(_load_filed.style.zIndex="999"){
@@ -182,17 +187,23 @@ window.onkeydown = function(event){
     // 퀴즈 값 받을 때
     if(event.key == "Enter"){
         if(isQuizeBox){
-            
+            const portal = portalsMapSt1.find(i => { return i.name  === _answer_input.data })
+            const ret = portal.inputPw(_answer_input.value);
+            // if(ret.move){
+                textBoxView(ret.msg);
+            // }
+            quizeBoxHidden();
+            // isPopupOpen = true;
         }
     }
 
 // ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
     if(event.key == "z"){
         if(isTextBoxView){
-            
+            isPopupOpen = false;
             textBoxHidden();
         }else if(isPopupOpen === false){
-
+            isPopupOpen = true;
             const temp = stuffTempArr[12].contact();
    
             textBoxView(temp.msg);
@@ -203,9 +214,10 @@ window.onkeydown = function(event){
 // ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
     if(event.key == "x" ){
         if(isTextBoxView){
-            
+            isPopupOpen = false;
             textBoxHidden();
         }else if(isPopupOpen === false){
+            isPopupOpen = true;
             const temp = stuffTempArr[2].contact();
  
             textBoxView(temp.msg);
@@ -215,9 +227,11 @@ window.onkeydown = function(event){
 
     if(event.key == "c"){
         if(isQuizeBox){
+            isPopupOpen = false;
             quizeBoxHidden();
             textBoxHidden();
         }else if(isPopupOpen === false){
+            isPopupOpen = true;
             const temp = portalsMapSt1[0];
             const ret = temp.contact();
             isQuizeBox = true;
@@ -226,16 +240,18 @@ window.onkeydown = function(event){
                 textBoxView(ret.msg);
             }
             else {
-                quizeBoxView(ret.msg, temp);
+                quizeBoxView(ret.msg, temp.name);
             }
         }
     }
 
     if(event.key == "v"){
         if(isQuizeBox){
+            isPopupOpen = false;
             quizeBoxHidden();
             textBoxHidden();
         }else if(isPopupOpen === false){
+            isPopupOpen = true;
             const temp = portalsMapSt1[1];
             const ret = temp.contact(); 
             isQuizeBox = true;
@@ -260,21 +276,22 @@ window.onkeydown = function(event){
 //     _text.innerHTML = text;
 // }
 
-function quizeBoxView(text, portal){
-    isPopupOpen = true;
+function quizeBoxView(text, portalName){
     isQuizeBox = true;
     _answer_input.focus();
-    _answer_input.data = JSON.stringify(portal);
+    _answer_input.data = portalName;
     console.log(_answer_input.data);
     _quize_box.style.zIndex = 999;
     _answer.innerHTML = text;
+    console.log(`_answer_input.value ${_answer_input.value}`);
+    _answer_input.value = "";
 }
 
 function quizeBoxHidden(){
-    isPopupOpen = false;
     isQuizeBox = false;
     _quize_box.style.zIndex = 0;
     _answer.innerHTML = "";
+    _answer_input.data = "";
 }
 
 // window.onkeydown = function(event){

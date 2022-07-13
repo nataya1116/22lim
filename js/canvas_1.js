@@ -219,6 +219,12 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
     player.draw();
     playerCol.draw();
     foreground.draw();
+
+    // c.fillStyle = 'rgba(0, 100, 100, 0.2)';
+    // c.fillRect(419, 278,40,40 );
+
+    // c.fillStyle = 'rgba(0, 0, 100, 0.2)';
+    // c.fillRect(422, 279.1111111111111,80,30 );
     
 	let moving = true;
     player.moving = false;
@@ -403,29 +409,77 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
      
 	 //20220710 레이케스트 스페이스바--------------------------------------------------------------
     else if (keys.space.pressed && lastKey === 'space') {
-        playerRaycast.raycast();
-        for (let i = 0; i < boundaries.length; i++) {
+        // console.log(playerRaycast.raycast());
+        // stuffsMapSt1.forEach((stuff) => {
+        //     const stuffTemp = stuff;
+        //     console.log(stuffTemp);
+        //     let isCol = rectangularCollision({
+        //         rectangle1: playerRaycast.raycast(),
+        //         rectangle2: {width : stuffTemp.width, height : stuffTemp.height, position : stuffTemp.position}
+        //     });
+
+        //     if(isCol) {
+        //         // 수진언니가 준 함수를 나중에 여기다가 넣어준다.
+
+        //         console.log(col + " : 맞은 블럭임 이거");
+        //         console.log('레이저 맞았다..')
+        //         moving = false;
+        //         return false;
+        //     }
+        // });
+
+        for (let i = 0; i < stuffsMapSt1.length; i++) {
             // boundaries[i] 저장된 갯수 인덱스
-            const boundary = boundaries[i]
+            const stuff = stuffsMapSt1[i]
             let col = rectangularCollision({
                 rectangle1: playerRaycast.raycast(),
                 rectangle2: {
-                    ...boundary,
+                    width : stuff.width,
+                    height : stuff.height,
                     position: {
-                        x: boundary.position.x - 3,
-                        y: boundary.position.y
+                        x: stuff.position.x,
+                        y: stuff.position.y
                     }
                 }
             })
             // 레이캐스트 확인 하는 부분(벽에 맞으면 나옴)
             if (col) {
                 // 수진언니가 준 함수를 나중에 여기다가 넣어준다.
+                // console.log(`${boundary.position.x}, ${boundary.position.y},${boundary.width},${boundary.height}`);
+                // console.log(`${playerRaycast.raycast().position.x}, ${playerRaycast.raycast().position.y},${playerRaycast.raycast().width},${playerRaycast.raycast().height}`);
+                // console.log(playerRaycast.raycast());
                 console.log(col + " : 맞은 블럭임 이거");
                 console.log('레이저 맞았다..')
                 moving = false;
                 break;
             }
         }
+
+        // for (let i = 0; i < boundaries.length; i++) {
+        //     // boundaries[i] 저장된 갯수 인덱스
+        //     const boundary = boundaries[i]
+        //     let col = rectangularCollision({
+        //         rectangle1: playerRaycast.raycast(),
+        //         rectangle2: {
+        //             ...boundary,
+        //             position: {
+        //                 x: boundary.position.x,
+        //                 y: boundary.position.y
+        //             }
+        //         }
+        //     })
+        //     // 레이캐스트 확인 하는 부분(벽에 맞으면 나옴)
+        //     if (col) {
+        //         // 수진언니가 준 함수를 나중에 여기다가 넣어준다.
+        //         // console.log(`${boundary.position.x}, ${boundary.position.y},${boundary.width},${boundary.height}`);
+        //         // console.log(`${playerRaycast.raycast().position.x}, ${playerRaycast.raycast().position.y},${playerRaycast.raycast().width},${playerRaycast.raycast().height}`);
+        //         // console.log(playerRaycast.raycast());
+        //         console.log(col + " : 맞은 블럭임 이거");
+        //         console.log('레이저 맞았다..')
+        //         moving = false;
+        //         break;
+        //     }
+        // }
         keys.space.pressed = false;
     }
 }

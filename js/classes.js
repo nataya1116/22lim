@@ -277,7 +277,7 @@ class Portal extends Stuff {
     // samePw(pw)를 실행시켜서 결과값이 true이면 this.nextStage() 실행
     // false이면 this.wrongPwMsg() 실행해서 결과값을 리턴함.
     inputPw(pw){
-        return this.samePw(pw) ? this.movingNextStage() : {msg : this.wrongPwMsg};
+        return this.samePw(pw) ? this.movingNextStage() : {move : false, msg : this.wrongPwMsg};
     }
 
     // this.pw 값이 없고 this.isPortal이 true일  경우 this.nextStage() 실행

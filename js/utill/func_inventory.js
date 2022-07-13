@@ -48,7 +48,7 @@ function updateItem(arr){
                         // 배열안에 false인 useing 값을 가지고 있는 객체의 이름을 지워준다.     
                         removeItem( arr[i].name);
                     }
-
+                    // isPopupOpen = false;
                     inventoryHidden();
                     textBoxView(ret.msg);
                 }      

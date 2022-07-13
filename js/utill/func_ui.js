@@ -1,13 +1,11 @@
 
 function textBoxView(text){
-    isPopupOpen = true;
     isTextBoxView = true;
     _text_box.style.zIndex = 999;
     _text.innerHTML = text;
 }
 
 function textBoxHidden(){
-    isPopupOpen = false;
     isTextBoxView = false;
     _text_box.style.zIndex = 0;
     _text.innerHTML = "";
@@ -15,26 +13,22 @@ function textBoxHidden(){
 
 function settingBoardView(){
     _setting_board.style.zIndex = 999;
-    isPopupOpen = true;
     isSettingBoardView = true;
 }
 
 function settingBoardHidden(){
     _setting_board.style.zIndex = 0;
-    isPopupOpen = false;
     isSettingBoardView= false;
 }
 
 function inventoryView(){
     _low_inven.style.zIndex = 999;
-    isPopupOpen = true;
     isInventoryView = true;
 }
 
 function inventoryHidden(){
     _item_use.style.zIndex = 0;
     _low_inven.style.zIndex = 0;
-    isPopupOpen = false;
     isInventoryView = false;
 }
 
