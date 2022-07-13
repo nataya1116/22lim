@@ -113,7 +113,6 @@ const playerSt1 = new Sprite({
 })
 
 
-
 // console.log(player.position.x);
 // console.log(player.position.y);
 // console.log(player.height);
@@ -126,9 +125,17 @@ const playerColSt1 = new Boundary({
     },
     width : 30,
     height : 30
-})
+});
 
-const playerRaycastSt1 = new Character(playerColSt1);
+const playerRaycastSt1 = new Character({
+    position: {
+        // 맵 가운데에 위치하게 고정
+        x: playerColSt1.position.x,
+        y: playerColSt1.position.y  
+    },
+    // playerCol : playerColSt1,
+    raycast_direction : 'down'
+});
 
 const backgroundSt1 = new Sprite({
     position: {
@@ -345,7 +352,7 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
         }
         if (moving) {
             movables.forEach((movable) => {
-                //배경이동
+                //배경이동 속도
                 movable.position.y -= 3;
             });
             stuffsMapSt1.forEach((stuff) => {
@@ -386,6 +393,7 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
                 break;
             }
         }
+        // 배경, 전경, 충돌 이동하는 부분
         if (moving) {
             movables.forEach((movable) => {
                 //배경이동 속도
@@ -412,13 +420,14 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
                 rectangle2: {
                     ...boundary,
                     position: {
-                        x: boundary.position.x - 3,
+                        x: boundary.position.x,
                         y: boundary.position.y
                     }
                 }
             })
             // 레이캐스트 확인 하는 부분(벽에 맞으면 나옴)
             if (col) {
+                // console.log(boundary.position);
                 // 수진언니가 준 함수를 나중에 여기다가 넣어준다.
                 console.log(col + " : 맞은 블럭임 이거");
                 console.log('레이저 맞았다..')

@@ -61,5 +61,5 @@ function updateItem(arr){
     }
     // 클릭후 현재 아이템 배열의 현황을 보여준다. 
     // 즉 isInventory.importList() 현재 아이템 배열이라는 것을 알 수 있다.
-    console.log(isInventory.importList());
+    // console.log(isInventory.importList());
 }
