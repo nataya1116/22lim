@@ -46,7 +46,7 @@ console.log(boundariesSt1);
 
 // 이미지 불러온 부분
 const image = new Image();
-image.src = '/img/background/backGroundBeforeStg1 copy.png';
+image.src = '/img/background/backGroundBeforeStg1.png';
 
 const foregroundImage = new Image();
 foregroundImage.src = '/img/background/foreGroundBeforeStg1.png';
@@ -54,29 +54,29 @@ foregroundImage.src = '/img/background/foreGroundBeforeStg1.png';
 const playerImage = new Image();
 playerImage.src = '/img/character/$Dr Frankenstien (resizing).png';
 
-const awlImageShort = new Image();
-awlImageShort.src = '/img/playImage/awl_1.png';
+// const awlImageShort = new Image();
+// awlImageShort.src = '/img/playImage/awl_1.png';
 
-const awlImageMedium = new Image();
-awlImageMedium.src = '/img/playImage/awl_2.png';
+// const awlImageMedium = new Image();
+// awlImageMedium.src = '/img/playImage/awl_2.png';
 
-const awlImageLong = new Image();
-awlImageLong.src = '/img/playImage/awl_3.png';
+// const awlImageLong = new Image();
+// awlImageLong.src = '/img/playImage/awl_3.png';
 
 
 
-const awlSt1 = new Sprite({
-    position : {
-        x : 778.625,
-        y : 145.625
-    },
-    image : awlImage1,
-    sprites : {
-        short : awlImage1,
-        medium : awlImage2,
-        long : awlImage3
-    }
-});
+// const awlSt1 = new Sprite({
+//     position : {
+//         x : 778.625,
+//         y : 145.625
+//     },
+//     image : awlImage1,
+//     sprites : {
+//         short : awlImage1,
+//         medium : awlImage2,
+//         long : awlImage3
+//     }
+// });
 
 
 
@@ -382,6 +382,7 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
     }
 }
 // 반복하려는 함수의 무한 루프를 생성
+
 
 //console.log(backgroundSt1)
 const playPage = document.getElementById("_play_page");

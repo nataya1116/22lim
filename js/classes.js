@@ -2,9 +2,9 @@
 class Sprite {
     //20220710 maxY:1,valY:0,rayImg 추가
     // frames ={max:1,maxY:1,valY:0,valX:0} 전달된 매개변수가 없을 때 넣어주는 값
-    constructor({position, velocity, image, frames ={max:1, maxY:1, valY:0, valX:0}, sprites,rayImg }){  
-	    this.position = position
-        this.image = image
+    constructor({position, image, frames ={max:1, maxY:1, valY:0, valX:0}, sprites }){  
+	    this.position = position;
+        this.image = image;
         //20220710 레이케스트 이미지
        
         this.frames = {...frames, elapsed: 0, raycastspeed:0  }
@@ -26,6 +26,7 @@ class Sprite {
     }
     
     draw(){
+    
     	// c.drawImage(this.image, this.position.x, this.position.y );
         c.drawImage(
                 this.image,
@@ -52,7 +53,7 @@ class Sprite {
                 // elapsed가 증가하다가
                 this.frames.elapsed++
             }
-            // elapsed가 10이 되면 10%10은 0이 된다
+            // 프레임이 경과되면(elapsed가 10이 되면) 10%10은 0이 된다
             if(this.frames.elapsed%10 ===0 ){
                 //           1       <          3       일 때 val이 증가
                 if(this.frames.valX < this.frames.max - 1) this.frames.valX++
@@ -72,7 +73,7 @@ class Boundary {
     static width =40
     static height =40
     constructor({position, width=40, height=40}){
-        this.position = position
+        this.position = position;
          // 동일한 클래스의 정적메서드를 호출하는 경우
         // 키워드 this를 사용해서 사용할 수 있다.
         this.width = width;
