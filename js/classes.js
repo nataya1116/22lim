@@ -1,27 +1,32 @@
+// 백그라운드, 포어그라운드, 플레이어가 사용
 class Sprite {
     //20220710 maxY:1,valY:0,rayImg 추가
     // frames ={max:1,maxY:1,valY:0,valX:0} 전달된 매개변수가 없을 때 넣어주는 값
-    constructor({position, velocity, image, frames ={max:1, maxY:1, valY:0, valX:0}, sprites,rayImg }){  
-	    this.position = position
-        this.image = image
+    constructor({position, image, frames ={max:1, maxY:1, valY:0, valX:0}, sprites }){  
+	    this.position = position;
+        this.image = image;
         //20220710 레이케스트 이미지
-        this.rayImg = rayImg;
+       
         this.frames = {...frames, elapsed: 0, raycastspeed:0  }
+        this.width = this.image.width / this.frames.max
+        this.height = this.image.height / this.frames.maxY
         
-		this.image.onload = () => {
-            this.width = this.image.width / this.frames.max
-            //20220710 이미지 Y축 나눈 크기
-            this.height = this.image.height / this.frames.maxY
-            // console.log(this.image.width / this.frames.max);
-            // console.log(this.image.height / this.frames.maxY);     
-        }
+        // 웹페이지가 다 로드 되고 나서 이부분이 로드된다.
+		// this.image.onload = () => {
+        //     //                   180      /      3
+        //     //20220710 이미지 Y축 나눈 크기
+        //     //                  320         /        4
+        //     // console.log(this.image.width / this.frames.max);
+        //     // console.log(this.image.height / this.frames.maxY);     
+        // }
         this.moving = false;
         this.Sprite = sprites;
         //20220710 플레이어가 맵에 로드 되었을 때 기본 레이케스트 방향 결정
-        this.raycast_direction = "up";
+        
     }
     
     draw(){
+    
     	// c.drawImage(this.image, this.position.x, this.position.y );
         c.drawImage(
                 this.image,
@@ -48,7 +53,7 @@ class Sprite {
                 // elapsed가 증가하다가
                 this.frames.elapsed++
             }
-            // elapsed가 10이 되면 10%10은 0이 된다
+            // 프레임이 경과되면(elapsed가 10이 되면) 10%10은 0이 된다
             if(this.frames.elapsed%10 ===0 ){
                 //           1       <          3       일 때 val이 증가
                 if(this.frames.valX < this.frames.max - 1) this.frames.valX++
@@ -58,69 +63,7 @@ class Sprite {
     
     }
 	//20220710 레이케스트 4방향
-    raycast(){
-        switch (this.raycast_direction) {
-            case 'up':
-                c.drawImage(
-                    // 그려줄 이미지 요소
-                    this.rayImg,
-                    this.width,
-                    0,
-                    this.width,  
-                    this.height,
-                    // 그려지는 위치
-                    this.position.x ,
-                    this.position.y - this.height,
-                    this.width,
-                    this.height
-                )
-                return {width : this.width, height:this.height, position:{x:this.position.x, y:this.position.y - this.height}}
-            case 'left':
-                c.drawImage(
-                    this.rayImg,
-                    this.width,
-                    0,
-                    this.width,  
-                    this.height,  
-                    this.position.x - this.width,
-                    this.position.y ,
-                    this.width,
-                    this.height
-                )
-                return {width : this.width, height:this.height,position:{x:this.position.x - this.width, y:this.position.y}}
-            case 'right':
-                c.drawImage(
-                    this.rayImg,
-                    this.width,
-                    0,
-                    this.width,  
-                    this.height,  
-                    this.position.x + this.width,
-                    this.position.y ,
-                    this.width,
-                    this.height
-                )
-                return {width : this.width, height:this.height,position:{x:this.position.x + this.width, y:this.position.y}}
-            case 'down':
-                c.drawImage(
-                    this.rayImg,
-                    this.width,
-                    0,
-                    this.width,  
-                    this.height,  
-                    this.position.x ,
-                    this.position.y + this.height,
-                    this.width,
-                    this.height
-                )
-                return {width : this.width, height:this.height,position:{x:this.position.x, y:this.position.y + this.height}}
-            // 위에서 맞는 케이스 없으면 여기로
-            default:
-                break;
-        }
-    }
-}
-
+}    
 
 
 // 클래스 안에서는 따로 fuction 으로 함수를 선언 해주지 않아도 된다.
@@ -130,7 +73,7 @@ class Boundary {
     static width =40
     static height =40
     constructor({position, width=40, height=40}){
-        this.position = position
+        this.position = position;
          // 동일한 클래스의 정적메서드를 호출하는 경우
         // 키워드 this를 사용해서 사용할 수 있다.
         this.width = width;

@@ -160,7 +160,7 @@ console.log(isInventory.importList());
 window.onkeydown = function(event){
     if(mapState !== "_play_page") return;
 
-    if(event.key == "i"){
+    if(event.key == "i" || event.key == "ㅑ"){
         if(isInventoryView){
             inventoryHidden();
         }else if(isPopupOpen === false){
@@ -201,7 +201,7 @@ window.onkeydown = function(event){
     }
 // ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
-    if(event.key == "x"){
+    if(event.key == "x" ){
         if(isTextBoxView){
             
             textBoxHidden();

@@ -56,7 +56,7 @@ function paragraph(element) {
     let newText
     const timer = setInterval(() => { 
     completeCount = 0
-    newText = ''
+    newText = '';
     numArray.forEach((num, i) => {
       if (exception.includes(array[i]) || numArray[i] === 0) {
         newText += array[i]
