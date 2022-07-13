@@ -160,11 +160,7 @@ class Stuff {
     // 준우님이 해주시기로
     draw(x, y){
         c.fillStyle = 'rgba(0, 255, 0, 0.2)' // 확인용
-<<<<<<< HEAD
         c.fillRect(this.position.x+ x, this.position.y+ y, this.width, this.height);
-=======
-        c.fillRect(this.position.x + x, this.position.y + y, this.width, this.height)
->>>>>>> bffb4b8 (ui 테스트 작업 중)
     }
 
     // 교수님
