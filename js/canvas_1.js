@@ -54,13 +54,11 @@ collisionsMap.forEach((row, i) => {
     })
 })
 console.log(boundaries);
-const stuffMapSt1 = createStuffObj(stuffsStg1, c);
-console.log(stuffMapSt1);
+const stuffsMapSt1 = createStuffObj(stuffsStg1, c);
+console.log(stuffsMapSt1);
 
-
-
-const stuffMapSt2 = createStuffObj(stuffsStg2, c);
-console.log(stuffMapSt2);
+const portalsMapSt1 = createPortalObj(portalsStg1, c);
+console.log(portalsMapSt1);
 
 console.log(boundaries);
 // console.log(objCols);
@@ -197,12 +195,12 @@ function animate() {
         boundary.draw();
     })
 
-    stuffMapSt1.forEach((stuff) => {
-        // c.fillStyle = 'rgba(255, 0, 0, 0.2)' // 확인용
-        // c.fillRect(this.position.x * 2.5 + x, this.position.y * 2.5 + y, this.width * 2.5, this.height * 2.5);
-        // c.fillStyle = 'rgba(0, 255, 0, 0.2)' // 확인용
-        // c.fillRect(stuff.position.x * 2.5+offset.x, stuff.position.y * 2.5+offset.y, stuff.width * 2.5, stuff.height * 2.5);
+    stuffsMapSt1.forEach((stuff) => {
         stuff.draw(offset.x, offset.y);
+    })
+
+    portalsMapSt1.forEach((portal) => {
+        portal.draw(offset.x, offset.y);
     })
 //  ===============브젝트 충돌체를 그려주는 함수 끝 ==================
 
@@ -253,8 +251,11 @@ function animate() {
             movables.forEach((movable) => {
                 movable.position.y += 3
             });
-            stuffMapSt1.forEach((stuff) => {
+            stuffsMapSt1.forEach((stuff) => {
                 stuff.position.y += 3;
+            });
+            portalsMapSt1.forEach((portal) => {
+                portal.position.y += 3;
             });
         }
             // background.position.y = background.position.y +=3
@@ -290,8 +291,11 @@ function animate() {
                 //배경 이동
                 movable.position.x += 3;
             })
-            stuffMapSt1.forEach((stuff) => {
+            stuffsMapSt1.forEach((stuff) => {
                 stuff.position.x += 3;
+            });
+            portalsMapSt1.forEach((portal) => {
+                portal.position.x += 3;
             });
         }
     } 
@@ -332,8 +336,11 @@ function animate() {
                 //배경이동
                 movable.position.y -= 3;
             });
-            stuffMapSt1.forEach((stuff) => {
+            stuffsMapSt1.forEach((stuff) => {
                 stuff.position.y -= 3;
+            });
+            portalsMapSt1.forEach((portal) => {
+                portal.position.y -= 3;
             });
         }
     } 
@@ -372,8 +379,11 @@ function animate() {
                 movable.position.x -= 3
             });
             console.log(background.position.y)
-            stuffMapSt1.forEach((stuff) => {
+            stuffsMapSt1.forEach((stuff) => {
                 stuff.position.x -= 3
+            });
+            portalsMapSt1.forEach((portal) => {
+                portal.position.x -= 3;
             });
         }
     }

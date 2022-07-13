@@ -160,7 +160,11 @@ class Stuff {
     // 준우님이 해주시기로
     draw(x, y){
         c.fillStyle = 'rgba(0, 255, 0, 0.2)' // 확인용
+<<<<<<< HEAD
         c.fillRect(this.position.x+ x, this.position.y+ y, this.width, this.height);
+=======
+        c.fillRect(this.position.x + x, this.position.y + y, this.width, this.height)
+>>>>>>> bffb4b8 (ui 테스트 작업 중)
     }
 
     // 교수님
@@ -340,14 +344,14 @@ class Portal extends Stuff {
     // this.pw 값이 없고 this.isPortal이 true일  경우 this.nextStage() 실행
     // this.pw 값이 없고 this.isPortal이 false일 경우 this.notAvailable()실행해서 결과값 리턴
     // this.pw 값이 있는 경우 this.inputPw(pw) 실행해서 결과 값을 리턴   
-    contact(pw){
+    contact(){
         
         if(this.isPortal === false && this.isKeyboard === false) {
-            return {msg : this.notAvailableMsg, item : {...this.item}};
+            return {move : false, type : "not", msg : this.notAvailableMsg};
         }
         
         if(this.isKeyboard){
-            return this.inputPw(pw);
+            return {move : false, type : "password", msg : `"${this.name}" 암호 입력 후 enter를 누르세요.`};
         }else{
             return this.movingNextStage();
         }

@@ -625,17 +625,19 @@
     margin-right: 62px;
 }
 
-#_answer {
+#_answer, #_return_text {
     font-family: 'NeoDunggeunmo';
     font-size: 20px;
     color: white;
     padding-bottom: 15px;
 }
 
+
 #_answer_text input {
     width: 200px;
     height: 40px;
     background-color: rgba(144, 144, 144, 0.5);
+    margin-bottom: 15px;
 }
 
 

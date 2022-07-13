@@ -47,7 +47,7 @@ function createStuffObj(stuffData, ctx){
     return stuffArr;
 }
 
-function createPortalObj(portalData){
+function createPortalObj(portalData, ctx){
     const portalArr = [];
     
     portalData.forEach(el => {
