@@ -69,7 +69,7 @@ function updateItem(arr){
                     }
                     // isPopupOpen = false;
                     inventoryHidden();
-                    textBoxView(ret.msg);
+                    // textBoxView(ret.msg);
                 }      
             };
         }   
