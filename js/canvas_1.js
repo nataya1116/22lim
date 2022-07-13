@@ -56,11 +56,10 @@ collisionsMap.forEach((row, i) => {
 console.log(boundaries);
 const stuffsMapSt1 = createStuffObj(stuffsStg1, c);
 console.log(stuffsMapSt1);
-
 const portalsMapSt1 = createPortalObj(portalsStg1, c);
 console.log(portalsMapSt1);
 
-console.log(boundaries);
+
 // console.log(objCols);
 
 // 이미지 불러온 부분

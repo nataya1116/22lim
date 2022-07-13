@@ -46,7 +46,7 @@ _loadfile_button.onclick = function(){
 }
 //======================================================================
 
-
+const prologText = document.getElementById('_prolog_text');
 _start_btn.onclick = function(){
         // if(!playPage.classList.contains("test")){
         //     playPage.classList.add("test")
@@ -154,6 +154,7 @@ const stuffTempArr = createStuffObj(stuffsStg1, ctx);
 console.log(stuffTempArr); 
 const stuffTempArr2 = createStuffObj(stuffsStg2, ctx);
 console.log(stuffTempArr2);
+
 // ++++++++++++++++++++++++++ 테스트 +++++++++++++++++++++++++++
 
 // let settingBoardView = false
@@ -305,7 +306,7 @@ prolSkip.onclick = function(){
 
 
 
-const prologText = document.getElementById('_prolog_text');
+
 
 document.querySelectorAll('.item_td').forEach(e=>{
     e.addEventListener('click',function(){
