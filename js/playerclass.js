@@ -1,7 +1,7 @@
 class Character {
     constructor(playerCol) {
         this.width = 30;
-        this.height = 90;
+        this.height = 80;
         // 래이캐스트 방향
         this.raycast_direction = "up";
         this.playerCol = playerCol;

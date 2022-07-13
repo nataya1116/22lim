@@ -6,10 +6,10 @@ canvas.width = 1024;
 canvas.height = 576;
 let mapState = "_start_page";
 
-const collisionsMap = [];
+const collisionsMapSt1 = [];
 // 70인 이유는 tiled상 지도의 너비가 70이기 때문
 for (let i = 0; i < collisionsStg1.length; i += 70) {
-    collisionsMap.push(collisionsStg1.slice(i, 70 + i))
+    collisionsMapSt1.push(collisionsStg1.slice(i, 70 + i))
     // console.log(collisions.slice(i, 70 + i)); 이렇게 반복하면서 배열안에 타일번호를 콘솔로
     // 확인할 수 있다.
 }
@@ -52,10 +52,10 @@ console.log(boundariesSt1);
 
 // 이미지 불러온 부분
 const image = new Image()
-image.src = '/img/background/backGroundAfterStg1.png';
+image.src = '/img/background/backGroundBeforeStg1.png';
 
 const foregroundImage = new Image()
-foregroundImage.src = '/img/background/foreGroundAfterStg1.png';
+foregroundImage.src = '/img/background/foreGroundBeforeStg1.png';
 //20220710 통 플레이어 이미지
 const playerImage = new Image();
 playerImage.src = '/img/character/$Dr Frankenstien (resizing).png';
@@ -199,20 +199,16 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
     window.requestAnimationFrame(animateLoop);
     // console.log(background);
     background.draw();
-    // c.fillStyle = 'rgba(0, 255, 0, 0.5)' // 확인용
-    // c.fillRect(778.625*2.5+offset.x,145.625*2.5+offset.y,25.75*2.5,14.75*2.5)
-    // "x":753,
-    // "y":144.25
     boundaries.forEach((boundary) => {
         boundary.draw();
     })
 
     stuffsMapSt1.forEach((stuff) => {
-        stuff.draw(offset.x, offset.y);
+        stuff.draw(offsetSt1.x, offsetSt1.y);
     })
 
     portalsMapSt1.forEach((portal) => {
-        portal.draw(offset.x, offset.y);
+        portal.draw(offsetSt1.x, offsetSt1.y);
     })
 //  ===============브젝트 충돌체를 그려주는 함수 끝 ==================
 
