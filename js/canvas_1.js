@@ -201,6 +201,7 @@ function animate() {
     portalsMapSt1.forEach((portal) => {
         portal.draw(offset.x, offset.y);
     })
+
 //  ===============브젝트 충돌체를 그려주는 함수 끝 ==================
 
     // objCols.forEach((boundary) => {
