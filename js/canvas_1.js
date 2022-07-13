@@ -5,8 +5,7 @@ const c = canvas.getContext('2d');
 canvas.width = 1024;
 canvas.height = 576;
 let mapState = "_start_page";
-// 팝업창
-let isPopupOpen = false;
+
 const collisionsMap = [];
 // 70인 이유는 tiled상 지도의 너비가 70이기 때문
 for (let i = 0; i < collisionsStg1.length; i += 70) {
@@ -527,6 +526,7 @@ window.addEventListener(
     'keydown',
     (e) => { // (e)는 이벤트를 나타내는 미리 채워진 개체 (개발자의 경우 이를 e 라고 부름 걍)
         if(mapState !== "_play_page") return;
+        if(isPopupOpen) return;
         //console.log(e.key))
         switch (e.key) {
             case 'w':

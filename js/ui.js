@@ -214,10 +214,10 @@ window.onkeydown = function(event){
     }
 
     if(event.key == "c"){
-        if(isTextBoxView){
-            
+        if(isQuizeBox){
             quizeBoxHidden();
-        }else if(isPopupOpen === false1){
+            textBoxHidden();
+        }else if(isPopupOpen === false){
             const temp = portalsMapSt1[1];
             const ret = temp.contact();
 
@@ -225,31 +225,31 @@ window.onkeydown = function(event){
             if(ret.move || ret.type === "not") {
                 textBoxView(ret.msg);
             }
-
-
-            quizeBoxView(ret.msg);
+            else {
+                quizeBoxView(ret.msg);
+            }
         }
     }
 
-    if(event.key == "v"){
-        if(isTextBoxView){
+    // if(event.key == "v"){
+    //     if(isTextBoxView){
             
-            quizeBoxHidden();
-        }else if(isPopupOpen === false){
-            const temp = portalsMapSt1[2]
-            quizeBoxView("ㅅㅂ");
-        }
-    }
+    //         quizeBoxHidden();
+    //     }else if(isPopupOpen === false){
+    //         const temp = portalsMapSt1[2]
+    //         quizeBoxView("ㅅㅂ");
+    //     }
+    // }
 
-    if(event.key == "b"){
-        if(isTextBoxView){
+    // if(event.key == "b"){
+    //     if(isTextBoxView){
             
-            quizeBoxHidden();
-        }else if(isPopupOpen === false){
-            const temp = portalsMapSt1[4]
-            quizeBoxView("ㅅㅂ");
-        }
-    }
+    //         quizeBoxHidden();
+    //     }else if(isPopupOpen === false){
+    //         const temp = portalsMapSt1[4]
+    //         quizeBoxView("ㅅㅂ");
+    //     }
+    // }
 
 // ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
 
@@ -265,6 +265,7 @@ window.onkeydown = function(event){
 function quizeBoxView(text){
     isPopupOpen = true;
     isQuizeBox = true;
+    _answer_input.focus();
     _quize_box.style.zIndex = 999;
     _answer.innerHTML = text;
 }
