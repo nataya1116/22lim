@@ -1,7 +1,7 @@
 const portalsStg1 = [
        {
         "class":"",
-        "height":14.75,
+        "height":30.75,
         "id":33,
         "name":"pluto",
         "properties":[
@@ -58,7 +58,7 @@ const portalsStg1 = [
        }, 
        {
         "class":"",
-        "height":14.75,
+        "height":30.75,
         "id":45,
         "name":"엘리베이터",
         "properties":[
@@ -115,7 +115,7 @@ const portalsStg1 = [
        }, 
        {
         "class":"",
-        "height":14.75,
+        "height":30.75,
         "id":46,
         "name":"earth",
         "properties":[
@@ -172,7 +172,7 @@ const portalsStg1 = [
        }, 
        {
         "class":"",
-        "height":14.75,
+        "height":30.75,
         "id":47,
         "name":"mercury",
         "properties":[
@@ -229,7 +229,7 @@ const portalsStg1 = [
        }, 
        {
         "class":"",
-        "height":14.75,
+        "height":30.75,
         "id":48,
         "name":"문",
         "properties":[

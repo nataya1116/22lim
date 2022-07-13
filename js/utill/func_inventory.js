@@ -6,6 +6,7 @@ function itemget(name, info, useing){
     let arr = isInventory.importList();
     // 추가한 아이템 배열(arr)을 updateItem 함수에 전달
     updateItem(arr);
+    console.log(isInventory);
 }
 
 function removeItem(name){
@@ -28,16 +29,34 @@ function updateItem(arr){
             items[i].classList.add('have');
             items[i].onclick = function(){
                 _item_use.style.zIndex = 9999;
-                _item_text.querySelector('span').innerHTML = arr[i].info;       
+                _item_text.querySelector('span').innerHTML = arr[i].info;  
                 _item_text.querySelector('button').onclick = function(){
 
 
                     // TODO 사물과 충돌 상태인지 체크 구현
+                    const stuff = stuffsMapSt1.find((stuff) => {
+                        let col = rectangularCollision({
+                            rectangle1: playerRaycastSt1.raycast(),
+                            rectangle2: {width : stuff.width, height : stuff.height, position : stuff.position}
+                            // rectangle2: stuff
+                        });
+                
+                        if(!!col) {
+                            return stuff;
+                        }
+                    });
 
-                    // ---------------------테스트---------------------
-                    let ret = stuffTempArr2[2].putItem(arr[i]);
+                    if(!stuff){
+                        inventoryHidden();
+                        return;
+                    } 
+            
+                    // 세이브 생략
+                    if (stuff.name === "구급함") return;
+
+                    const ret = stuff.putItem(arr[i]);
                     if(!ret.item.name) arr[i].useing = false;
-                    console.log(ret);
+                    // console.log(ret);
                     // ---------------------테스트---------------------
 
                     // 배열안에 useing 정보가 false면 
@@ -61,5 +80,5 @@ function updateItem(arr){
     }
     // 클릭후 현재 아이템 배열의 현황을 보여준다. 
     // 즉 isInventory.importList() 현재 아이템 배열이라는 것을 알 수 있다.
-    console.log(isInventory.importList());
+    // console.log(isInventory.importList());
 }

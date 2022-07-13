@@ -149,38 +149,93 @@ window.addEventListener('keydown',function(e){
 // ++++++++++++++++++++++++++ 테스트 +++++++++++++++++++++++++++
 const ctx = "";
 
-const stuffTempArr = createStuffObj(stuffsStg1, ctx);
-console.log(stuffTempArr); 
-const stuffTempArr2 = createStuffObj(stuffsStg2, ctx);
-console.log(stuffTempArr2);
+const stuffTempArr = createStuffObj(stuffsStg1, ctx, offsetSt1);
+// console.log(stuffTempArr); 
+const stuffTempArr2 = createStuffObj(stuffsStg2, ctx, offsetSt1);
+// console.log(stuffTempArr2);
 // ++++++++++++++++++++++++++ 테스트 +++++++++++++++++++++++++++
 
 // let settingBoardView = false
-console.log(isInventory.importList());
-window.onkeydown = function(event){
+// console.log(isInventory.importList());
+window.addEventListener(  
+    'keydown', function(event){
     if(mapState !== "_play_page") return;
-    textBoxHidden();
+
 
     if(event.key == "i" || event.key == "ㅑ"){
         if(isInventoryView){
-            isPopupOpen = false;
             inventoryHidden();
         }else if(isPopupOpen === false){
-            isPopupOpen = true;
             inventoryView();
         }
         
     }
     if(event.key == "Escape"){
         if(isSettingBoardView){
-            isPopupOpen = false;
             settingBoardHidden();
         }else if(isPopupOpen === false){
-            isPopupOpen = true;
             settingBoardView();
         }
         if(_load_filed.style.zIndex="999"){
             _load_filed.style.zIndex = 0 ;
+        }
+    }
+
+    if(event.key == ' ') {
+        const stuff = stuffsMapSt1.find((stuff) => {
+            let col = rectangularCollision({
+                rectangle1: playerRaycastSt1.raycast(),
+                rectangle2: {width : stuff.width, height : stuff.height, position : stuff.position}
+                // rectangle2: stuff
+            });
+    
+            if(!!col) {
+                return stuff;
+            }
+        });
+
+        if(!!stuff){
+            // 세이브 생략
+            if (stuff.name === "구급함") return;
+        
+            if(isTextBoxView){
+                textBoxHidden();
+                return;
+            }else if(isPopupOpen === false){
+                const ret = stuff.contact(); 
+                console.log(ret);
+
+                textBoxView(ret.msg);
+                itemget(ret.item.name, ret.item.info, true);
+                return;
+            }
+        }
+    
+        
+        const portal = portalsMapSt1.find((portal) => {
+            let col = rectangularCollision({
+                rectangle1: playerRaycastSt1.raycast(),
+                // rectangle2: {width : portal.width, height : portal.height, position : portal.position}
+                rectangle2: portal
+            });
+    
+            if(!!col) {
+                return portal;
+            }
+        })
+
+        if(!!portal){
+            console.log(portal);
+            if(isQuizeBox){
+                quizeBoxHidden();
+                return;
+            }else if(isPopupOpen === false){
+                const ret = portal.contact();
+                isQuizeBox = true;
+    
+                quizeBoxView(ret.msg, portal.name, portal.isKeyboard);
+                return;
+            }
         }
     }
 
@@ -189,132 +244,15 @@ window.onkeydown = function(event){
         if(isQuizeBox){
             const portal = portalsMapSt1.find(i => { return i.name  === _answer_input.data })
             const ret = portal.inputPw(_answer_input.value);
-            // if(ret.move){
-                textBoxView(ret.msg);
-            // }
-            quizeBoxHidden();
-            // isPopupOpen = true;
+
+            quizeBoxView(ret.msg, "", false);
+
         }
     }
 
-// ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
-    if(event.key == "z"){
-        if(isTextBoxView){
-            isPopupOpen = false;
-            textBoxHidden();
-        }else if(isPopupOpen === false){
-            isPopupOpen = true;
-            const temp = stuffTempArr[12].contact();
-   
-            textBoxView(temp.msg);
-            isInventory.insert(temp.item);
-        }
-    }
-// ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
-// ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
-    if(event.key == "x" ){
-        if(isTextBoxView){
-            isPopupOpen = false;
-            textBoxHidden();
-        }else if(isPopupOpen === false){
-            isPopupOpen = true;
-            const temp = stuffTempArr[2].contact();
- 
-            textBoxView(temp.msg);
-            isInventory.insert(temp.item);
-        }
-    }
 
-    if(event.key == "c"){
-        if(isQuizeBox){
-            isPopupOpen = false;
-            quizeBoxHidden();
-            textBoxHidden();
-        }else if(isPopupOpen === false){
-            isPopupOpen = true;
-            const temp = portalsMapSt1[0];
-            const ret = temp.contact();
-            isQuizeBox = true;
-            // 현재 이동을 구현하지 않아 스테이지를 이동하지 않는다.
-            if(ret.move || ret.type === "not") {
-                textBoxView(ret.msg);
-            }
-            else {
-                quizeBoxView(ret.msg, temp.name);
-            }
-        }
-    }
+});
 
-    if(event.key == "v"){
-        if(isQuizeBox){
-            isPopupOpen = false;
-            quizeBoxHidden();
-            textBoxHidden();
-        }else if(isPopupOpen === false){
-            isPopupOpen = true;
-            const temp = portalsMapSt1[1];
-            const ret = temp.contact(); 
-            isQuizeBox = true;
-            // 현재 이동을 구현하지 않아 스테이지를 이동하지 않는다.
-            if(ret.move || ret.type === "not") {
-                textBoxView(ret.msg);
-            }
-            else {
-                quizeBoxView(ret.msg, temp);
-            }
-        }
-    }
-
-// ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
-
-}
-
-// function textBoxView(text){
-//     isPopupOpen = true;
-//     isTextBoxView = true;
-//     _text_box.style.zIndex = 999;
-//     _text.innerHTML = text;
-// }
-
-function quizeBoxView(text, portalName){
-    isQuizeBox = true;
-    _answer_input.focus();
-    _answer_input.data = portalName;
-    console.log(_answer_input.data);
-    _quize_box.style.zIndex = 999;
-    _answer.innerHTML = text;
-    console.log(`_answer_input.value ${_answer_input.value}`);
-    _answer_input.value = "";
-}
-
-function quizeBoxHidden(){
-    isQuizeBox = false;
-    _quize_box.style.zIndex = 0;
-    _answer.innerHTML = "";
-    _answer_input.data = "";
-}
-
-// window.onkeydown = function(event){
-//     if(mapState === "playPage")
-//     if(event.key == "Escape"){
-//         if(settingBoardView){
-//             console.log(settingBoard)
-//         }
-//     }
-// }
-
-// settingBoard
-// putitem
-// use 버튼 누르면 위 함수를 실행하게끔
-// 
-
-// 키보드 입력 이벤트
-// window.onkeydown = function(event){
-//     // _input 이기에 이벤트는 keyboardEvent
-//     console.log(event); // 이벤트 객체
-//     console.log(event.keyCode); // 키보드의 아스키코드가 나옴(한글은 229만 나옴)
-//     console.log(event.key);     // 키보드의 키(숫자, 영문만) 엔터도 나옴
-// }
 let prolSkip = document.querySelector(".prolSkip")
  
 

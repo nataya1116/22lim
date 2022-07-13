@@ -21,6 +21,11 @@ const offsetSt1 = {
     y: -180
 };
 
+const stuffsMapSt1 = createStuffObj(stuffsStg1, c, offsetSt1);
+console.log(stuffsMapSt1);
+
+const portalsMapSt1 = createPortalObj(portalsStg1, c, offsetSt1);
+console.log(portalsMapSt1);
 
 
 // 충돌 부분 2차원배열 만들어주는 부분
@@ -37,15 +42,6 @@ collisionsMapSt1.forEach((row, i) => {
             }))
     })
 })
-console.log(boundariesSt1);
-const stuffsMapSt1 = createStuffObj(stuffsStg1, c);
-console.log(stuffsMapSt1);
-
-const portalsMapSt1 = createPortalObj(portalsStg1, c);
-console.log(portalsMapSt1);
-
-console.log(boundariesSt1);
-// console.log(objCols);
 
 
 
@@ -179,6 +175,8 @@ const movablesSt1 = [
 // 플레이어와 충돌 처리 한 부분 값 비교해서 충돌 여부 확인해주는 곳
 // rectangle1가 플레이어 이미지
 function rectangularCollision({rectangle1, rectangle2}) {
+    // console.log(rectangle1);
+    // console.log(rectangle2);
      if( rectangle1.position.x + rectangle1.width >= rectangle2.position.x && 
         rectangle1.position.x <= rectangle2.position.x + rectangle2.width && 
         rectangle1.position.y <= rectangle2.position.y + rectangle2.height &&
@@ -204,11 +202,11 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
     })
 
     stuffsMapSt1.forEach((stuff) => {
-        stuff.draw(offsetSt1.x, offsetSt1.y);
+        stuff.draw();
     })
 
     portalsMapSt1.forEach((portal) => {
-        portal.draw(offsetSt1.x, offsetSt1.y);
+        portal.draw();
     })
 //  ===============브젝트 충돌체를 그려주는 함수 끝 ==================
 
@@ -219,7 +217,7 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
     player.draw();
     playerCol.draw();
     foreground.draw();
-
+    playerRaycast.raycast();
     // c.fillStyle = 'rgba(0, 100, 100, 0.2)';
     // c.fillRect(419, 278,40,40 );
 
@@ -397,7 +395,7 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
                 //배경이동 속도
                 movable.position.x -= 3
             });
-            console.log(background.position.y)
+            // console.log(background.position.y)
             stuffsMapSt1.forEach((stuff) => {
                 stuff.position.x -= 3
             });
@@ -408,18 +406,27 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
     }
      
 	 //20220710 레이케스트 스페이스바--------------------------------------------------------------
-    else if (keys.space.pressed && lastKey === 'space') {
-        // console.log(playerRaycast.raycast());
+    // else if (keys.space.pressed && lastKey === 'space') {
+        
         // stuffsMapSt1.forEach((stuff) => {
         //     const stuffTemp = stuff;
-        //     console.log(stuffTemp);
-        //     let isCol = rectangularCollision({
+        //     let col = rectangularCollision({
         //         rectangle1: playerRaycast.raycast(),
         //         rectangle2: {width : stuffTemp.width, height : stuffTemp.height, position : stuffTemp.position}
         //     });
 
-        //     if(isCol) {
+        //     if(!!col) {
         //         // 수진언니가 준 함수를 나중에 여기다가 넣어준다.
+        //                 if(isTextBoxView){
+        //     isPopupOpen = false;
+        //     textBoxHidden();
+        // }else if(isPopupOpen === false){
+        //     isPopupOpen = true;
+        //     const temp = stuffTempArr[12].contact();
+   
+        //     textBoxView(temp.msg);
+        //     isInventory.insert(temp.item);
+        // }
 
         //         console.log(col + " : 맞은 블럭임 이거");
         //         console.log('레이저 맞았다..')
@@ -428,32 +435,31 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
         //     }
         // });
 
-        for (let i = 0; i < stuffsMapSt1.length; i++) {
-            // boundaries[i] 저장된 갯수 인덱스
-            const stuff = stuffsMapSt1[i]
-            let col = rectangularCollision({
-                rectangle1: playerRaycast.raycast(),
-                rectangle2: {
-                    width : stuff.width,
-                    height : stuff.height,
-                    position: {
-                        x: stuff.position.x,
-                        y: stuff.position.y
-                    }
-                }
-            })
-            // 레이캐스트 확인 하는 부분(벽에 맞으면 나옴)
-            if (col) {
-                // 수진언니가 준 함수를 나중에 여기다가 넣어준다.
-                // console.log(`${boundary.position.x}, ${boundary.position.y},${boundary.width},${boundary.height}`);
-                // console.log(`${playerRaycast.raycast().position.x}, ${playerRaycast.raycast().position.y},${playerRaycast.raycast().width},${playerRaycast.raycast().height}`);
-                // console.log(playerRaycast.raycast());
-                console.log(col + " : 맞은 블럭임 이거");
-                console.log('레이저 맞았다..')
-                moving = false;
-                break;
-            }
-        }
+        // for (let i = 0; i < stuffsMapSt1.length; i++) {
+        //     // boundaries[i] 저장된 갯수 인덱스
+        //     const stuff = stuffsMapSt1[i]
+        //     let col = rectangularCollision({
+        //         rectangle1: playerRaycast.raycast(),
+        //         rectangle2: {
+        //             width : stuff.width,
+        //             height : stuff.height,
+        //             position: {
+        //                 x: stuff.position.x,
+        //                 y: stuff.position.y
+        //             }
+        //         }
+        //     })
+        //     // console.log(col);
+        //     // 레이캐스트 확인 하는 부분(벽에 맞으면 나옴)
+        //     if (!!col) {
+        //         // 수진언니가 준 함수를 나중에 여기다가 넣어준다.
+
+        //         console.log(col + " : 맞은 블럭임 이거");
+        //         console.log('레이저 맞았다..')
+        //         moving = false;
+        //         break;
+        //     }
+        // }
 
         // for (let i = 0; i < boundaries.length; i++) {
         //     // boundaries[i] 저장된 갯수 인덱스
@@ -480,8 +486,8 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
         //         break;
         //     }
         // }
-        keys.space.pressed = false;
-    }
+        // keys.space.pressed = false;
+    // }
 }
 // 반복하려는 함수의 무한 루프를 생성
 
