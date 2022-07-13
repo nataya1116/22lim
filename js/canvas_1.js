@@ -5,12 +5,11 @@ const c = canvas.getContext('2d');
 canvas.width = 1024;
 canvas.height = 576;
 let mapState = "_start_page";
-// 팝업창
-let isPopupOpen = false;
-const collisionsMapSt1 = []
+
+const collisionsMap = [];
 // 70인 이유는 tiled상 지도의 너비가 70이기 때문
 for (let i = 0; i < collisionsStg1.length; i += 70) {
-    collisionsMapSt1.push(collisionsStg1.slice(i, 70 + i))
+    collisionsMap.push(collisionsStg1.slice(i, 70 + i))
     // console.log(collisions.slice(i, 70 + i)); 이렇게 반복하면서 배열안에 타일번호를 콘솔로
     // 확인할 수 있다.
 }
@@ -39,20 +38,28 @@ collisionsMapSt1.forEach((row, i) => {
     })
 })
 console.log(boundariesSt1);
+const stuffsMapSt1 = createStuffObj(stuffsStg1, c);
+console.log(stuffsMapSt1);
+
+const portalsMapSt1 = createPortalObj(portalsStg1, c);
+console.log(portalsMapSt1);
+
+console.log(boundariesSt1);
 // console.log(objCols);
 
 
 
 
 // 이미지 불러온 부분
-const image = new Image();
-image.src = '/img/background/backGroundBeforeStg1.png';
+const image = new Image()
+image.src = '/img/background/backGroundAfterStg1.png';
 
-const foregroundImage = new Image();
-foregroundImage.src = '/img/background/foreGroundBeforeStg1.png';
+const foregroundImage = new Image()
+foregroundImage.src = '/img/background/foreGroundAfterStg1.png';
 //20220710 통 플레이어 이미지
 const playerImage = new Image();
 playerImage.src = '/img/character/$Dr Frankenstien (resizing).png';
+
 
 // const awlImageShort = new Image();
 // awlImageShort.src = '/img/playImage/awl_1.png';
@@ -80,8 +87,6 @@ playerImage.src = '/img/character/$Dr Frankenstien (resizing).png';
 
 
 
-
-
 const playerSt1 = new Sprite({
     position: {
         // 맵 가운데에 위치하게 고
@@ -97,7 +102,7 @@ const playerSt1 = new Sprite({
         //20220710 이미지 Y축 인덱스(아래로 나눈거의 몇번째인지)
         valY: 0,
         // 이미지 X축 인덱스
-        valX:1
+        valX: 1
     },
     sprites: {
         up: playerImage,
@@ -194,10 +199,27 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
     window.requestAnimationFrame(animateLoop);
     // console.log(background);
     background.draw();
+    // c.fillStyle = 'rgba(0, 255, 0, 0.5)' // 확인용
+    // c.fillRect(778.625*2.5+offset.x,145.625*2.5+offset.y,25.75*2.5,14.75*2.5)
+    // "x":753,
+    // "y":144.25
     boundaries.forEach((boundary) => {
         boundary.draw();
     })
-    
+
+    stuffsMapSt1.forEach((stuff) => {
+        stuff.draw(offset.x, offset.y);
+    })
+
+    portalsMapSt1.forEach((portal) => {
+        portal.draw(offset.x, offset.y);
+    })
+//  ===============브젝트 충돌체를 그려주는 함수 끝 ==================
+
+    // objCols.forEach((boundary) => {
+    //     boundary.draw()
+    // })
+
     player.draw();
     playerCol.draw();
     foreground.draw();
@@ -240,11 +262,18 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
                 break;
             }
         }
-        if (moving) 
+        if (moving) {
             movables.forEach((movable) => {
                 //배경이동 속도
                 movable.position.y += 3
-            })
+            });
+            stuffsMapSt1.forEach((stuff) => {
+                stuff.position.y += 3;
+            });
+            portalsMapSt1.forEach((portal) => {
+                portal.position.y += 3;
+            });
+        }
             // background.position.y = background.position.y +=3
         // testBoundary.position.y +=3
     }
@@ -273,11 +302,18 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
                 break;
             }
         }
-        if (moving) 
+        if (moving) {
             movables.forEach((movable) => {
-                //배경이동 속도
-                movable.position.x += 3
+                //배경 이동
+                movable.position.x += 3;
             })
+            stuffsMapSt1.forEach((stuff) => {
+                stuff.position.x += 3;
+            });
+            portalsMapSt1.forEach((portal) => {
+                portal.position.x += 3;
+            });
+        }
     } 
     
     
@@ -311,13 +347,23 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
                 break;
             }
         }
-        if (moving) 
+        if (moving) {
             movables.forEach((movable) => {
-                //배경이동 속도
-                movable.position.y -= 3
-            })
+                //배경이동
+                movable.position.y -= 3;
+            });
+            stuffsMapSt1.forEach((stuff) => {
+                stuff.position.y -= 3;
+            });
+            portalsMapSt1.forEach((portal) => {
+                portal.position.y -= 3;
+            });
+        }
     } 
-    
+    // 오브젝트 위치값 forEach 써서 키값으로 같이 
+    //이동 배경이 이동하기 때문에 오브젝트 값도 같이 옮겨 줘야 한다.
+    //헷갈리면 포켓몬 참고
+    // movable 도 참고 같이 넣는건 불가능
     
     // d키 --------------------------------------------------------------------------------------------------
     else if (keys.d.pressed && lastKey === 'd') {
@@ -344,14 +390,20 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
                 break;
             }
         }
-        //배경이동
-        if (moving) 
+        if (moving) {
             movables.forEach((movable) => {
                 //배경이동 속도
                 movable.position.x -= 3
-            })
-            // console.log(background.position.y)
+            });
+            console.log(background.position.y)
+            stuffsMapSt1.forEach((stuff) => {
+                stuff.position.x -= 3
+            });
+            portalsMapSt1.forEach((portal) => {
+                portal.position.x -= 3;
+            });
         }
+    }
      
 	 //20220710 레이케스트 스페이스바--------------------------------------------------------------
     else if (keys.space.pressed && lastKey === 'space') {
@@ -394,6 +446,7 @@ window.addEventListener(
     'keydown',
     (e) => { // (e)는 이벤트를 나타내는 미리 채워진 개체 (개발자의 경우 이를 e 라고 부름 걍)
         if(mapState !== "_play_page") return;
+        if(isPopupOpen) return;
         //console.log(e.key))
         switch (e.key) {
             case 'w':

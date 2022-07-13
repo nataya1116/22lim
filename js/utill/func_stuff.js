@@ -1,17 +1,18 @@
-function createStuffObj(stuffData, ctx, save){
+
+function createStuffObj(stuffData, ctx){
     const stuffArr = [];
 
-    let name;
-    let info;
-    let x;
-    let y;
-    let width;
-    let height;
-    let itemName;
-    let itemInfo;
-    let hintMsg;
-
     stuffData.forEach(el => {
+        let name;
+        let info;
+        let x;
+        let y;
+        let width;
+        let height;
+        let itemName;
+        let itemInfo;
+        let hintMsg;
+    
         name = el.name;
         x = el.x;
         y = el.y;
@@ -41,30 +42,31 @@ function createStuffObj(stuffData, ctx, save){
         else{
             stuffArr.push(new Stuff({ctx, name, info, x, y, width, height, itemName, itemInfo}));
         }
+        itemInfo = "";
     });
     return stuffArr;
 }
 
-function createPortalObj(portalData){
+function createPortalObj(portalData, ctx){
     const portalArr = [];
-
-    let name;
-    let info;
-    let x;
-    let y;
-    let width;
-    let height;
-    let itemName;
-    let itemInfo;
-
-    let isDead;
-    let isKeyboard;
-    let isPortal;
-    let nextStage;
-    let notAvailableMsg;
-    let pw;
     
     portalData.forEach(el => {
+        let name;
+        let info;
+        let x;
+        let y;
+        let width;
+        let height;
+        let itemName;
+        let itemInfo;
+    
+        let isDead;
+        let isKeyboard;
+        let isPortal;
+        let nextStage;
+        let notAvailableMsg;
+        let pw;
+
         name = el.name;
         x = el.x;
         y = el.y;
@@ -97,7 +99,7 @@ function createPortalObj(portalData){
                 notAvailableMsg = el2.value;
             }
             if(el2.name === "pw"){
-                infoInfo = el2.value;
+                pw = el2.value;
             }
             
         });
@@ -106,15 +108,3 @@ function createPortalObj(portalData){
     });
     return portalArr;
 }
-
-
-function textBoxView(text){
-    _text_box.style.zIndex = 999;
-    _text.innerHTML = text;
-}
-
-function textBoxHidden(){
-    _text_box.style.zIndex = 0;
-    _text.innerHTML = "";
-}
-

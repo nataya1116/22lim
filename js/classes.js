@@ -90,9 +90,9 @@ class Stuff {
     constructor({ ctx, name, info, x, y, width, height, itemName, itemInfo}){
         this.ctx = ctx;
         this.name = name;
-        this.position = { x, y }; // x/y 값을 가짐
-        this.width = width
-        this.height = height;
+        this.position = { x : x * 2.5, y : y * 2.5 }; // x/y 값을 가짐
+        this.width = width * 2.5;
+        this.height = height * 2.5;
         this.item = { name : itemName, info : itemInfo };
         this.info = info; // 기본 설명 메세지(ex : “고장난 시계다.”, “낡아보이는 서랍장이다.”, “낡은 게시판 \n body”) 
         this.inactionMsg = "아무일도 일어나지 않는다.";
@@ -101,8 +101,9 @@ class Stuff {
 
     // ctx 객체를 이용해 캔버스에 그려준다.(이미지를 직접적으로 그려주는 것이 아닌 색상을 채워주는 방식으로 만든다.)
     // 준우님이 해주시기로
-    draw(){
-
+    draw(x, y){
+        c.fillStyle = 'rgba(0, 255, 0, 0.2)' // 확인용
+        c.fillRect(this.position.x + x, this.position.y + y, this.width, this.height)
     }
 
     // 교수님
@@ -116,16 +117,20 @@ class Stuff {
     // 교수님
     // 사물 객체에 아이템이 없을 경우 리턴해줄 내용을 객체로 생성한다.
     // { msg : this.info, item : "" } 객체를 만들어 리턴한다.
-    emptyItemMsg(){
-        return { msg : this.info, item : "" };
-    }
+    // =========== 보류 =============
+    // emptyItemMsg(){
+    //     return { msg : this.info, item : "" };
+    // }
+    // =========== 보류 =============
 
     // 교수님
     // 사물 객체에서 아이템을 제거할 때 사용할 함수로 리턴해줄 내용을 객체로 생성한다.
     // { msg : this.item+this.takeMsg, item : "" }  객체를 만들어 리턴한다.
-    exportItemMsg(){
-        return { msg : this.item.name+this.takeMsg, item : "" };
-    }
+    // =========== 보류 =============
+    // exportItemMsg(){
+    //     return { msg : this.item.name+this.takeMsg, item : "" };
+    // }
+    // =========== 보류 =============
 
     // 플레이어가 스페이스를 눌렀을 때 불러질 함수
     // this.item이 빈 값이 아닌 경우 this.exportItemMsg()를 실행해 결과값을 저장해 두었다가 this.emptyItem()를 실행하여 값을 비워준 후 결과값을 리턴한다. this.item이 빈값인 경우 this.emptyItemMsg()를 실행하고 결과값을 리턴한다.
@@ -140,11 +145,11 @@ class Stuff {
         //     return this.item;
         // }
         if(!!this.item.name){
-            let ret = { msg : this.item.name+this.takeMsg, item : this.item };
+            let ret = { msg : this.item.name + this.takeMsg, item : {...this.item} };
             this.emptyItem();
             return ret;
         } else {
-            return { msg : this.info, item : this.item };
+            return { msg : this.info, item : {...this.item} };
         }
     }
 
@@ -166,17 +171,17 @@ class StuffHint extends Stuff {
 
     // 소개 메세지만 리턴
     contact(){
-        return { msg : this.info, item : {name : "", info : "" } };
+        return { msg : [...this.info], item : {name : "", info : "" } };
     }
 
     // 플레이어가 아이템을 사용했을 때 불러질 함수이다.
     // this.item이 인자로 받은 item과 동일하다면. this.info+=this.hintMsg 하고 this.emptyItemMsg()를 실행해서 결과값을 리턴한다.
     putItem(item){
         if(this.item.name === item.name){
-            this.info+=`<br>${this.hintMsg}`;
+            this.info+=`<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>${this.hintMsg}`;
             super.emptyItem();
             console.log(this.info);
-            return { msg : this.info, item : this.item };
+            return { msg : this.info, item : {...this.item} };
         }else{
             return super.putItem(item);
         }
@@ -194,20 +199,24 @@ class SavePoint extends Stuff {
 
     // 세이브 성공 시 리턴값(객체) 만들어줌
     // { msg : this.succeseMsg, item : "" } 객체를 만들어 리턴한다.
-    succeseMsg(){
-        
-    }
+    // =========== 보류 =============
+    // succeseReturn(){
+    //     return { msg : this.succeseMsg, item : "" };
+    // }
+    // =========== 보류 =============
 
     
     // 세이브 실패 시 리턴값(객체) 만들어줌
     // { msg : this.failureMsg, item : "" } 객체를 만들어 리턴한다.
-    failureMsg(){
+    // =========== 보류 =============
+    // failureMsg(){
     
-    }
+    // }
+    // =========== 보류 =============
 
     // 인벤토리에서 구급약이 있는지 확인해야 한다. 리턴값으로 구급약 item을 리턴해서 인벤토리에서 비교하게 시킨다.
     contact(){
-        return { item : this.item };
+        return { item : {...this.item} };
     }
 
     // this.item이 인자로 받은 item과 동일하다면. save.LocalStorage() 실행 후 this.saveMsg()를 실행해서 결과값을 리턴한다.
@@ -233,44 +242,58 @@ class Portal extends Stuff {
     // 플레이어가 아이템을 사용했을 때 불러질 함수이다.
     // 문 클래스에서 아이템은 키이다.
     // this.item이 인자로 받은 item과 동일하다면. this.info+=this.hintMsg 하고 this.emptyItemMsg()를 실행해서 결과값을 리턴한다.
-    putItem(item){
-        
-    }
+    // putItem(item){
+
+    // }
 
     // this.nextStage에 저장된 스테이지로 이동
-    nextStage(){
-
+    movingNextStage(){
+        // console.log(`스테이지${this.nextStage}로 이동`);
+        return {move : true, msg : "다음 스테이지는 본 게임에서 만나요.^^"};
     }
 
     // 문을 사용할 수 없을 때 리턴할 객체를 생성
     // {msg : *notAvailable, item : ""} 객체로 만들어 리턴
-    notAvailable(){
+    // =========== 보류 =============
+    // notAvailable(){
 
-    }
+    // }
+    // =========== 보류 =============
 
     // 비밀번호가 틀렸을 때 리턴할 객체를 생성
     // {msg : *wrongPwMsg, item : ""} 객체로 만들어서 리턴
-    wrongPwMsg(){
+    // =========== 보류 =============
+    // wrongPwMsg(){
 
-    }
+    // }
+    // =========== 보류 =============
 
     // this.pw와 인자로 받은 pw가 동일하면 true 아니면 false리턴
     samePw(pw){
-
+        return (this.pw !== "" && this.pw === pw )? true : false;
     }
 
     // 비밀번호 입력 받는 창 띄어야 될듯
     // samePw(pw)를 실행시켜서 결과값이 true이면 this.nextStage() 실행
     // false이면 this.wrongPwMsg() 실행해서 결과값을 리턴함.
     inputPw(pw){
-
+        return this.samePw(pw) ? this.movingNextStage() : {msg : this.wrongPwMsg};
     }
 
     // this.pw 값이 없고 this.isPortal이 true일  경우 this.nextStage() 실행
     // this.pw 값이 없고 this.isPortal이 false일 경우 this.notAvailable()실행해서 결과값 리턴
     // this.pw 값이 있는 경우 this.inputPw(pw) 실행해서 결과 값을 리턴   
     contact(){
-
+        
+        if(this.isPortal === false && this.isKeyboard === false) {
+            return {move : false, type : "not", msg : this.notAvailableMsg};
+        }
+        
+        if(this.isKeyboard){
+            return {move : false, type : "password", msg : `"${this.name}" 암호 입력 후 enter를 누르세요.`};
+        }else{
+            return movingNextStage();
+        }
     }
 
 }
@@ -298,8 +321,8 @@ class Save {
 }
 
 class Inventory {
-    constructor(list){
-        this.list = list;
+    constructor(){
+        this.list = [];
     }
 
     // 교수님
@@ -309,7 +332,9 @@ class Inventory {
     }
 
     // 인벤토리 리스트에서 아이템 꺼내기
-    out(){}
+    out(name){
+        this.list = this.list.filter(e => {if(e.name == name){return false}else{return true}});
+    }
 
     // 인벤토리 리스트 가져오기
     importList(){
@@ -319,8 +344,22 @@ class Inventory {
 
 // 교수님
 class Item {
-    constructor(name, text){
+    constructor(name, info , useing){
         this.name = name;
-        this.text = text;
+        this.info = info;
+        this.useing = useing;
+        this.count = 1;
+    }
+    
+    addCount(){
+        this.count++;
+    }
+
+    subCount(){
+        this.count--;
+    }
+
+    sameName(name){
+        return this.name === name ? true : false;
     }
 }

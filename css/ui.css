@@ -239,8 +239,18 @@
 #_item td.have:hover {
     background-color: rgba(243, 243, 243, 0.3);
     border-radius: 10px;
+    /* animation-fill-mode: forwards; */
 }
 
+#_item td.have.active {
+    background-color: rgba(243, 243, 243, 0.3);
+    border-radius: 10px;
+    /* animation-fill-mode: forwards; */
+}
+
+
+
+/* 여기여기여기! */
 
 
 /* 설정창_ 팝업 */
@@ -614,17 +624,19 @@
     margin-right: 62px;
 }
 
-#_answer {
+#_answer, #_return_text {
     font-family: 'NeoDunggeunmo';
     font-size: 20px;
     color: white;
     padding-bottom: 15px;
 }
 
+
 #_answer_text input {
     width: 200px;
     height: 40px;
     background-color: rgba(144, 144, 144, 0.5);
+    margin-bottom: 15px;
 }
 
 

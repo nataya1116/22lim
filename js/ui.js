@@ -56,7 +56,7 @@ _start_btn.onclick = function(){
         //     playPage.classList.remove("test")
         //     startPage.classList.remove("test2")
         // }
-        paragraph(prologText)
+        paragraph(prologText);
         document.querySelectorAll('#container_box>div').forEach(el => {
             el.style.zIndex = "";
         })
@@ -79,86 +79,202 @@ _load_btn.onclick = function(){
 
 //===============================================================
     
-let isSettingBoardView = false;
-let isInventoryView = false;
+
 let isInventory = new Inventory([]);
 
-function itemget(){
-    // let tr = document.createElement('tr');
-    // let td = document.createElement('td');
-    // let td2 = document.createElement('td');
-    // td.id = "item_td";
-    // td2.id = "item_td";
-    // tr.appendChild(td);
-    // tr.appendChild(td2);
-    // item.appendChild(tr);
-    // query 반환값 배열
-    let items = _item.querySelectorAll(".item_td");
-    isInventory.insert(new Item("사과","맛있다"));
-    // isInventory.insert(new Item("바나나","맛없다"));
-    // isInventory.insert(new Item("애플","하"));
-    // isInventory.insert(new Item("체리","집가고싶어"));
-    let arr = isInventory.importList();
-    console.log(items);
-    for (let i = 0; i < items.length; i++) {
-        if(i < arr.length)
-        {
-            items[i].innerHTML = arr[i].name;
-            items[i].classList.add('have');
-            items[i].onclick = function(){
-                _item_use.style.zIndex = 9999;
-                _item_text.querySelector('span').innerHTML = arr[i].text;            
-            };
-        }   
-        else{
-            items[i].innerHTML = "";
-            items[i].classList.remove('have');
-        }
-    }
-}
+// function itemget(name, info, useing){
+//     let items = _item.querySelectorAll(".item_td");
+//     // 아이템 정보를 만들어 주고(넣어주고)
+//     isInventory.insert(new Item(name, info, useing));
+//     // 추가한 아이템의 배열을 가져오고
+//     let arr = isInventory.importList();
+//     // 추가한 아이템 배열(arr)을 updateItem 함수에 전달
+//     updateItem(arr);
+// }
+
+// function removeItem(name){
+//     // 추가한 아이템의 배열을 가져오고
+//     // 가져온 배열에서 없앨 아이템을 이름으로 구분해서 제거한다.
+//     isInventory.out(name); 
+//     //why 중복?
+//     let arr = isInventory.importList();
+//      // 제거한 후 아이템 배열(arr)을 updateItem 함수에 전달
+//     updateItem(arr);
+// }
+
+// function updateItem(arr){
+//     let items = _item.querySelectorAll(".item_td");
+//     for (let i = 0; i < items.length; i++) {
+//         if(i < arr.length)
+//         {
+//             items[i].innerHTML = arr[i].name;
+//             items[i].classList.add('have');
+//             items[i].onclick = function(){
+//                 _item_use.style.zIndex = 9999;
+//                 _item_text.querySelector('span').innerHTML = arr[i].info;       
+//                 _item_text.querySelector('button').onclick = function(){
+//                     // 배열안에 useing 정보가 false면 
+//                     if(arr[i].useing === false)
+//                     {   
+//                         // 삭제한다.
+//                         // 위에서 선언한 removeItem 함수를 가져와서
+//                         // 배열안에 false인 useing 값을 가지고 있는 객체의 이름을 지워준다.     
+//                         removeItem( arr[i].name);
+//                     }
+//                 }      
+//             };
+//         }   
+//         else{
+//             items[i].innerHTML = "";
+//             items[i].classList.remove('have');
+//         }
+//     }
+//     // 클릭후 현재 아이템 배열의 현황을 보여준다. 
+//     // 즉 isInventory.importList() 현재 아이템 배열이라는 것을 알 수 있다.
+//     console.log(isInventory.importList());
+// }
 
 window.addEventListener('keydown',function(e){
     if(mapState !== "_play_page") return
+    // key = ' ' 는 스페이스바의 key 값
     if(e.key === ' ')
     {
-        // 아이템 추가 함수
-        itemget();
+        // 아이템 추가 함수 (위 itemget 함수 처럼 정보를 담아 주면 된다. false 면 삭제 true면 유지)
+        itemget("구급약","구급약이다. 더 이상의 설명은 생략한다.",true);
+        itemget("엑스레이 필름","엑스레이 필름을 어디서 사용할까?",true);
+        itemget(" ds","구급함이다 아이템을 넣어둘 수 있다.",false);
     }
 })
 
-let settingBoardView = false
+// ++++++++++++++++++++++++++ 테스트 +++++++++++++++++++++++++++
+const ctx = "";
+
+const stuffTempArr = createStuffObj(stuffsStg1, ctx);
+console.log(stuffTempArr); 
+const stuffTempArr2 = createStuffObj(stuffsStg2, ctx);
+console.log(stuffTempArr2);
+// ++++++++++++++++++++++++++ 테스트 +++++++++++++++++++++++++++
+
+// let settingBoardView = false
 console.log(isInventory.importList());
 window.onkeydown = function(event){
     if(mapState !== "_play_page") return;
+
     if(event.key == "i"){
         if(isInventoryView){
-            console.log(_low_inven);
-            _item_use.style.zIndex = 0;
-            _low_inven.style.zIndex = 0;
-            isPopupOpen = false;
-            isInventoryView = false;
+            inventoryHidden();
         }else if(isPopupOpen === false){
-            _low_inven.style.zIndex = 999;
-            isPopupOpen = true;
-            isInventoryView = true;
+            inventoryView();
         }
         
     }
-    if(mapState !== "_play_page") return;
     if(event.key == "Escape"){
-        if(settingBoardView){
-            _setting_board.style.zIndex = 0;
-            isPopupOpen = false;
-            settingBoardView= false;
+        if(isSettingBoardView){
+            settingBoardHidden();
         }else if(isPopupOpen === false){
-            _setting_board.style.zIndex = 999;
-            isPopupOpen = true;
-            settingBoardView = true;
+            settingBoardView();
         }
         if(_load_filed.style.zIndex="999"){
             _load_filed.style.zIndex = 0 ;
         }
     }
+
+    // 퀴즈 값 받을 때
+    if(event.key == "Enter"){
+        if(isQuizeBox){
+            
+        }
+    }
+
+// ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
+    if(event.key == "z"){
+        if(isTextBoxView){
+            
+            textBoxHidden();
+        }else if(isPopupOpen === false){
+
+            const temp = stuffTempArr[12].contact();
+   
+            textBoxView(temp.msg);
+            isInventory.insert(temp.item);
+        }
+    }
+// ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
+// ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
+    if(event.key == "x"){
+        if(isTextBoxView){
+            
+            textBoxHidden();
+        }else if(isPopupOpen === false){
+            const temp = stuffTempArr[2].contact();
+ 
+            textBoxView(temp.msg);
+            isInventory.insert(temp.item);
+        }
+    }
+
+    if(event.key == "c"){
+        if(isQuizeBox){
+            quizeBoxHidden();
+            textBoxHidden();
+        }else if(isPopupOpen === false){
+            const temp = portalsMapSt1[1];
+            const ret = temp.contact();
+
+            // 현재 이동을 구현하지 않아 스테이지를 이동하지 않는다.
+            if(ret.move || ret.type === "not") {
+                textBoxView(ret.msg);
+            }
+            else {
+                quizeBoxView(ret.msg);
+            }
+        }
+    }
+
+    // if(event.key == "v"){
+    //     if(isTextBoxView){
+            
+    //         quizeBoxHidden();
+    //     }else if(isPopupOpen === false){
+    //         const temp = portalsMapSt1[2]
+    //         quizeBoxView("ㅅㅂ");
+    //     }
+    // }
+
+    // if(event.key == "b"){
+    //     if(isTextBoxView){
+            
+    //         quizeBoxHidden();
+    //     }else if(isPopupOpen === false){
+    //         const temp = portalsMapSt1[4]
+    //         quizeBoxView("ㅅㅂ");
+    //     }
+    // }
+
+// ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
+
+}
+
+// function textBoxView(text){
+//     isPopupOpen = true;
+//     isTextBoxView = true;
+//     _text_box.style.zIndex = 999;
+//     _text.innerHTML = text;
+// }
+
+function quizeBoxView(text){
+    isPopupOpen = true;
+    isQuizeBox = true;
+    _answer_input.focus();
+    _quize_box.style.zIndex = 999;
+    _answer.innerHTML = text;
+}
+
+function quizeBoxHidden(){
+    isPopupOpen = false;
+    isQuizeBox = false;
+    _quize_box.style.zIndex = 0;
+    _answer.innerHTML = "";
 }
 
 // window.onkeydown = function(event){
@@ -202,41 +318,17 @@ prolSkip.onclick = function(){
         // //     console.log("됨?")
         // // }, 3000);
         // setTimeout(btnSkip,3000);
-        
 }
 
-function paragraph(element) {
-    const array = element.innerText.split('')
-    const special = ['~', '@', '!', '#', '$', '%', '^', '&', '*']
-    const exception = [' ', '\n', '.', ',']
-    const random = (min, max) => {
-        return Math.floor(Math.random() * (max - min + 1) + min)
-    }
-    
-    const numArray = []
-    array.forEach(char => {
-        const num = random(5, 40)
-        numArray.push(num)
-    })
-    
-    let completeCount
-    let newText
-    const timer = setInterval(() => { 
-    completeCount = 0
-    newText = ''
-    numArray.forEach((num, i) => {
-      if (exception.includes(array[i]) || numArray[i] === 0) {
-        newText += array[i]
-        completeCount += 1
-      } else {
-        newText += special[numArray[i] % special.length]
-        numArray[i] = --num
-      }
-    })
 
-    element.innerText = newText
-    if (completeCount === numArray.length) clearInterval(timer)
-  }, 120)
-}
 
 const prologText = document.getElementById('_prolog_text');
+
+document.querySelectorAll('.item_td').forEach(e=>{
+    e.addEventListener('click',function(){
+        document.querySelectorAll('.item_td').forEach(e=>{
+            e.classList.remove('active')
+        })
+        this.classList.add('active');
+    })
+})
