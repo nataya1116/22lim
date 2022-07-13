@@ -1,7 +1,7 @@
 const stuffsStg1 = [
        {
         "class":"",
-        "height":16,
+        "height":40,
         "id":4,
         "name":"서랍",
         "properties":[
@@ -28,7 +28,7 @@ const stuffsStg1 = [
        }, 
        {
         "class":"",
-        "height":15.3333,
+        "height":38.6666333333334,
         "id":8,
         "name":"서랍장",
         "properties":[
@@ -55,7 +55,7 @@ const stuffsStg1 = [
        }, 
        {
         "class":"",
-        "height":15.75,
+        "height":40.4166666666667,
         "id":12,
         "name":"협탁",
         "properties":[
@@ -109,7 +109,7 @@ const stuffsStg1 = [
        }, 
        {
         "class":"",
-        "height":15,
+        "height":31.3333333333334,
         "id":18,
         "name":"링거",
         "properties":[
@@ -132,11 +132,11 @@ const stuffsStg1 = [
         "visible":true,
         "width":15,
         "x":688.5,
-        "y":368.5
+        "y":352.166666666667
        }, 
        {
         "class":"",
-        "height":15.5,
+        "height":31.5,
         "id":20,
         "name":"링거",
         "properties":[
@@ -159,7 +159,7 @@ const stuffsStg1 = [
         "visible":true,
         "width":15.75,
         "x":368,
-        "y":320.25
+        "y":304.25
        }, 
        {
         "class":"",
@@ -244,7 +244,7 @@ const stuffsStg1 = [
        }, 
        {
         "class":"",
-        "height":17.3333,
+        "height":43.3333,
         "id":25,
         "name":"서랍장",
         "properties":[
@@ -271,7 +271,7 @@ const stuffsStg1 = [
        }, 
        {
         "class":"",
-        "height":17.3333,
+        "height":42.6666333333334,
         "id":28,
         "name":"서랍장",
         "properties":[
@@ -298,7 +298,7 @@ const stuffsStg1 = [
        }, 
        {
         "class":"",
-        "height":15,
+        "height":31.3333333333333,
         "id":29,
         "name":"시계",
         "properties":[
@@ -325,7 +325,7 @@ const stuffsStg1 = [
        }, 
        {
         "class":"",
-        "height":14.75,
+        "height":31.75,
         "id":32,
         "name":"게시판",
         "properties":[
@@ -348,11 +348,11 @@ const stuffsStg1 = [
         "visible":true,
         "width":25.25,
         "x":371.708,
-        "y":227.958
+        "y":223.624666666667
        }, 
        {
         "class":"",
-        "height":15.75,
+        "height":31.0833333333333,
         "id":44,
         "name":"구급함",
         "properties":[
@@ -379,7 +379,7 @@ const stuffsStg1 = [
        }, 
        {
         "class":"",
-        "height":15,
+        "height":32.6666666666666,
         "id":49,
         "name":"숨겨진 쪽지",
         "properties":[
@@ -401,7 +401,7 @@ const stuffsStg1 = [
         "rotation":0,
         "visible":true,
         "width":15,
-        "x":639.166666666667,
+        "x":639.167,
         "y":224.5
        }];
 // -------------------------------------------------------------------------------------------

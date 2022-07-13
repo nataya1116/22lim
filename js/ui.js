@@ -150,7 +150,7 @@ window.addEventListener('keydown',function(e){
 const ctx = "";
 
 const stuffTempArr = createStuffObj(stuffsStg1, ctx);
-console.log(stuffTempArr);
+console.log(stuffTempArr); 
 const stuffTempArr2 = createStuffObj(stuffsStg2, ctx);
 console.log(stuffTempArr2);
 // ++++++++++++++++++++++++++ 테스트 +++++++++++++++++++++++++++
@@ -176,6 +176,13 @@ window.onkeydown = function(event){
         }
         if(_load_filed.style.zIndex="999"){
             _load_filed.style.zIndex = 0 ;
+        }
+    }
+
+    // 퀴즈 값 받을 때
+    if(event.key == "Enter"){
+        if(isQuizeBox){
+            
         }
     }
 
@@ -210,12 +217,39 @@ window.onkeydown = function(event){
         if(isTextBoxView){
             
             quizeBoxHidden();
-        }else if(isPopupOpen === false){
+        }else if(isPopupOpen === false1){
+            const temp = portalsMapSt1[1];
+            const ret = temp.contact();
 
+            // 현재 이동을 구현하지 않아 스테이지를 이동하지 않는다.
+            if(ret.move || ret.type === "not") {
+                textBoxView(ret.msg);
+            }
+
+
+            quizeBoxView(ret.msg);
+        }
+    }
+
+    if(event.key == "v"){
+        if(isTextBoxView){
+            
+            quizeBoxHidden();
+        }else if(isPopupOpen === false){
+            const temp = portalsMapSt1[2]
             quizeBoxView("ㅅㅂ");
         }
     }
 
+    if(event.key == "b"){
+        if(isTextBoxView){
+            
+            quizeBoxHidden();
+        }else if(isPopupOpen === false){
+            const temp = portalsMapSt1[4]
+            quizeBoxView("ㅅㅂ");
+        }
+    }
 
 // ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
 
