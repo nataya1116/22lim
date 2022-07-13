@@ -639,6 +639,14 @@
     margin-bottom: 15px;
 }
 
+#_answer button {
+    font-family: 'NeoDunggeunmo';
+    font-size: 20px;
+    width: 60px;
+    height: 40px;
+    background-color: rgba(144, 144, 144, 0.5);
+}
+
 
 /* 프롤로그 텍스트 */
 #_prolog{

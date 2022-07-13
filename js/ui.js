@@ -218,38 +218,36 @@ window.onkeydown = function(event){
             quizeBoxHidden();
             textBoxHidden();
         }else if(isPopupOpen === false){
-            const temp = portalsMapSt1[1];
+            const temp = portalsMapSt1[0];
             const ret = temp.contact();
-
+            isQuizeBox = true;
             // 현재 이동을 구현하지 않아 스테이지를 이동하지 않는다.
             if(ret.move || ret.type === "not") {
                 textBoxView(ret.msg);
             }
             else {
-                quizeBoxView(ret.msg);
+                quizeBoxView(ret.msg, temp);
             }
         }
     }
 
-    // if(event.key == "v"){
-    //     if(isTextBoxView){
-            
-    //         quizeBoxHidden();
-    //     }else if(isPopupOpen === false){
-    //         const temp = portalsMapSt1[2]
-    //         quizeBoxView("ㅅㅂ");
-    //     }
-    // }
-
-    // if(event.key == "b"){
-    //     if(isTextBoxView){
-            
-    //         quizeBoxHidden();
-    //     }else if(isPopupOpen === false){
-    //         const temp = portalsMapSt1[4]
-    //         quizeBoxView("ㅅㅂ");
-    //     }
-    // }
+    if(event.key == "v"){
+        if(isQuizeBox){
+            quizeBoxHidden();
+            textBoxHidden();
+        }else if(isPopupOpen === false){
+            const temp = portalsMapSt1[1];
+            const ret = temp.contact(); 
+            isQuizeBox = true;
+            // 현재 이동을 구현하지 않아 스테이지를 이동하지 않는다.
+            if(ret.move || ret.type === "not") {
+                textBoxView(ret.msg);
+            }
+            else {
+                quizeBoxView(ret.msg, temp);
+            }
+        }
+    }
 
 // ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
 
@@ -262,10 +260,12 @@ window.onkeydown = function(event){
 //     _text.innerHTML = text;
 // }
 
-function quizeBoxView(text){
+function quizeBoxView(text, portal){
     isPopupOpen = true;
     isQuizeBox = true;
     _answer_input.focus();
+    _answer_input.data = JSON.stringify(portal);
+    console.log(_answer_input.data);
     _quize_box.style.zIndex = 999;
     _answer.innerHTML = text;
 }
