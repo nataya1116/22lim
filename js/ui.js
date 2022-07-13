@@ -290,6 +290,7 @@ let prolSkip = document.querySelector(".prolSkip")
 // }
 
 prolSkip.onclick = function(){
+
     document.querySelectorAll('#container_box>div').forEach(el => {
             el.style.zIndex = "";
         })
