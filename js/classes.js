@@ -137,7 +137,7 @@ class Boundary {
         this.height = height;
     }
     draw(){
-        c.fillStyle = 'rgba(255, 0, 0, 0.2)' // 확인용
+        c.fillStyle = 'rgba(255, 0, 0, 0.0)' // 확인용
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 }
@@ -147,9 +147,9 @@ class Stuff {
     constructor({ ctx, name, info, x, y, width, height, itemName, itemInfo}){
         this.ctx = ctx;
         this.name = name;
-        this.position = { x, y }; // x/y 값을 가짐
-        this.width = width
-        this.height = height;
+        this.position = { x : x *  2.5, y : y * 2.5 }; // x/y 값을 가짐
+        this.width = width * 2.5;
+        this.height = height * 2.5;
         this.item = { name : itemName, info : itemInfo };
         this.info = info; // 기본 설명 메세지(ex : “고장난 시계다.”, “낡아보이는 서랍장이다.”, “낡은 게시판 \n body”) 
         this.inactionMsg = "아무일도 일어나지 않는다.";
@@ -158,8 +158,9 @@ class Stuff {
 
     // ctx 객체를 이용해 캔버스에 그려준다.(이미지를 직접적으로 그려주는 것이 아닌 색상을 채워주는 방식으로 만든다.)
     // 준우님이 해주시기로
-    draw(){
-
+    draw(x, y){
+        c.fillStyle = 'rgba(0, 255, 0, 0.2)' // 확인용
+        c.fillRect(this.position.x+ x, this.position.y+ y, this.width, this.height);
     }
 
     // 교수님
@@ -282,7 +283,7 @@ class SavePoint extends Stuff {
     // }   
 }
 
-// 문(엘리베이터 포함) 클래스
+// 문(엘리베이터 포함) 클래스 =====
 class Portal extends Stuff {
     constructor({ ctx, name, info, x, y, width, height, itemName, itemInfo, pw, isKeyboard, isPortal, isDead, nextStage, notAvailableMsg }){
         super({ ctx, name, info, x, y, width, height, itemName, itemInfo });
@@ -294,6 +295,7 @@ class Portal extends Stuff {
         this.notAvailableMsg = notAvailableMsg;
         this.wrongPwMsg = "비밀번호가 맞지 않습니다.";
     }
+//=================================
 
     // 플레이어가 아이템을 사용했을 때 불러질 함수이다.
     // 문 클래스에서 아이템은 키이다.
@@ -405,5 +407,15 @@ class Item {
         this.useing = useing;
         this.count = 1;
     }
-    
+    addCount(){
+        this.count++;
+    }
+    subCount(){
+        if(this.name === arr[i].name){
+            this.count--;
+        }
+    }  
+    sameName(name){
+      return this.name === name ? true : false
+    }
 }

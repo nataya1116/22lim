@@ -24,6 +24,7 @@ function updateItem(arr){
     for (let i = 0; i < items.length; i++) {
         if(i < arr.length)
         {
+            // 아이템 배열안의 이름을 html 에 그려주는 역할
             items[i].innerHTML = arr[i].name;
             items[i].classList.add('have');
             items[i].onclick = function(){
@@ -31,12 +32,17 @@ function updateItem(arr){
                 _item_text.querySelector('span').innerHTML = arr[i].info;       
                 _item_text.querySelector('button').onclick = function(){
                     // 배열안에 useing 정보가 false면 
-                    if(arr[i].useing === false)
-                    {   
+                    if(arr[i].useing === false){   
                         // 삭제한다.
                         // 위에서 선언한 removeItem 함수를 가져와서
                         // 배열안에 false인 useing 값을 가지고 있는 객체의 이름을 지워준다.     
                         removeItem( arr[i].name);
+                         //이름이 삭제 될때 인벤토리 창이 같이 없어진다.
+                        if(isInventoryView){
+                            inventoryHidden();
+                        }else if(isPopupOpen === false){
+                            inventoryView();
+                        }
                     }
                 }      
             };

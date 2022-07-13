@@ -138,11 +138,12 @@ window.addEventListener('keydown',function(e){
     if(mapState !== "_play_page") return
     // key = ' ' 는 스페이스바의 key 값
     if(e.key === ' ')
-    {
+    {  
+            //itemget("구급약","구급약이다. 더 이상의 설명은 생략한다.",false);
+            //itemget("엑스레이 필름","엑스레이 필름을 어디서 사용할까?",true);
+            //itemget(" ds","ㅇ롬ㅇ낼안ㅁ리ㅓㄴ아",false);
+            //itemget(" 구급약","구급약이다. 더 이상의 설명은 생략한다.",false);
         // 아이템 추가 함수 (위 itemget 함수 처럼 정보를 담아 주면 된다. false 면 삭제 true면 유지)
-        itemget("구급약","구급약이다. 더 이상의 설명은 생략한다.",true);
-        itemget("엑스레이 필름","엑스레이 필름을 어디서 사용할까?",true);
-        itemget(" ds","구급함이다 아이템을 넣어둘 수 있다.",false);
     }
 })
 
