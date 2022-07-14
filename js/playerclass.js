@@ -21,7 +21,7 @@ class Character {
                 w = this.width;
                 h = this.height;
 
-                c.fillStyle = 'rgba(0, 0, 255, 0.2)'; // 확인용
+                c.fillStyle = 'rgba(0, 0, 255, 0.0)'; // 확인용
                 c.fillRect(x, y, w, h);
 
                 return {position : {x : x, y : y}, width : w, height: h};
@@ -32,7 +32,7 @@ class Character {
                 w = this.height;
                 h = this.width;
 
-                c.fillStyle = 'rgba(0, 0, 255, 0.2)' // 확인용
+                c.fillStyle = 'rgba(0, 0, 255, 0.0)' // 확인용
                 c.fillRect(x, y, w, h)
 
                 return {position : {x : x, y : y}, width : w, height: h};
@@ -43,7 +43,7 @@ class Character {
                 w = this.height;
                 h = this.width;
 
-                c.fillStyle = 'rgba(0, 0, 255, 0.2)' // 확인용
+                c.fillStyle = 'rgba(0, 0, 255, 0.0)' // 확인용
                 c.fillRect(x, y, w, h)  
 
                 return {position : {x : x, y : y}, width : w, height: h};
@@ -55,7 +55,7 @@ class Character {
                 w = this.width;
                 h = this.height;
 
-                c.fillStyle = 'rgba(0, 0, 255, 0.2)' // 확인용    
+                c.fillStyle = 'rgba(0, 0, 255, 0.0)' // 확인용    
                 c.fillRect(x, y, w, h)
 
                 return {position : {x : x, y : y}, width : w, height: h};

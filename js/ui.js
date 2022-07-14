@@ -297,6 +297,7 @@ prolSkip.onclick = function(){
         _play_page.style.zIndex = 999;
         pauseBaseM()
         doorBgm()
+        _play_page.style.display = "block";
         mapState = "_play_page";
         // // setTimeout(function() {
         // //     // event.prolSkip.style.fontSize = "27px";
