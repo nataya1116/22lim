@@ -5,7 +5,6 @@ class Character {
         this.position = position;
         // 래이캐스트 방향
         this.raycast_direction = raycast_direction;
-        // this.playerCol = playerCol;
     }
     // 레이케스트 4방향
     raycast(){
