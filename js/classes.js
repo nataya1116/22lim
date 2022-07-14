@@ -19,6 +19,7 @@ class Sprite {
         //     // console.log(this.image.width / this.frames.max);
         //     // console.log(this.image.height / this.frames.maxY);     
         // }
+        // 기본적으로 로드될 때 움직이지 않음
         this.moving = false;
         this.Sprite = sprites;
         //20220710 플레이어가 맵에 로드 되었을 때 기본 레이케스트 방향 결정
@@ -29,8 +30,9 @@ class Sprite {
     
     	// c.drawImage(this.image, this.position.x, this.position.y );
         c.drawImage(
+                // 여기서 배경, 전경, 플레이어 다 그려준다
                 this.image,
-                //       3      x      60      = 180 이미지 총 가로길이
+                //       3      x      60      = 180 캐릭터이미지 총 가로길이
                 this.frames.valX * this.width,
                 //20220710 이미지 Y축 인덱스 곱해서(Y축 나눈거의 몇번째 줄인지 0 1 2 3)
                 this.frames.valY * this.height, 
@@ -45,9 +47,9 @@ class Sprite {
                 //20220710 이미지 Y축 나눈 이미지 크기
                 this.image.height / this.frames.maxY
 			)
-             // 움직이지 않을 때
+            // 움직이지 않을 때
             if(!this.moving) return;
-              // 움직일 때
+            // 움직일 때
             //         3 > 1 일때
             if(this.frames.max > 1){
                 // elapsed가 증가하다가
@@ -62,12 +64,12 @@ class Sprite {
             }
     
     }
-	//20220710 레이케스트 4방향
-}    
+} 
+
+
 
 
 // 클래스 안에서는 따로 fuction 으로 함수를 선언 해주지 않아도 된다.
-
 class Boundary {
 	// static 정적메서드
     static width =40
@@ -87,10 +89,10 @@ class Boundary {
 
 // 사물 클래스
 class Stuff {
-    constructor({ ctx, name, info, x, y, width, height, itemName, itemInfo}){
+    constructor({ ctx, name, info, x, y, width, height, itemName, itemInfo, offSet}){
         this.ctx = ctx;
         this.name = name;
-        this.position = { x : x * 2.5, y : y * 2.5 }; // x/y 값을 가짐
+        this.position = { x : (x * 2.5) + offSet.x , y : (y * 2.5) + offSet.y }; // x/y 값을 가짐
         this.width = width * 2.5;
         this.height = height * 2.5;
         this.item = { name : itemName, info : itemInfo };
@@ -101,9 +103,9 @@ class Stuff {
 
     // ctx 객체를 이용해 캔버스에 그려준다.(이미지를 직접적으로 그려주는 것이 아닌 색상을 채워주는 방식으로 만든다.)
     // 준우님이 해주시기로
-    draw(x, y){
+    draw(){
         c.fillStyle = 'rgba(0, 255, 0, 0.2)' // 확인용
-        c.fillRect(this.position.x + x, this.position.y + y, this.width, this.height)
+        c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
     // 교수님
@@ -164,8 +166,8 @@ class Stuff {
 
 // 아이템을 넣으면 힌트를 주는 클래스로 Stuff의 자식 클래스이다.
 class StuffHint extends Stuff {
-    constructor({ ctx, name, info, x, y, width, height, itemName, itemInfo, hintMsg }){
-        super({ctx, name, info, x, y, width, height, itemName, itemInfo });
+    constructor({ ctx, name, info, x, y, width, height, itemName, itemInfo, offSet, hintMsg }){
+        super({ctx, name, info, x, y, width, height, itemName, itemInfo, offSet });
         this.hintMsg = hintMsg;
     }
 
@@ -190,8 +192,8 @@ class StuffHint extends Stuff {
 
 // 구급함(세이브) 클래스
 class SavePoint extends Stuff {
-    constructor({ ctx, name, info, x, y, width, height, itemName, itemInfo, save }){
-        super({ ctx, name, info, x, y, width, height, itemName, itemInfo });
+    constructor({ ctx, name, info, x, y, width, height, itemName, itemInfo, offSet, save }){
+        super({ ctx, name, info, x, y, width, height, itemName, itemInfo, offSet });
         this.save = save;
         this.succeseMsg = "저장되었다.";
         this.failureMsg = "저장에 실패하였다.";
@@ -228,8 +230,8 @@ class SavePoint extends Stuff {
 
 // 문(엘리베이터 포함) 클래스
 class Portal extends Stuff {
-    constructor({ ctx, name, info, x, y, width, height, itemName, itemInfo, pw, isKeyboard, isPortal, isDead, nextStage, notAvailableMsg }){
-        super({ ctx, name, info, x, y, width, height, itemName, itemInfo });
+    constructor({ ctx, name, info, x, y, width, height, itemName, itemInfo, offSet, pw, isKeyboard, isPortal, isDead, nextStage, notAvailableMsg }){
+        super({ ctx, name, info, x, y, width, height, itemName, itemInfo, offSet });
         this.pw = pw;
         this.isKeyboard = isKeyboard;
         this.isPortal = isPortal;
@@ -277,7 +279,7 @@ class Portal extends Stuff {
     // samePw(pw)를 실행시켜서 결과값이 true이면 this.nextStage() 실행
     // false이면 this.wrongPwMsg() 실행해서 결과값을 리턴함.
     inputPw(pw){
-        return this.samePw(pw) ? this.movingNextStage() : {msg : this.wrongPwMsg};
+        return this.samePw(pw) ? this.movingNextStage() : {move : false, msg : this.wrongPwMsg};
     }
 
     // this.pw 값이 없고 this.isPortal이 true일  경우 this.nextStage() 실행

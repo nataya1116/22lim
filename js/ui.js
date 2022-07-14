@@ -134,32 +134,44 @@ let isInventory = new Inventory([]);
 //     console.log(isInventory.importList());
 // }
 
-window.addEventListener('keydown',function(e){
-    if(mapState !== "_play_page") return
-    // key = ' ' 는 스페이스바의 key 값
-    if(e.key === ' ')
-    {
-        // 아이템 추가 함수 (위 itemget 함수 처럼 정보를 담아 주면 된다. false 면 삭제 true면 유지)
-        itemget("구급약","구급약이다. 더 이상의 설명은 생략한다.",true);
-        itemget("엑스레이 필름","엑스레이 필름을 어디서 사용할까?",true);
-        itemget(" ds","구급함이다 아이템을 넣어둘 수 있다.",false);
-    }
-})
+// window.addEventListener('keydown',function(e){
+//     if(mapState !== "_play_page") return
+//     // key = ' ' 는 스페이스바의 key 값
+//     // if(e.key === ' ')
+//     // {
+//     //     // 아이템 추가 함수 (위 itemget 함수 처럼 정보를 담아 주면 된다. false 면 삭제 true면 유지)
+//     //     itemget("구급약","구급약이다. 더 이상의 설명은 생략한다.",true);
+//     //     itemget("엑스레이 필름","엑스레이 필름을 어디서 사용할까?",true);
+//     //     itemget(" ds","구급함이다 아이템을 넣어둘 수 있다.",false);
+//     // }
+// })
 
 // ++++++++++++++++++++++++++ 테스트 +++++++++++++++++++++++++++
 const ctx = "";
 
+<<<<<<< HEAD
 const stuffTempArr = createStuffObj(stuffsStg1, ctx);
 console.log(stuffTempArr); 
 const stuffTempArr2 = createStuffObj(stuffsStg2, ctx);
 console.log(stuffTempArr2);
+=======
+const stuffTempArr = createStuffObj(stuffsStg1, ctx, offsetSt1);
+// console.log(stuffTempArr); 
+const stuffTempArr2 = createStuffObj(stuffsStg2, ctx, offsetSt1);
+// console.log(stuffTempArr2);
+>>>>>>> develop
 // ++++++++++++++++++++++++++ 테스트 +++++++++++++++++++++++++++
 
 // let settingBoardView = false
-console.log(isInventory.importList());
-window.onkeydown = function(event){
+// console.log(isInventory.importList());
+window.addEventListener(  
+    'keydown', function(event){
     if(mapState !== "_play_page") return;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
     if(event.key == "i" || event.key == "ㅑ"){
         if(isInventoryView){
             inventoryHidden();
@@ -174,11 +186,12 @@ window.onkeydown = function(event){
         }else if(isPopupOpen === false){
             settingBoardView();
         }
-        if(_load_filed.style.zIndex="999"){
+        if(_load_filed.style.zIndex=="999"){
             _load_filed.style.zIndex = 0 ;
         }
     }
 
+<<<<<<< HEAD
     // 퀴즈 값 받을 때
     if(event.key == "Enter"){
         if(isQuizeBox){
@@ -254,6 +267,99 @@ window.onkeydown = function(event){
 // ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
 
 }
+=======
+    if(event.key == ' ') {
+        const stuff = stuffsMapSt1.find((stuff) => {
+            let col = rectangularCollision({
+                rectangle1: playerRaycastSt1.raycast(),
+                rectangle2: {width : stuff.width, height : stuff.height, position : stuff.position}
+                // rectangle2: stuff
+            });
+    
+            if(!!col) {
+                return stuff;
+            }
+        });
+
+        if(!!stuff){
+            // 세이브 생략
+            if(stuff.name === "구급함") return;
+
+            if(stuff.name === "게시판" && boardCnt === 2){
+                gsap.to('#_stg_back', {
+                    zIndex : 1000,
+                    opacity: 0.4,
+                    repeat : 3,
+                    yoyo : true,
+                    duration:0.2,
+                    display : "block",
+                    onComplete(){
+                        gsap.to('#_stg_back',{
+                            opacity: 1,
+                            display : "block"
+                        })
+                        image.src = '/img/background/backgroundAfterStg1.png';
+                        foregroundImage.src = '/img/background/foreGroundAfterStg1.png';
+                    }
+                });
+                
+            }
+
+            if (stuff.name === "게시판") boardCnt++;
+            if(isTextBoxView){
+                textBoxHidden();
+                return;
+            }else if(isPopupOpen === false){
+                const ret = stuff.contact(); 
+                console.log(ret);
+                textBoxView(ret.msg);
+                if(!!ret.item.name) itemget(ret.item.name, ret.item.info, true);
+                return;
+            }
+        }
+    
+        
+        const portal = portalsMapSt1.find((portal) => {
+            let col = rectangularCollision({
+                rectangle1: playerRaycastSt1.raycast(),
+                // rectangle2: {width : portal.width, height : portal.height, position : portal.position}
+                rectangle2: portal
+            });
+    
+            if(!!col) {
+                return portal;
+            }
+        })
+
+        if(!!portal){
+            console.log(portal);
+            if(isQuizeBox){
+                quizeBoxHidden();
+                return;
+            }else if(isPopupOpen === false){
+
+                // TODO 뒤지는 거랑 맵 스테이트 게임 오버로 수정
+
+                const ret = portal.contact();
+                isQuizeBox = true;
+                console.log("dd")
+                quizeBoxView(ret.msg, portal.name, portal.isKeyboard);
+                return;
+            }
+        }
+    }
+
+    // 퀴즈 값 받을 때
+    if(event.key == "Enter"){
+        if(isQuizeBox){
+            const portal = portalsMapSt1.find(i => { return i.name  === _answer_input.data })
+            const ret = portal.inputPw(_answer_input.value);
+
+            quizeBoxView(ret.msg, "", false);
+
+        }
+    }
+>>>>>>> develop
 
 // function textBoxView(text){
 //     isPopupOpen = true;
@@ -262,6 +368,7 @@ window.onkeydown = function(event){
 //     _text.innerHTML = text;
 // }
 
+<<<<<<< HEAD
 function quizeBoxView(text){
     isPopupOpen = true;
     isQuizeBox = true;
@@ -298,6 +405,10 @@ function quizeBoxHidden(){
 //     console.log(event.keyCode); // 키보드의 아스키코드가 나옴(한글은 229만 나옴)
 //     console.log(event.key);     // 키보드의 키(숫자, 영문만) 엔터도 나옴
 // }
+=======
+});
+
+>>>>>>> develop
 let prolSkip = document.querySelector(".prolSkip")
  
 
@@ -308,11 +419,17 @@ let prolSkip = document.querySelector(".prolSkip")
 
 prolSkip.onclick = function(){
     document.querySelectorAll('#container_box>div').forEach(el => {
-            el.style.zIndex = "";
+            el.style.zIndex = 999;
+            el.style.display = "none";
         })
         _play_page.style.zIndex = 999;
+<<<<<<< HEAD
         pauseBaseM()
         doorBgm()
+=======
+        _play_page.style.display = "block";
+        
+>>>>>>> develop
         mapState = "_play_page";
         // // setTimeout(function() {
         // //     // event.prolSkip.style.fontSize = "27px";

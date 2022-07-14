@@ -1,4 +1,4 @@
-const canvas = document.getElementById('_stg1');
+const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 
 // console.log(collisions);
@@ -8,45 +8,45 @@ let mapState = "_start_page";
 
 const collisionsMapSt1 = [];
 // 70인 이유는 tiled상 지도의 너비가 70이기 때문
-for (let i = 0; i < collisionsStg1.length; i += 70) {
-    collisionsMapSt1.push(collisionsStg1.slice(i, 70 + i))
+for (let i = 0; i < collisionsStg2.length; i += 70) {
+    collisionsMapSt2.push(collisionsStg2.slice(i, 70 + i))
     // console.log(collisions.slice(i, 70 + i)); 이렇게 반복하면서 배열안에 타일번호를 콘솔로
     // 확인할 수 있다.
 }
 
-// 송곳을 나오게 하는 컨트롤러
-let awlSt1Control = false;
-
-const boundariesSt1 = [];
+const boundariesSt2 = [];
 // const objCols = [];
-const offsetSt1 = {
-    x: -1464,
-    y: -180
+const offsetSt2 = {
+    x : -925,
+    y : -740
 };
 
-const stuffsMapSt1 = createStuffObj(stuffsStg1, c, offsetSt1);
-console.log(stuffsMapSt1);
-
-const portalsMapSt1 = createPortalObj(portalsStg1, c, offsetSt1);
-console.log(portalsMapSt1);
 
 
 // 충돌 부분 2차원배열 만들어주는 부분
-collisionsMapSt1.forEach((row, i) => {
+collisionsMapSt2.forEach((row, i) => {
     row.forEach((symbol, j) => {
-        if (symbol === 1337) 
-            boundariesSt1.push(new Boundary({
+        if (symbol === 23346) 
+            boundariesSt2.push(new Boundary({
                 position: {
 				  //  Boundary.width, Boundary.height는 바운더리 클래스에서 쓴 정적 메서드로
 				      // new 인스턴스 생성 없이 호출해온 것이다.
-                    x: j * Boundary.width + offsetSt1.x,
-                    y: i * Boundary.height + offsetSt1.y
+                    x: j * Boundary.width + offsetSt2.x,
+                    y: i * Boundary.height + offsetSt2.y
                 },
             }))
     })
 })
+console.log(boundariesSt2);
 
-console.log(boundariesSt1);
+//////////여기에 stuffsStg2 받아오는 곳에서 꼭 이름 변경/////////////////////////
+const stuffsMapSt2 = createStuffObj(stuffsStg2, c);
+console.log(stuffsMapSt2);
+
+const portalsMapSt2 = createPortalObj(portalsStg2, c);
+console.log(portalsMapSt2);
+/////////////////////////////////////////////////////////////////
+// console.log(boundariesSt2);
 // console.log(objCols);
 
 
@@ -54,73 +54,16 @@ console.log(boundariesSt1);
 
 // 이미지 불러온 부분
 const image = new Image()
-image.src = '/img/background/backGroundBeforeStg1.png';
+image.src = '/img/background/backGroundStg2.png';
 
 const foregroundImage = new Image()
-foregroundImage.src = '/img/background/foreGroundBeforeStg1.png';
+foregroundImage.src = '/img/background/foreGroundStg2.png';
 //20220710 통 플레이어 이미지
 const playerImage = new Image();
 playerImage.src = '/img/character/$Dr Frankenstien (resizing).png';
 
-const knifeImage1 = new Image();
-knifeImage1.src = '/img/playimage/knife.png';
 
-const knifeImage2 = new Image();
-knifeImage2.src = '/img/playimage/knife.png';
-
-
-// const awlImageShort = new Image();
-// awlImageShort.src = '/img/playImage/awl_1.png';
-
-// const awlImageMedium = new Image();
-// awlImageMedium.src = '/img/playImage/awl_2.png';
-
-// const awlImageLong = new Image();
-// awlImageLong.src = '/img/playImage/awl_3.png';
-
-let gameover = function(){
-    console.log(mapState);
-    if(mapState !== "_game_over")return
-    setTimeout(() => {
-        mapState = "_start_page";
-        if(mapState ==="_start_page"){
-            _start_page.style.zIndex = 99999;
-        }
-        location.reload("_play_page");
-
-    }, 3000);
-    // gameover = null;
-}
-
-
-// const awlSt1 = new Sprite({
-//     position : {
-//         x : 778.625,
-//         y : 145.625
-//     },
-//     image : awlImage1,
-//     sprites : {
-//         short : awlImage1,
-//         medium : awlImage2,
-//         long : awlImage3
-//     }
-// });
-
-
-
-// 송곳 이미지 불러옴
-const awlImageShort = new Image();
-awlImageShort.src = '/img/playImage/awl_1.png';
-
-const awlImageMedium = new Image();
-awlImageMedium.src = '/img/playImage/awl_2.png';
-
-const awlImageLong = new Image();
-awlImageLong.src = '/img/playImage/awl_3.png';
-
-
-// 송곳 객체 생성
-const awlSt1 = new Sprite({
+const awlSt2 = new Sprite({
     position : {
         x : 478,
         y : 255
@@ -132,11 +75,12 @@ const awlSt1 = new Sprite({
         long : awlImageLong
     }
 });
-console.log(awlSt1.position.x);
-console.log(awlSt1.position.y);
+console.log(awlSt2.position.x);
+console.log(awlSt2.position.y);
 
 
-const playerSt1 = new Sprite({
+
+const playerSt2 = new Sprite({
     position: {
         // 맵 가운데에 위치하게 고
         x: canvas.width / 2 - 180 / 4 / 2,
@@ -160,62 +104,50 @@ const playerSt1 = new Sprite({
         down: playerImage
     },
 })
-// console.log(playerSt1.position.x);
-// console.log(playerSt1.position.y);
+
+
+// console.log(player.position.x);
+// console.log(player.position.y);
 // console.log(player.height);
 // console.log(player.width);
-
-
-const playerColSt1 = new Boundary({
+const playerColSt2 = new Boundary({
     position: {
         // 맵 가운데에 위치하게 고정
-        x: playerSt1.position.x + playerSt1.width / 4.8,
-        y: playerSt1.position.y + playerSt1.height / 1.8
+        x: playerSt2.position.x + playerSt2.width / 4.8,
+        y: playerSt2.position.y + playerSt2.height / 1.8
     },
     width : 30,
     height : 30
 });
 
-const playerRaycastSt1 = new Character({
+const playerRaycastSt2 = new Character({
     position: {
         // 맵 가운데에 위치하게 고정
-        x: playerColSt1.position.x,
-        y: playerColSt1.position.y  
+        x: playerColSt2.position.x,
+        y: playerColSt2.position.y  
     },
+    // playerCol : playerColSt1,
     raycast_direction : 'down'
 });
 
-const backgroundSt1 = new Sprite({
+const backgroundSt2 = new Sprite({
     position: {
-        x: offsetSt1.x,
-        y: offsetSt1.y
+        x: offsetSt2.x,
+        y: offsetSt2.y
     },
     image: image
 })
 // console.log(background);
 
-const foregroundSt1 = new Sprite({
+const foregroundSt2 = new Sprite({
     position: {
-        x: offsetSt1.x,
-        y: offsetSt1.y
+        x: offsetSt2.x,
+        y: offsetSt2.y
     },
     image: foregroundImage
 })
 
-const knifeSt1 = new Sprite({
-    position:{
-        x: offsetSt1.x+790 *2.5,
-        y: offsetSt1.y+400 *2.5
-    },
-    image: knifeImage1
-})
-const knifeSt2 = new Sprite({
-    position:{
-        x: offsetSt1.x+769 *2.5,
-        y: offsetSt1.y+600 *2.5
-    },
-    image: knifeImage2
-})
+
 
 // 키가 눌리지 않았을 때
 const keys = {
@@ -238,41 +170,29 @@ const keys = {
 }
 
 
-const movablesSt1 = [
-    backgroundSt1, ...boundariesSt1,
-    foregroundSt1, knifeSt1 ,knifeSt2
-    , awlSt1
+
+const movablesSt2 = [
+    backgroundSt2, ...boundariesSt2,
+    foregroundSt2, awlSt2
 ]
 
-// 송곳 올라오게 이미지 교체해주는 함수
+
 function attack(start) {
     if(start) {
-    awlSt1.draw();
-
-        // 키입력 못하는 변수를 true로 넣어주면 된다
-        //
-        // 송곳의 frames은 1이고 애니메이트 함수가 실행되면서 1씩 올라간다
-        awlSt1.frames.elapsed++;
-        // elapsed를 10으로 나눈 값에 따라 케이스가 달라진다
-        switch (awlSt1.frames.elapsed / 10) {
-            // 0 / 10 은 0 이므로 case 0을 탄다
+        // 키입력 못하는 변수 true
+        //ss
+        awlSt2.frames.elapsed++;
+        switch (awlSt2.frames.elapsed / 10) {
             case 0:
-                awlSt1.image =  awlSt1.Sprite.short;
-                // 이 이미지를 기준 position으로 잡고
+                awlSt2.image =  awlSt2.Sprite.short;
                 break;
-
-            // 10 / 10은 1 이므로 case 1을 탄다
             case 1:
-                awlSt1.image =  awlSt1.Sprite.medium;
-                // short이미지의 height 길이만큼 position 값을 빼준다  
-                awlSt1.position.y -= 9;
+                awlSt2.image =  awlSt2.Sprite.medium;  
+                awlSt2.position.y -= 9;
                 break;
-
-            // 20 / 10은 2 이므로 case 2를 탄다
             case 2:
-                awlSt1.image =  awlSt1.Sprite.long;
-                // short이미지의 height 길이 2배 만큼 position 값을 빼준다 
-                awlSt1.position.y -= 34;
+                awlSt2.image =  awlSt2.Sprite.long;
+                awlSt2.position.y -= 34;
                 break;
             default:
                 break;
@@ -284,8 +204,6 @@ function attack(start) {
 // 플레이어와 충돌 처리 한 부분 값 비교해서 충돌 여부 확인해주는 곳
 // rectangle1가 플레이어 이미지
 function rectangularCollision({rectangle1, rectangle2}) {
-    // console.log(rectangle1);
-    // console.log(rectangle2);
      if( rectangle1.position.x + rectangle1.width >= rectangle2.position.x && 
         rectangle1.position.x <= rectangle2.position.x + rectangle2.width && 
         rectangle1.position.y <= rectangle2.position.y + rectangle2.height &&
@@ -295,69 +213,49 @@ function rectangularCollision({rectangle1, rectangle2}) {
         }
 }
 
-// 애니메이트 함수를 실행해줄 함수를 만들고
 function animateLoop(){
-    animate(backgroundSt1, foregroundSt1, boundariesSt1, playerSt1, playerColSt1, playerRaycastSt1, movablesSt1, knifeSt1,knifeSt2);
+    animate(backgroundSt2, foregroundSt2, boundariesSt2, playerSt2, playerColSt2, playerRaycastSt2, movablesSt2);
 };
-// 함수를 실행시키고 전달시켜준다
+
 animateLoop();
 // 전역변수를 애니메이트의 파라미터로 받아준다
-function animate(background, foreground, boundaries, player, playerCol, playerRaycast, movables,knife1,knife2) {
+function animate(background, foreground, boundaries, player, playerCol, playerRaycast, movables) {
     // console.log(background); 아왜안ㅇㄷ9애ㅐ애애애
     window.requestAnimationFrame(animateLoop);
     // console.log(background);
-
     background.draw();
     boundaries.forEach((boundary) => {
         boundary.draw();
     })
 
-    stuffsMapSt1.forEach((stuff) => {
-        stuff.draw();
+    stuffsMapSt2.forEach((stuff) => {
+        stuff.draw(offsetSt2.x, offsetSt2.y);
     })
 
-    portalsMapSt1.forEach((portal) => {
-        portal.draw();
+    portalsMapSt2.forEach((portal) => {
+        portal.draw(offsetSt2.x, offsetSt2.y);
     })
 //  ===============오브젝트 충돌체를 그려주는 함수 끝 ==================
 
-// 문이랑 상호작용할때의 조건
-// 여기 지우고 수진언니가 만든 문이랑 상호작용하는 함수 넣기////////////////
+    // 여기 지우고 수진언니가 만든 문이랑 상호작용하는 함수 넣기////////////////
     window.onkeydown = function(e){
         if(e.key == '1'){
             
             // 이 조건만 넣어주기!
-            // 전역으로 컨트롤러를 false였다가 true로 바꿔준다
-            awlSt1Control = true;
+            awlSt2Control = true;
         }
     }
     //////////////////////////////////////////////////////////////
-    // 송곳 나오는 함수 실행
-    attack(awlSt1Control);
-    // console.log(awlSt1.position.x);
-    // console.log(awlSt1.position.y);
-    // 송곳을 캔버스에 그려준다
+    attack(awlSt2Control);
+
+    awlSt2.draw();
     player.draw();
     playerCol.draw();
-    if("_play_page" === mapState ){
-        smash(player,knife1);
-        smash (player, knife2)
-    }
-    ///=============================================칼 날리는 조건문 
-    if(gameover !== null)
-    {
-        gameover();
-    }
     foreground.draw();
-    playerRaycast.raycast();
-    // c.fillStyle = 'rgba(0, 100, 100, 0.2)';
-    // c.fillRect(419, 278,40,40 );
-
-    // c.fillStyle = 'rgba(0, 0, 100, 0.2)';
-    // c.fillRect(422, 279.1111111111111,80,30 );
     
 	let moving = true;
     player.moving = false;
+
     // 플레이어 w,a,d,s 이동시 백그라운드 포지션 변경 실제로는 배경이 이동하지만
     // 화면상 캐릭터가 움직이는것 처럼 보이게함
     // w키 --------------------------------------------------------------------------------------------------
@@ -398,10 +296,10 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
                 //배경이동 속도
                 movable.position.y += 3
             });
-            stuffsMapSt1.forEach((stuff) => {
+            stuffsMapSt2.forEach((stuff) => {
                 stuff.position.y += 3;
             });
-            portalsMapSt1.forEach((portal) => {
+            portalsMapSt2.forEach((portal) => {
                 portal.position.y += 3;
             });
         }
@@ -438,10 +336,10 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
                 //배경 이동
                 movable.position.x += 3;
             })
-            stuffsMapSt1.forEach((stuff) => {
+            stuffsMapSt2.forEach((stuff) => {
                 stuff.position.x += 3;
             });
-            portalsMapSt1.forEach((portal) => {
+            portalsMapSt2.forEach((portal) => {
                 portal.position.x += 3;
             });
         }
@@ -454,7 +352,6 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
 		//s 입력했을때 keys.s.pressed
         // player.moving 이동중이라는것
         player.moving = true;
-
         // player.image 밑에 이미지로 교체
         player.image = player.Sprite.down;
 		playerRaycast.raycast_direction = "down";
@@ -484,10 +381,10 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
                 //배경이동 속도
                 movable.position.y -= 3;
             });
-            stuffsMapSt1.forEach((stuff) => {
+            stuffsMapSt2.forEach((stuff) => {
                 stuff.position.y -= 3;
             });
-            portalsMapSt1.forEach((portal) => {
+            portalsMapSt2.forEach((portal) => {
                 portal.position.y -= 3;
             });
         }
@@ -528,16 +425,46 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
                 //배경이동 속도
                 movable.position.x -= 3
             });
-            // console.log(background.position.y)
-            stuffsMapSt1.forEach((stuff) => {
+            console.log(background.position.y)
+            stuffsMapSt2.forEach((stuff) => {
                 stuff.position.x -= 3
             });
-            portalsMapSt1.forEach((portal) => {
+            portalsMapSt2.forEach((portal) => {
                 portal.position.x -= 3;
             });
         }
-    }	
+    }
+     
+	 //20220710 레이케스트 스페이스바--------------------------------------------------------------
+    else if (keys.space.pressed && lastKey === 'space') {
+        playerRaycast.raycast();
+        for (let i = 0; i < boundaries.length; i++) {
+            // boundaries[i] 저장된 갯수 인덱스
+            const boundary = boundaries[i]
+            let col = rectangularCollision({
+                rectangle1: playerRaycast.raycast(),
+                rectangle2: {
+                    ...boundary,
+                    position: {
+                        x: boundary.position.x,
+                        y: boundary.position.y
+                    }
+                }
+            })
+            // 레이캐스트 확인 하는 부분(벽에 맞으면 나옴)
+            if (col) {
+                // console.log(boundary.position);
+                // 수진언니가 준 함수를 나중에 여기다가 넣어준다.
+                console.log(col + " : 맞은 블럭임 이거");
+                console.log('레이저 맞았다..')
+                moving = false;
+                break;
+            }
+        }
+        keys.space.pressed = false;
+    }
 }
+// 반복하려는 함수의 무한 루프를 생성
 
 
 //console.log(backgroundSt1)
@@ -557,50 +484,47 @@ window.addEventListener(
                 // console.log('pressed w key')
                 keys.w.pressed = true
                 lastKey = 'w' // 해당키를 누르고 있다가 다른키를 누르면 다른키로 변경됨 위에 if문 확인
-              
                 break;
             case 'a':
                 // console.log('pressed a key')
                 keys.a.pressed = true
                 lastKey = 'a'
-               
                 break;
             case 's':
                 // console.log('pressed s key')
                 keys.s.pressed = true
                 lastKey = 's'
-           
                 break;
             case 'd':
                 // console.log('pressed d key')
                 keys.d.pressed = true
                 lastKey = 'd'
-                
+                break;
+   //20220710 레이케스트 스페이스바
+            case ' ':
+                keys.space.pressed = true
+                lastKey = 'space'
                 break;
             // 한글 키 추가
             case 'ㅈ':
                 // console.log('pressed w key')
                 keys.w.pressed = true
                 lastKey = 'w' // 해당키를 누르고 있다가 다른키를 누르면 다른키로 변경됨 위에 if문 확인
-               
                 break;
             case 'ㅁ':
                 // console.log('pressed a key')
                 keys.a.pressed = true
                 lastKey = 'a'
-               
                 break;
             case 'ㄴ':
                 // console.log('pressed s key')
                 keys.s.pressed = true
                 lastKey = 's'
-                
                 break;
             case 'ㅇ':
                 // console.log('pressed d key')
                 keys.d.pressed = true
                 lastKey = 'd'
-                
                 break;
         }
         // console.log(keys)
@@ -614,36 +538,28 @@ window.addEventListener(
         switch (e.key) {
             case 'w':
                 keys.w.pressed = false
-                pauseMoveM()
                 break;
             case 'a':
                 keys.a.pressed = false
-                pauseMoveM()
                 break;
             case 's':
                 keys.s.pressed = false
-                pauseMoveM()
                 break;
             case 'd':
                 keys.d.pressed = false
-                pauseMoveM()
                 break;
             // 한글 키 추가
             case 'ㅈ':
                 keys.w.pressed = false
-                pauseMoveM()
                 break;
             case 'ㅁ':
                 keys.a.pressed = false
-                pauseMoveM()
                 break;
             case 'ㄴ':
                 keys.s.pressed = false
-                pauseMoveM()
                 break;
             case 'ㅇ':
                 keys.d.pressed = false
-                pauseMoveM()
                 break;
         }
         // console.log(keys)
@@ -655,101 +571,12 @@ window.addEventListener(
         // console.log(keys)
     }
 )
-//  if(player.moving === true){
-//        moveBgm()
-//     }else if(player.moving === false){
-        
-//         pauseMoveM()
-//     }
-
 
 const divArr = document.querySelectorAll('container_box>div');
 // forEach 이용
 
-// console.log(divArr);
+console.log(divArr);
 document.querySelectorAll('container_box>div').forEach(el => {
     el.style.zIndex = "";
 })
 
-
-//=================== 칼 날아오는 부분  ==================
-
-
-
-
-// function trapDead(){
-//     if(playerImage.OnFocus = knifeImage){
-//         _game_over.style.zIndex = 999 ;
-//         // setTimeout((_game_over) => {
-//         //     _game_over.style.zIndex = 0;
-//         // }, 3000);
-//     }
-// }
-
-
-// function deadCharacter(){
-//     if(playerImage.x - knifeImage.x = 0){
-
-//     }
-// }
-
-function smash (player, knife1){
-    if( player.position.x + player.width >= knife1.position.x && 
-        player.position.x <= knife1.position.x + knife1.width && 
-        player.position.y <= knife1.position.y + knife1.height &&
-        player.position.y + player.height >= knife1.position.y)
-    {
-        _game_over.style.zIndex = 999 ;
-        console.log("죽음");
-        mapState = '_game_over';
-    }
-    else{
-        knife1.position.y -= 15;
-        knife1.draw();
-    }
-}
-function smash (player, knife2){
-    if( player.position.x + player.width >= knife2.position.x && 
-        player.position.x <= knife2.position.x + knife2.width && 
-        player.position.y <= knife2.position.y + knife2.height &&
-        player.position.y + player.height >= knife2.position.y)
-    {
-        _game_over.style.zIndex = 999 ;
-        console.log("죽음");
-        mapState = '_game_over';
-    }
-    else{
-        knife2.position.y -= 15;
-        knife2.draw();
-    }
-}
-
-
-// function djsaod(){
-
-//     break;
-// }
-
-// window.onkeydown = function(event){
-//     console.log("dsadasd")
-//     if(mapState === "_game_over")
-//     if(event.key === ' ')
-//     {
-//         _game_over.style.zIndex = 0 ;
-//         _start_page.style.zIndex = 999;
-
-//     }
-    
-// }
-
-// window.addEventListener('keydown',function(e){
-
-//     if(mapState !== "_game_over") return
-//     console.log("dasdasd")
-//     if(e.key === ' ')
-//     {   
-//         removeEventListener()
-//          _game_over.style.zIndex = 0 ;
-//         _start_page.style.zIndex = 999;
-//     }
-// })

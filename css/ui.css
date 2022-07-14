@@ -228,12 +228,14 @@
     font-size: 20px;
     color: white;
     margin-left: 20px;
+    
 }
 
 #_item td {
     width: 300px;
     height: 60px;
     padding: 20px 0px 20px 15px;
+    
 }
 
 #_item td.have:hover {
@@ -565,7 +567,7 @@
 
 /* 기본 텍스트 박스_대화 */
 #_text_box {
-
+    z-index: 0;
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
@@ -609,6 +611,12 @@
     align-items: center;
 }
 
+#_answer_input {
+    font-family: 'NeoDunggeunmo';
+    font-size: 16px;
+    color: white;
+}
+
 #_box_q {
     display: flex;
     flex-direction: column;
@@ -637,6 +645,17 @@
     height: 40px;
     background-color: rgba(144, 144, 144, 0.5);
     margin-bottom: 15px;
+<<<<<<< HEAD
+=======
+}
+
+#_answer button {
+    font-family: 'NeoDunggeunmo';
+    font-size: 20px;
+    width: 60px;
+    height: 40px;
+    background-color: rgba(144, 144, 144, 0.5);
+>>>>>>> develop
 }
 
 
@@ -705,4 +724,15 @@
   
   .prolSkip:focus-visible {
     box-shadow: none;
+  }
+
+
+  /* 검은 배경 화면 */
+  #_stg_back {
+    /* background-color: rgb(15, 15, 15); */
+    background-image: url(/img/cat.jpg);
+    /* background-image: url(/img/playImage/ghost_1.jpeg); */
+    background-size: cover;
+    width: 1024px;
+    height: 576px;
   }

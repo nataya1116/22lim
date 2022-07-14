@@ -6,3 +6,5 @@ let isQuizeBox = false;
 let isPopupOpen = false;
 
 let inventory = new Inventory();
+
+let boardCnt = 0;

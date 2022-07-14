@@ -1,41 +1,77 @@
-
+ 
 function textBoxView(text){
     isPopupOpen = true;
     isTextBoxView = true;
-    _text_box.style.zIndex = 999;
+    _text_box.style.display = "flex";
     _text.innerHTML = text;
 }
 
 function textBoxHidden(){
     isPopupOpen = false;
     isTextBoxView = false;
-    _text_box.style.zIndex = 0;
+    _text_box.style.display = "none";
     _text.innerHTML = "";
 }
 
 function settingBoardView(){
-    _setting_board.style.zIndex = 999;
     isPopupOpen = true;
+    _setting_board.style.display = "flex";
     isSettingBoardView = true;
 }
 
 function settingBoardHidden(){
-    _setting_board.style.zIndex = 0;
     isPopupOpen = false;
+    _setting_board.style.display = "none";
     isSettingBoardView= false;
 }
 
-function inventoryView(){
-    _low_inven.style.zIndex = 999;
+function inventoryView(name){
     isPopupOpen = true;
+    _inventory.style.display = "flex";
+    _item_use.style.display = "none";
+    _item_text.data = name;
     isInventoryView = true;
+
 }
 
 function inventoryHidden(){
-    _item_use.style.zIndex = 0;
-    _low_inven.style.zIndex = 0;
     isPopupOpen = false;
+    _inventory.style.display = "none";
+    _item_use.style.display = "none";
     isInventoryView = false;
+
+    let itemTdList = document.querySelectorAll(".item_td");
+    itemTdList.forEach((item)=>{
+        item.classList.remove("active");
+    });
+}
+
+function quizeBoxHidden(){
+    isPopupOpen = false;
+    isQuizeBox = false;
+    _quize_box.style.display = "none";
+    _answer.innerHTML = "";
+    _answer_input.data = "";
+}
+
+function quizeBoxView(text, portalName, isKeyboard){
+    isPopupOpen = true;
+    isQuizeBox = true;
+    _answer_input.focus();
+    _answer_input.data = portalName;
+    // console.log(_answer_input.data);
+    _quize_box.style.display = "flex";
+    _answer.innerHTML = text;
+    // console.log(`_answer_input.value ${_answer_input.value}`);
+    _answer_input.value = "";
+
+    if (isKeyboard) {
+        _return_text.style.visibility = "visible"; 
+        _answer_input.style.visibility = "visible";
+    }else {
+        _return_text.style.visibility = "hidden";
+        _answer_input.style.visibility = "hidden";
+    }
 }
 
 function paragraph(element) {
