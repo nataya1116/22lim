@@ -14,6 +14,7 @@ const itemList = []
 
 
 window.onload =function(){
+    baseBgm()
     _start_page.style.zIndex = 999;
 
 }
@@ -60,7 +61,6 @@ _start_btn.onclick = function(){
         document.querySelectorAll('#container_box>div').forEach(el => {
             el.style.zIndex = "";
         })
-        // let mas=
         _prolog.style.zIndex = 999;
         mapState = "_prolog";
     };
@@ -311,7 +311,8 @@ prolSkip.onclick = function(){
             el.style.zIndex = "";
         })
         _play_page.style.zIndex = 999;
-        
+        pauseBaseM()
+        doorBgm()
         mapState = "_play_page";
         // // setTimeout(function() {
         // //     // event.prolSkip.style.fontSize = "27px";

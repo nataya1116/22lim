@@ -1,4 +1,4 @@
-const canvas = document.querySelector('canvas');
+const canvas = document.getElementById('_stg1');
 const c = canvas.getContext('2d');
 
 // console.log(collisions);
@@ -60,6 +60,9 @@ foregroundImage.src = '/img/background/foreGroundBeforeStg1.png';
 const playerImage = new Image();
 playerImage.src = '/img/character/$Dr Frankenstien (resizing).png';
 
+const knifeImage = new Image();
+knifeImage.src = '/img/playimage/knife.png';
+
 
 // const awlImageShort = new Image();
 // awlImageShort.src = '/img/playImage/awl_1.png';
@@ -70,6 +73,16 @@ playerImage.src = '/img/character/$Dr Frankenstien (resizing).png';
 // const awlImageLong = new Image();
 // awlImageLong.src = '/img/playImage/awl_3.png';
 
+let gameover = function(){
+    console.log(mapState);
+    if(mapState !== "_game_over")return
+    setTimeout(() => {
+        mapState = "_start_page";
+        _start_page.style.zIndex = 999;
+
+    }, 1000);
+    gameover = null;
+}
 
 
 // const awlSt1 = new Sprite({
@@ -147,7 +160,13 @@ const foregroundSt1 = new Sprite({
     image: foregroundImage
 })
 
-
+const knifeSt1 = new Sprite({
+    position:{
+        x: offsetSt1.x+790 *2.5,
+        y: offsetSt1.y+400 *2.5
+    },
+    image: knifeImage
+})
 
 // 키가 눌리지 않았을 때
 const keys = {
@@ -173,7 +192,7 @@ const keys = {
 
 const movablesSt1 = [
     backgroundSt1, ...boundariesSt1,
-    foregroundSt1
+    foregroundSt1, knifeSt1
 ]
 
 // 플레이어와 충돌 처리 한 부분 값 비교해서 충돌 여부 확인해주는 곳
@@ -189,15 +208,16 @@ function rectangularCollision({rectangle1, rectangle2}) {
 }
 
 function animateLoop(){
-    animate(backgroundSt1, foregroundSt1, boundariesSt1, playerSt1, playerColSt1, playerRaycastSt1, movablesSt1);
+    animate(backgroundSt1, foregroundSt1, boundariesSt1, playerSt1, playerColSt1, playerRaycastSt1, movablesSt1, knifeSt1);
 };
 
 animateLoop();
 // 전역변수를 애니메이트의 파라미터로 받아준다
-function animate(background, foreground, boundaries, player, playerCol, playerRaycast, movables) {
+function animate(background, foreground, boundaries, player, playerCol, playerRaycast, movables,knife) {
     // console.log(background); 아왜안ㅇㄷ9애ㅐ애애애
     window.requestAnimationFrame(animateLoop);
     // console.log(background);
+
     background.draw();
     boundaries.forEach((boundary) => {
         boundary.draw();
@@ -218,11 +238,17 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
 
     player.draw();
     playerCol.draw();
+    if("_play_page" === mapState ){
+        smash(player,knife);
+    }
+    ///=============================================칼 날리는 조건문 
+    if(gameover !== null)
+    {
+        gameover();
+    }
     foreground.draw();
-    
 	let moving = true;
     player.moving = false;
-
     // 플레이어 w,a,d,s 이동시 백그라운드 포지션 변경 실제로는 배경이 이동하지만
     // 화면상 캐릭터가 움직이는것 처럼 보이게함
     // w키 --------------------------------------------------------------------------------------------------
@@ -319,6 +345,7 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
 		//s 입력했을때 keys.s.pressed
         // player.moving 이동중이라는것
         player.moving = true;
+
         // player.image 밑에 이미지로 교체
         player.image = player.Sprite.down;
 		playerRaycast.raycast_direction = "down";
@@ -391,7 +418,7 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
                 //배경이동 속도
                 movable.position.x -= 3
             });
-            console.log(background.position.y)
+            // console.log(background.position.y)
             stuffsMapSt1.forEach((stuff) => {
                 stuff.position.x -= 3
             });
@@ -449,21 +476,25 @@ window.addEventListener(
                 // console.log('pressed w key')
                 keys.w.pressed = true
                 lastKey = 'w' // 해당키를 누르고 있다가 다른키를 누르면 다른키로 변경됨 위에 if문 확인
+              
                 break;
             case 'a':
                 // console.log('pressed a key')
                 keys.a.pressed = true
                 lastKey = 'a'
+               
                 break;
             case 's':
                 // console.log('pressed s key')
                 keys.s.pressed = true
                 lastKey = 's'
+           
                 break;
             case 'd':
                 // console.log('pressed d key')
                 keys.d.pressed = true
                 lastKey = 'd'
+                
                 break;
    //20220710 레이케스트 스페이스바
             case ' ':
@@ -475,21 +506,25 @@ window.addEventListener(
                 // console.log('pressed w key')
                 keys.w.pressed = true
                 lastKey = 'w' // 해당키를 누르고 있다가 다른키를 누르면 다른키로 변경됨 위에 if문 확인
+               
                 break;
             case 'ㅁ':
                 // console.log('pressed a key')
                 keys.a.pressed = true
                 lastKey = 'a'
+               
                 break;
             case 'ㄴ':
                 // console.log('pressed s key')
                 keys.s.pressed = true
                 lastKey = 's'
+                
                 break;
             case 'ㅇ':
                 // console.log('pressed d key')
                 keys.d.pressed = true
                 lastKey = 'd'
+                
                 break;
         }
         // console.log(keys)
@@ -503,28 +538,36 @@ window.addEventListener(
         switch (e.key) {
             case 'w':
                 keys.w.pressed = false
+                pauseMoveM()
                 break;
             case 'a':
                 keys.a.pressed = false
+                pauseMoveM()
                 break;
             case 's':
                 keys.s.pressed = false
+                pauseMoveM()
                 break;
             case 'd':
                 keys.d.pressed = false
+                pauseMoveM()
                 break;
             // 한글 키 추가
             case 'ㅈ':
                 keys.w.pressed = false
+                pauseMoveM()
                 break;
             case 'ㅁ':
                 keys.a.pressed = false
+                pauseMoveM()
                 break;
             case 'ㄴ':
                 keys.s.pressed = false
+                pauseMoveM()
                 break;
             case 'ㅇ':
                 keys.d.pressed = false
+                pauseMoveM()
                 break;
         }
         // console.log(keys)
@@ -536,6 +579,13 @@ window.addEventListener(
         // console.log(keys)
     }
 )
+//  if(player.moving === true){
+//        moveBgm()
+//     }else if(player.moving === false){
+        
+//         pauseMoveM()
+//     }
+
 
 const divArr = document.querySelectorAll('container_box>div');
 // forEach 이용
@@ -545,3 +595,70 @@ document.querySelectorAll('container_box>div').forEach(el => {
     el.style.zIndex = "";
 })
 
+
+//=================== 칼 날아오는 부분  ==================
+
+
+
+
+// function trapDead(){
+//     if(playerImage.OnFocus = knifeImage){
+//         _game_over.style.zIndex = 999 ;
+//         // setTimeout((_game_over) => {
+//         //     _game_over.style.zIndex = 0;
+//         // }, 3000);
+//     }
+// }
+
+
+// function deadCharacter(){
+//     if(playerImage.x - knifeImage.x = 0){
+
+//     }
+// }
+
+function smash (player, knife){
+    if( player.position.x + player.width >= knife.position.x && 
+        player.position.x <= knife.position.x + knife.width && 
+        player.position.y <= knife.position.y + knife.height &&
+        player.position.y + player.height >= knife.position.y)
+    {
+        _game_over.style.zIndex = 999 ;
+        console.log("죽음");
+        mapState = '_game_over';
+    }
+    else{
+        knife.position.y -= 15;
+        knife.draw();
+    }
+}
+
+
+// function djsaod(){
+
+//     break;
+// }
+
+// window.onkeydown = function(event){
+//     console.log("dsadasd")
+//     if(mapState === "_game_over")
+//     if(event.key === ' ')
+//     {
+//         _game_over.style.zIndex = 0 ;
+//         _start_page.style.zIndex = 999;
+
+//     }
+    
+// }
+
+// window.addEventListener('keydown',function(e){
+
+//     if(mapState !== "_game_over") return
+//     console.log("dasdasd")
+//     if(e.key === ' ')
+//     {   
+//         removeEventListener()
+//          _game_over.style.zIndex = 0 ;
+//         _start_page.style.zIndex = 999;
+//     }
+// })

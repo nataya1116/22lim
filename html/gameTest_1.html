@@ -17,10 +17,13 @@
 </style>
 </head>
 <body>
+
 <div id="container_box">
     <!-- 게임 화면창 -->
     <div id="_play_page">
-        
+        <canvas id="_stg1"></canvas>
+    </div>
+    <div id="_play_page2">
         <canvas id="_stg2"></canvas>
     </div>
     <!-- 메인페이지 그림(+게임로고) -->
@@ -57,7 +60,7 @@
             <div id="_item_text">
                 <span>엑스레이 보드에 대볼 수 있다.</span>
                 <button>USE</button>
-            </div>
+            </div>s
         </div>
         <div id="_low_inven">
             <div id="_tag_inventory">
@@ -235,8 +238,8 @@
 
 
     </body>
-
-        <!-- <script src="/data/objects.js"></script> -->
+       
+        <script src="/data/audio.js"></script>
         <script src="/data/collisions.js"></script>
         <script src="/data/portals.js"></script>
         <script src="/data/stuffs.js"></script>
