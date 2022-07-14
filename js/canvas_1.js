@@ -79,7 +79,7 @@ knifeImage2.src = '/img/playimage/knife.png';
 // awlImageLong.src = '/img/playImage/awl_3.png';
 
 let gameover = function(){
-    // console.log(mapState);
+    console.log(mapState);
     if(mapState !== "_game_over")return
     setTimeout(() => {
         mapState = "_start_page";
@@ -699,12 +699,13 @@ function smash (player, knife1){
         player.position.y <= knife1.position.y + knife1.height &&
         player.position.y + player.height >= knife1.position.y)
     {
-        _game_over.style.zIndex = 999 ;
+        _game_over.style.zIndex = 9999 ;
+        _game_over.style.display = "block"
         console.log("죽음");
         mapState = '_game_over';
     }
     else{
-        knife1.position.y -= 15;
+        knife1.position.y -= 10;
         knife1.draw();
     }
 }
@@ -714,12 +715,13 @@ function smash (player, knife2){
         player.position.y <= knife2.position.y + knife2.height &&
         player.position.y + player.height >= knife2.position.y)
     {
-        _game_over.style.zIndex = 999 ;
+        _game_over.style.zIndex = 9999 ;
+        _game_over.style.display = "block"
         console.log("죽음");
         mapState = '_game_over';
     }
     else{
-        knife2.position.y -= 15;
+        knife2.position.y -= 10;
         knife2.draw();
     }
 }
