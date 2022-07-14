@@ -211,11 +211,12 @@ window.addEventListener(
                             opacity: 1,
                             display : "block"
                         })
+                        changeImageBgm()
                         image.src = '/img/background/backgroundAfterStg1.png';
                         foregroundImage.src = '/img/background/foreGroundAfterStg1.png';
                     }
                 });
-                
+                pauseimgChM()
             }
 
             if (stuff.name === "게시판") boardCnt++;
@@ -300,6 +301,20 @@ prolSkip.onclick = function(){
         doorBgm()
         _play_page.style.display = "block";
         mapState = "_play_page";
+        gsap.to('#_map_change', {
+            zIndex : 1000,
+            opacity: 0.4,
+            repeat : 3,
+            yoyo : true,
+            duration:0.2,
+            display : "block",
+            onComplete(){
+                gsap.to('#_map_change',{
+                    opacity: 1,
+                    display : "block"
+                })
+            }
+        });
         // // setTimeout(function() {
         // //     // event.prolSkip.style.fontSize = "27px";
         // //     console.log("됨?")

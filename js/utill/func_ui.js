@@ -107,3 +107,7 @@ function paragraph(element) {
     if (completeCount === numArray.length) clearInterval(timer)
   }, 120)
 }
+
+function chageMap(){
+    
+}
