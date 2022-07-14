@@ -225,6 +225,16 @@ const movablesSt1 = [
     , awlSt1
 ]
 
+// async function awlDead(start) {
+//     await attack(start);
+//     await function() {
+//         _game_over.style.zIndex = 9999  ;
+//         _game_over.style.display = "block";
+//         console.log("죽음");
+//         mapState = '_game_over';
+//     }
+// }
+
 // 송곳 올라오게 이미지 교체해주는 함수
 function attack(start) {
     if(start) {
@@ -254,6 +264,13 @@ function attack(start) {
                 // short이미지의 height 길이 2배 만큼 position 값을 빼준다 
                 awlSt1.position.y -= 34;
                 break;
+            case 4:{
+                _game_over.style.zIndex = 9999  ;
+                _game_over.style.display = "block";
+                console.log("죽음");
+                mapState = '_game_over';
+                break;
+            }
             default:
                 break;
         }
