@@ -196,7 +196,7 @@ window.addEventListener(
 
         if(!!stuff){
             // 세이브 생략
-            if (stuff.name === "구급함") return;
+            if(stuff.name === "구급함") return;
 
             if(stuff.name === "게시판" && boardCnt === 2){
                 gsap.to('#_stg_back', {
