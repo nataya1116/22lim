@@ -324,8 +324,8 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
     // 송곳을 캔버스에 그려준다
     player.draw();
     playerCol.draw();
-    if("_play_page" === mapState ){
-        smash(player,knife1);
+    if("_play_page" === mapState && flyingKnife){
+        smash (player,knife1);
         smash (player, knife2)
     }
     ///=============================================칼 날리는 조건문 

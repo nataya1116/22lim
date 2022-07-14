@@ -316,16 +316,16 @@ prolSkip.onclick = function(){
         mapState = "_play_page";
         gsap.to('#_map_change', {
             zIndex : 1000,
-            opacity: 0.4,
-            repeat : 3,
-            yoyo : true,
-            duration:0.2,
+            opacity: 0.8,
+
             display : "block",
+            transition : "opacity 0.5s ease-out-in 0s",
+            duration:1,
             onComplete(){
                 gsap.to('#_map_change',{
-                    opacity: 1,
-                    display : "block"
+                    zIndex : 0
                 })
+                flyingKnife = true;
             }
         });
         // // setTimeout(function() {

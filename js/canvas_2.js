@@ -1,4 +1,4 @@
-const canvas2 = document.getElementById('_stg2');
+const canvas2 = document.getElementById('#_stg2');
 const c2 = canvas2.getContext('2d');
 
 // console.log(collisions);
