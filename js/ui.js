@@ -161,7 +161,6 @@ window.addEventListener(
     'keydown', function(event){
     if(mapState !== "_play_page") return;
 
-
     if(event.key == "i" || event.key == "ㅑ"){
         if(isInventoryView){
             inventoryHidden();
@@ -211,11 +210,12 @@ window.addEventListener(
                             opacity: 1,
                             display : "block"
                         })
+                        changeImageBgm()
                         image.src = '/img/background/backgroundAfterStg1.png';
                         foregroundImage.src = '/img/background/foreGroundAfterStg1.png';
                     }
                 });
-                
+                pauseimgChM()
             }
 
             if (stuff.name === "게시판") boardCnt++;
@@ -255,7 +255,14 @@ window.addEventListener(
 
                 const ret = portal.contact();
                 isQuizeBox = true;
-                console.log("dd")
+                
+                // 이동 가능
+                if(ret.move) {
+                    // 이동 화면 또는 사진
+
+                    return;
+                }
+
                 quizeBoxView(ret.msg, portal.name, portal.isKeyboard);
                 return;
             }
@@ -267,6 +274,13 @@ window.addEventListener(
         if(isQuizeBox){
             const portal = portalsMapSt1.find(i => { return i.name  === _answer_input.data })
             const ret = portal.inputPw(_answer_input.value);
+
+            // 이동 가능
+            if(ret.move) {
+                // 이동 화면 또는 사진
+                
+                return;
+            }
 
             quizeBoxView(ret.msg, "", false);
 
@@ -298,7 +312,22 @@ prolSkip.onclick = function(){
         _play_page.style.zIndex = 999;
         pauseBaseM()
         doorBgm()
+        _play_page.style.display = "block";
         mapState = "_play_page";
+        gsap.to('#_map_change', {
+            zIndex : 1000,
+            opacity: 0.8,
+
+            display : "block",
+            transition : "opacity 0.5s ease-out-in 0s",
+            duration:1,
+            onComplete(){
+                gsap.to('#_map_change',{
+                    zIndex : 0
+                })
+                flyingKnife = true;
+            }
+        });
         // // setTimeout(function() {
         // //     // event.prolSkip.style.fontSize = "27px";
         // //     console.log("됨?")

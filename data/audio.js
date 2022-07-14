@@ -32,3 +32,15 @@ let moveM = document.createElement('audio');
 	function pauseMoveM() {
 		moveM.pause();
 	}
+
+let imgChM = document.createElement('audio');
+	imgChM.setAttribute('src', '/audio/changeImage.mp3');
+
+	function changeImageBgm() {
+		imgChM.load();
+		imgChM.play();
+	}
+
+	function pauseimgChM() {
+		imgChM.pause();
+	}

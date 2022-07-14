@@ -82,7 +82,7 @@ class Boundary {
         this.height = height;
     }
     draw(){
-        c.fillStyle = 'rgba(255, 0, 0, 0.2)' // 확인용
+        c.fillStyle = 'rgba(255, 0, 0, 0.0)' // 확인용
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 }
@@ -104,7 +104,7 @@ class Stuff {
     // ctx 객체를 이용해 캔버스에 그려준다.(이미지를 직접적으로 그려주는 것이 아닌 색상을 채워주는 방식으로 만든다.)
     // 준우님이 해주시기로
     draw(){
-        c.fillStyle = 'rgba(0, 255, 0, 0.2)' // 확인용
+        c.fillStyle = 'rgba(0, 255, 0, 0.0)' // 확인용
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
@@ -253,6 +253,8 @@ class Portal extends Stuff {
         // console.log(`스테이지${this.nextStage}로 이동`);
         return {move : true, msg : "다음 스테이지는 본 게임에서 만나요.^^"};
     }
+
+    
 
     // 문을 사용할 수 없을 때 리턴할 객체를 생성
     // {msg : *notAvailable, item : ""} 객체로 만들어 리턴

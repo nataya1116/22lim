@@ -647,14 +647,6 @@
     margin-bottom: 15px;
 }
 
-#_answer button {
-    font-family: 'NeoDunggeunmo';
-    font-size: 20px;
-    width: 60px;
-    height: 40px;
-    background-color: rgba(144, 144, 144, 0.5);
-}
-
 
 /* 프롤로그 텍스트 */
 #_prolog{
@@ -727,8 +719,14 @@
   /* 검은 배경 화면 */
   #_stg_back {
     /* background-color: rgb(15, 15, 15); */
-    background-image: url(/img/cat.jpg);
+    background-image: url(/img/playImage/ghost_1.jpeg);
     /* background-image: url(/img/playImage/ghost_1.jpeg); */
+    background-size: cover;
+    width: 1024px;
+    height: 576px;
+  }
+  #_map_change {
+    background-color: #000000;
     background-size: cover;
     width: 1024px;
     height: 576px;
