@@ -254,7 +254,14 @@ window.addEventListener(
 
                 const ret = portal.contact();
                 isQuizeBox = true;
-                console.log("dd")
+                
+                // 이동 가능
+                if(ret.move) {
+                    // 이동 화면 또는 사진
+
+                    return;
+                }
+
                 quizeBoxView(ret.msg, portal.name, portal.isKeyboard);
                 return;
             }
@@ -266,6 +273,13 @@ window.addEventListener(
         if(isQuizeBox){
             const portal = portalsMapSt1.find(i => { return i.name  === _answer_input.data })
             const ret = portal.inputPw(_answer_input.value);
+
+            // 이동 가능
+            if(ret.move) {
+                // 이동 화면 또는 사진
+                
+                return;
+            }
 
             quizeBoxView(ret.msg, "", false);
 
