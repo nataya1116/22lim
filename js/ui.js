@@ -1,16 +1,4 @@
 const itemList = []
-// 70인 이유는 tiled상 지도의 너비가 70이기 때문
-// for (let i = 0; i < item_td.length; i++) {
-//     itemList.push(item_td)
-
-//     // console.log(collisions.slice(i, 70 + i)); 이렇게 반복하면서 배열안에 0과 1025를 콘솔로 구분할 수
-//     // 있다.
-// }
-    
-// let playPage = document.querySelector('.playPage');
-// let startPage = document.querySelector('.startPage');
-// let test = document.querySelector('.test');
-// let test2 = document.querySelector('.test2');
 
 
 window.onload =function(){
@@ -29,21 +17,6 @@ _main_button.onclick = function(){
 _loadfile_button.onclick = function(){
     _setting_board.style.zIndex = 0;
     _load_filed.style.zIndex = 999;
-//     // if(loadFiled.style.zIndex = 999){
-//         console.log("들어오긴하냐?2");
-        
-//     // }
-//     if(window.onkeydown(event)){
-        
-//         // switch (key) {
-//         //     case "Escape":
-//         //     loadFiled.style.zIndex = 0;
-                
-//         // }
-//         if(event.key == "Escape"){
-//             loadFiled.style.zIndex = 0;
-//         }
-//     }
 }
 //======================================================================
 
@@ -82,69 +55,6 @@ _load_btn.onclick = function(){
 
 let isInventory = new Inventory([]);
 
-// function itemget(name, info, useing){
-//     let items = _item.querySelectorAll(".item_td");
-//     // 아이템 정보를 만들어 주고(넣어주고)
-//     isInventory.insert(new Item(name, info, useing));
-//     // 추가한 아이템의 배열을 가져오고
-//     let arr = isInventory.importList();
-//     // 추가한 아이템 배열(arr)을 updateItem 함수에 전달
-//     updateItem(arr);
-// }
-
-// function removeItem(name){
-//     // 추가한 아이템의 배열을 가져오고
-//     // 가져온 배열에서 없앨 아이템을 이름으로 구분해서 제거한다.
-//     isInventory.out(name); 
-//     //why 중복?
-//     let arr = isInventory.importList();
-//      // 제거한 후 아이템 배열(arr)을 updateItem 함수에 전달
-//     updateItem(arr);
-// }
-
-// function updateItem(arr){
-//     let items = _item.querySelectorAll(".item_td");
-//     for (let i = 0; i < items.length; i++) {
-//         if(i < arr.length)
-//         {
-//             items[i].innerHTML = arr[i].name;
-//             items[i].classList.add('have');
-//             items[i].onclick = function(){
-//                 _item_use.style.zIndex = 9999;
-//                 _item_text.querySelector('span').innerHTML = arr[i].info;       
-//                 _item_text.querySelector('button').onclick = function(){
-//                     // 배열안에 useing 정보가 false면 
-//                     if(arr[i].useing === false)
-//                     {   
-//                         // 삭제한다.
-//                         // 위에서 선언한 removeItem 함수를 가져와서
-//                         // 배열안에 false인 useing 값을 가지고 있는 객체의 이름을 지워준다.     
-//                         removeItem( arr[i].name);
-//                     }
-//                 }      
-//             };
-//         }   
-//         else{
-//             items[i].innerHTML = "";
-//             items[i].classList.remove('have');
-//         }
-//     }
-//     // 클릭후 현재 아이템 배열의 현황을 보여준다. 
-//     // 즉 isInventory.importList() 현재 아이템 배열이라는 것을 알 수 있다.
-//     console.log(isInventory.importList());
-// }
-
-// window.addEventListener('keydown',function(e){
-//     if(mapState !== "_play_page") return
-//     // key = ' ' 는 스페이스바의 key 값
-//     // if(e.key === ' ')
-//     // {
-//     //     // 아이템 추가 함수 (위 itemget 함수 처럼 정보를 담아 주면 된다. false 면 삭제 true면 유지)
-//     //     itemget("구급약","구급약이다. 더 이상의 설명은 생략한다.",true);
-//     //     itemget("엑스레이 필름","엑스레이 필름을 어디서 사용할까?",true);
-//     //     itemget(" ds","구급함이다 아이템을 넣어둘 수 있다.",false);
-//     // }
-// })
 
 // ++++++++++++++++++++++++++ 테스트 +++++++++++++++++++++++++++
 const ctx = "";
@@ -243,8 +153,13 @@ window.addEventListener(
                 return portal;
             }
         })
-
+        // !!느낌표 두개는 값이 있을 때를 말해줌
         if(!!portal){
+            if(portal.isDead){
+                portalDead = true;
+                console.log(portal.isDead);
+                return;
+            }
             console.log(portal);
             if(isQuizeBox){
                 quizeBoxHidden();
@@ -286,14 +201,6 @@ window.addEventListener(
 
         }
     }
-
-// function textBoxView(text){
-//     isPopupOpen = true;
-//     isTextBoxView = true;
-//     _text_box.style.zIndex = 999;
-//     _text.innerHTML = text;
-// }
-
 });
 
 let prolSkip = document.querySelector(".prolSkip")

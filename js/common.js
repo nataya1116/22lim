@@ -10,3 +10,4 @@ let inventory = new Inventory();
 let boardCnt = 0;
 
 let flyingKnife = false;
+let portalDead = false;
