@@ -1,9 +1,9 @@
-const canvas = document.querySelector('canvas');
-const c = canvas.getContext('2d');
+const canvas2 = document.getElementById('_stg2');
+const c2 = canvas2.getContext('2d');
 
 // console.log(collisions);
-canvas.width = 1024;
-canvas.height = 576;
+canvas2.width = 1024;
+canvas2.height = 576;
 let mapState = "_start_page";
 
 const collisionsMapSt1 = [];
@@ -40,10 +40,10 @@ collisionsMapSt2.forEach((row, i) => {
 console.log(boundariesSt2);
 
 //////////여기에 stuffsStg2 받아오는 곳에서 꼭 이름 변경/////////////////////////
-const stuffsMapSt2 = createStuffObj(stuffsStg2, c);
+const stuffsMapSt2 = createStuffObj(stuffsStg2, c2);
 console.log(stuffsMapSt2);
 
-const portalsMapSt2 = createPortalObj(portalsStg2, c);
+const portalsMapSt2 = createPortalObj(portalsStg2, c2);
 console.log(portalsMapSt2);
 /////////////////////////////////////////////////////////////////
 // console.log(boundariesSt2);
@@ -83,8 +83,8 @@ console.log(awlSt2.position.y);
 const playerSt2 = new Sprite({
     position: {
         // 맵 가운데에 위치하게 고
-        x: canvas.width / 2 - 180 / 4 / 2,
-        y: canvas.height / 2 - 320 / 6
+        x: canvas2.width / 2 - 180 / 4 / 2,
+        y: canvas2.height / 2 - 320 / 6
     },
     image: playerImage,
     frames: {

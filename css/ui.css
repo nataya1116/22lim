@@ -725,3 +725,9 @@
     width: 1024px;
     height: 576px;
   }
+  #_map_change {
+    background-color: #000000;
+    background-size: cover;
+    width: 1024px;
+    height: 576px;
+  }
