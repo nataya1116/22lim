@@ -199,8 +199,23 @@ window.addEventListener(
             if (stuff.name === "구급함") return;
 
             if(boardCnt === 2){
-                image.src = '/img/background/backgroundAfterStg1.png';
-                foregroundImage.src = '/img/background/foreGroundAfterStg1.png';
+                gsap.to('#_stg_back', {
+                    zIndex : 1000,
+                    opacity: 0.9,
+                    repeat : 3,
+                    yoyo : true,
+                    duration:0.2,
+                    display : "block",
+                    onComplete(){
+                        gsap.to('#_stg_back',{
+                            opacity: 1,
+                            display : "block"
+                        })
+                        image.src = '/img/background/backgroundAfterStg1.png';
+                        foregroundImage.src = '/img/background/foreGroundAfterStg1.png';
+                    }
+                });
+                
             }
 
             if (stuff.name === "게시판") boardCnt++;
@@ -235,6 +250,9 @@ window.addEventListener(
                 quizeBoxHidden();
                 return;
             }else if(isPopupOpen === false){
+
+                // TODO 뒤지는 거랑 맵 스테이트 게임 오버로 수정
+
                 const ret = portal.contact();
                 isQuizeBox = true;
                 console.log("dd")

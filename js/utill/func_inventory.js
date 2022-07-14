@@ -52,7 +52,10 @@ function updateItem(arr){
                     } 
             
                     // 세이브 생략
-                    if (stuff.name === "구급함") return;
+                    if (stuff.name === "구급함") {
+                        inventoryHidden();
+                        return;
+                    }
 
                     const ret = stuff.putItem(arr[i]);
                     if(!ret.item.name) arr[i].useing = false;
