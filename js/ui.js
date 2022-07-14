@@ -29,34 +29,18 @@ _main_button.onclick = function(){
 _loadfile_button.onclick = function(){
     _setting_board.style.zIndex = 0;
     _load_filed.style.zIndex = 999;
-//     // if(loadFiled.style.zIndex = 999){
-//         console.log("들어오긴하냐?2");
-        
-//     // }
-//     if(window.onkeydown(event)){
-        
-//         // switch (key) {
-//         //     case "Escape":
-//         //     loadFiled.style.zIndex = 0;
-                
-//         // }
-//         if(event.key == "Escape"){
-//             loadFiled.style.zIndex = 0;
-//         }
-//     }
 }
 //======================================================================
 
 
+
+
 _start_btn.onclick = function(){
-        // if(!playPage.classList.contains("test")){
-        //     playPage.classList.add("test")
-        //     startPage.classList.add("test2")
-            
-        // }else{
-        //     playPage.classList.remove("test")
-        //     startPage.classList.remove("test2")
-        // }
+        document.addEventListener("keydown", event => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+            }
+        });
         paragraph(prologText);
         document.querySelectorAll('#container_box>div').forEach(el => {
             el.style.zIndex = "";
@@ -65,6 +49,7 @@ _start_btn.onclick = function(){
         mapState = "_prolog";
     };
     // 하위 인벤토리 창이 먼저 뜨고 거기에 엑스레이 필름을 누르면  상위 보드 뜨게 하기
+
 
 _load_btn.onclick = function(){
 
@@ -181,6 +166,7 @@ window.addEventListener(
     }
 
     if(event.key == ' ') {
+        if(mapState !== "_play_page") return ;
         const stuff = stuffsMapSt1.find((stuff) => {
             let col = rectangularCollision({
                 rectangle1: playerRaycastSt1.raycast(),
