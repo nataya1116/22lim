@@ -89,26 +89,11 @@ let gameover = function(){
         location.reload("_play_page");
 
     }, 3000);
-    // gameover = null;
+
 }
 
-
-// const awlSt1 = new Sprite({
-//     position : {
-//         x : 778.625,
-//         y : 145.625
-//     },
-//     image : awlImage1,
-//     sprites : {
-//         short : awlImage1,
-//         medium : awlImage2,
-//         long : awlImage3
-//     }
-// });
-
-
-
 // 송곳 이미지 불러옴
+
 const awlImageShort = new Image();
 awlImageShort.src = '/img/playImage/awl_1.png';
 
@@ -674,25 +659,6 @@ document.querySelectorAll('container_box>div').forEach(el => {
 
 //=================== 칼 날아오는 부분  ==================
 
-
-
-
-// function trapDead(){
-//     if(playerImage.OnFocus = knifeImage){
-//         _game_over.style.zIndex = 999 ;
-//         // setTimeout((_game_over) => {
-//         //     _game_over.style.zIndex = 0;
-//         // }, 3000);
-//     }
-// }
-
-
-// function deadCharacter(){
-//     if(playerImage.x - knifeImage.x = 0){
-
-//     }
-// }
-
 function smash (player, knife1){
     if( player.position.x + player.width >= knife1.position.x && 
         player.position.x <= knife1.position.x + knife1.width && 
@@ -700,9 +666,14 @@ function smash (player, knife1){
         player.position.y + player.height >= knife1.position.y)
     {
         _game_over.style.zIndex = 9999 ;
+<<<<<<< HEAD
         _game_over.style.display = "block"
+=======
+        _game_over.style.display = "block";
+>>>>>>> develop
         console.log("죽음");
         mapState = '_game_over';
+        console.log("됨")
     }
     else{
         knife1.position.y -= 10;
@@ -715,8 +686,13 @@ function smash (player, knife2){
         player.position.y <= knife2.position.y + knife2.height &&
         player.position.y + player.height >= knife2.position.y)
     {
+<<<<<<< HEAD
         _game_over.style.zIndex = 9999 ;
         _game_over.style.display = "block"
+=======
+        _game_over.style.zIndex = 9999  ;
+        _game_over.style.display = "block";
+>>>>>>> develop
         console.log("죽음");
         mapState = '_game_over';
     }
@@ -725,33 +701,3 @@ function smash (player, knife2){
         knife2.draw();
     }
 }
-
-
-// function djsaod(){
-
-//     break;
-// }
-
-// window.onkeydown = function(event){
-//     console.log("dsadasd")
-//     if(mapState === "_game_over")
-//     if(event.key === ' ')
-//     {
-//         _game_over.style.zIndex = 0 ;
-//         _start_page.style.zIndex = 999;
-
-//     }
-    
-// }
-
-// window.addEventListener('keydown',function(e){
-
-//     if(mapState !== "_game_over") return
-//     console.log("dasdasd")
-//     if(e.key === ' ')
-//     {   
-//         removeEventListener()
-//          _game_over.style.zIndex = 0 ;
-//         _start_page.style.zIndex = 999;
-//     }
-// })
