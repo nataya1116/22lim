@@ -225,15 +225,6 @@ const movablesSt1 = [
     , awlSt1
 ]
 
-// async function awlDead(start) {
-//     await attack(start);
-//     await function() {
-//         _game_over.style.zIndex = 9999  ;
-//         _game_over.style.display = "block";
-//         console.log("죽음");
-//         mapState = '_game_over';
-//     }
-// }
 
 // 송곳 올라오게 이미지 교체해주는 함수
 function attack(start) {
@@ -264,6 +255,7 @@ function attack(start) {
                 // short이미지의 height 길이 2배 만큼 position 값을 빼준다 
                 awlSt1.position.y -= 34;
                 break;
+                // 케이스의 숫자를 올리면 속도를 느리게 할 수 있다
             case 4:{
                 _game_over.style.zIndex = 9999  ;
                 _game_over.style.display = "block";
