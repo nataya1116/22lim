@@ -60,8 +60,11 @@ foregroundImage.src = '/img/background/foreGroundBeforeStg1.png';
 const playerImage = new Image();
 playerImage.src = '/img/character/$Dr Frankenstien (resizing).png';
 
-const knifeImage = new Image();
-knifeImage.src = '/img/playimage/knife.png';
+const knifeImage1 = new Image();
+knifeImage1.src = '/img/playimage/knife.png';
+
+const knifeImage2 = new Image();
+knifeImage2.src = '/img/playimage/knife.png';
 
 
 // const awlImageShort = new Image();
@@ -78,10 +81,13 @@ let gameover = function(){
     if(mapState !== "_game_over")return
     setTimeout(() => {
         mapState = "_start_page";
-        _start_page.style.zIndex = 999;
+        if(mapState ==="_start_page"){
+            _start_page.style.zIndex = 99999;
+        }
+        location.reload("_play_page");
 
-    }, 1000);
-    gameover = null;
+    }, 3000);
+    // gameover = null;
 }
 
 
@@ -165,7 +171,14 @@ const knifeSt1 = new Sprite({
         x: offsetSt1.x+790 *2.5,
         y: offsetSt1.y+400 *2.5
     },
-    image: knifeImage
+    image: knifeImage1
+})
+const knifeSt2 = new Sprite({
+    position:{
+        x: offsetSt1.x+769 *2.5,
+        y: offsetSt1.y+600 *2.5
+    },
+    image: knifeImage2
 })
 
 // 키가 눌리지 않았을 때
@@ -192,7 +205,7 @@ const keys = {
 
 const movablesSt1 = [
     backgroundSt1, ...boundariesSt1,
-    foregroundSt1, knifeSt1
+    foregroundSt1, knifeSt1 ,knifeSt2
 ]
 
 // 플레이어와 충돌 처리 한 부분 값 비교해서 충돌 여부 확인해주는 곳
@@ -208,12 +221,12 @@ function rectangularCollision({rectangle1, rectangle2}) {
 }
 
 function animateLoop(){
-    animate(backgroundSt1, foregroundSt1, boundariesSt1, playerSt1, playerColSt1, playerRaycastSt1, movablesSt1, knifeSt1);
+    animate(backgroundSt1, foregroundSt1, boundariesSt1, playerSt1, playerColSt1, playerRaycastSt1, movablesSt1, knifeSt1,knifeSt2);
 };
 
 animateLoop();
 // 전역변수를 애니메이트의 파라미터로 받아준다
-function animate(background, foreground, boundaries, player, playerCol, playerRaycast, movables,knife) {
+function animate(background, foreground, boundaries, player, playerCol, playerRaycast, movables,knife1,knife2) {
     // console.log(background); 아왜안ㅇㄷ9애ㅐ애애애
     window.requestAnimationFrame(animateLoop);
     // console.log(background);
@@ -239,7 +252,8 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
     player.draw();
     playerCol.draw();
     if("_play_page" === mapState ){
-        smash(player,knife);
+        smash(player,knife1);
+        smash (player, knife2)
     }
     ///=============================================칼 날리는 조건문 
     if(gameover !== null)
@@ -617,19 +631,34 @@ document.querySelectorAll('container_box>div').forEach(el => {
 //     }
 // }
 
-function smash (player, knife){
-    if( player.position.x + player.width >= knife.position.x && 
-        player.position.x <= knife.position.x + knife.width && 
-        player.position.y <= knife.position.y + knife.height &&
-        player.position.y + player.height >= knife.position.y)
+function smash (player, knife1){
+    if( player.position.x + player.width >= knife1.position.x && 
+        player.position.x <= knife1.position.x + knife1.width && 
+        player.position.y <= knife1.position.y + knife1.height &&
+        player.position.y + player.height >= knife1.position.y)
     {
         _game_over.style.zIndex = 999 ;
         console.log("죽음");
         mapState = '_game_over';
     }
     else{
-        knife.position.y -= 15;
-        knife.draw();
+        knife1.position.y -= 15;
+        knife1.draw();
+    }
+}
+function smash (player, knife2){
+    if( player.position.x + player.width >= knife2.position.x && 
+        player.position.x <= knife2.position.x + knife2.width && 
+        player.position.y <= knife2.position.y + knife2.height &&
+        player.position.y + player.height >= knife2.position.y)
+    {
+        _game_over.style.zIndex = 999 ;
+        console.log("죽음");
+        mapState = '_game_over';
+    }
+    else{
+        knife2.position.y -= 15;
+        knife2.draw();
     }
 }
 
