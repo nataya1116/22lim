@@ -224,11 +224,12 @@ prolSkip.onclick = function(){
         mapState = "_play_page";
         gsap.to('#_map_change', {
             zIndex : 1000,
-            opacity: 0.8,
-
+            opacity: 0.7,
+            repeat : 2,
+            yoyo : true,
             display : "block",
-            transition : "opacity 0.5s ease-out-in 0s",
-            duration:1,
+            // transition : "opacity 0.3s ease-out-in 0s",
+            duration:0.2,
             onComplete(){
                 gsap.to('#_map_change',{
                     zIndex : 0

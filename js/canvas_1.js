@@ -671,7 +671,7 @@ function smash (player, knife1){
         console.log("됨")
     }
     else{
-        knife1.position.y -= 10;
+        knife1.position.y -= 14;
         knife1.draw();
     }
 }
@@ -687,7 +687,7 @@ function smash (player, knife2){
         mapState = '_game_over';
     }
     else{
-        knife2.position.y -= 10;
+        knife2.position.y -= 14;
         knife2.draw();
     }
 }
