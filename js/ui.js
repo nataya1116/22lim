@@ -134,17 +134,17 @@ let isInventory = new Inventory([]);
 //     console.log(isInventory.importList());
 // }
 
-window.addEventListener('keydown',function(e){
-    if(mapState !== "_play_page") return
-    // key = ' ' 는 스페이스바의 key 값
-    // if(e.key === ' ')
-    // {
-    //     // 아이템 추가 함수 (위 itemget 함수 처럼 정보를 담아 주면 된다. false 면 삭제 true면 유지)
-    //     itemget("구급약","구급약이다. 더 이상의 설명은 생략한다.",true);
-    //     itemget("엑스레이 필름","엑스레이 필름을 어디서 사용할까?",true);
-    //     itemget(" ds","구급함이다 아이템을 넣어둘 수 있다.",false);
-    // }
-})
+// window.addEventListener('keydown',function(e){
+//     if(mapState !== "_play_page") return
+//     // key = ' ' 는 스페이스바의 key 값
+//     // if(e.key === ' ')
+//     // {
+//     //     // 아이템 추가 함수 (위 itemget 함수 처럼 정보를 담아 주면 된다. false 면 삭제 true면 유지)
+//     //     itemget("구급약","구급약이다. 더 이상의 설명은 생략한다.",true);
+//     //     itemget("엑스레이 필름","엑스레이 필름을 어디서 사용할까?",true);
+//     //     itemget(" ds","구급함이다 아이템을 넣어둘 수 있다.",false);
+//     // }
+// })
 
 // ++++++++++++++++++++++++++ 테스트 +++++++++++++++++++++++++++
 const ctx = "";
@@ -176,7 +176,7 @@ window.addEventListener(
         }else if(isPopupOpen === false){
             settingBoardView();
         }
-        if(_load_filed.style.zIndex="999"){
+        if(_load_filed.style.zIndex=="999"){
             _load_filed.style.zIndex = 0 ;
         }
     }
@@ -204,7 +204,6 @@ window.addEventListener(
             }else if(isPopupOpen === false){
                 const ret = stuff.contact(); 
                 console.log(ret);
-
                 textBoxView(ret.msg);
                 itemget(ret.item.name, ret.item.info, true);
                 return;
@@ -232,7 +231,7 @@ window.addEventListener(
             }else if(isPopupOpen === false){
                 const ret = portal.contact();
                 isQuizeBox = true;
-    
+                console.log("dd")
                 quizeBoxView(ret.msg, portal.name, portal.isKeyboard);
                 return;
             }
@@ -263,9 +262,11 @@ let prolSkip = document.querySelector(".prolSkip")
 
 prolSkip.onclick = function(){
     document.querySelectorAll('#container_box>div').forEach(el => {
-            el.style.zIndex = "";
+            el.style.zIndex = 999;
+            el.style.display = "none";
         })
         _play_page.style.zIndex = 999;
+        _play_page.style.display = "block";
         
         mapState = "_play_page";
         // // setTimeout(function() {

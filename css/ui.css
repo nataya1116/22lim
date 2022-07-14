@@ -565,7 +565,7 @@
 
 /* 기본 텍스트 박스_대화 */
 #_text_box {
-
+    z-index: 0;
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;

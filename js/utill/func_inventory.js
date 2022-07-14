@@ -28,7 +28,7 @@ function updateItem(arr){
             items[i].innerHTML = arr[i].name;
             items[i].classList.add('have');
             items[i].onclick = function(){
-                _item_use.style.zIndex = 9999;
+                _item_use.style.display = "flex";
                 _item_text.querySelector('span').innerHTML = arr[i].info;  
                 _item_text.querySelector('button').onclick = function(){
 

@@ -2,47 +2,48 @@
 function textBoxView(text){
     isPopupOpen = true;
     isTextBoxView = true;
-    _text_box.style.zIndex = 999;
+    _text_box.style.display = "flex";
     _text.innerHTML = text;
 }
 
 function textBoxHidden(){
     isPopupOpen = false;
     isTextBoxView = false;
-    _text_box.style.zIndex = 0;
+    _text_box.style.display = "none";
     _text.innerHTML = "";
 }
 
 function settingBoardView(){
     isPopupOpen = true;
-    _setting_board.style.zIndex = 999;
+    _setting_board.style.display = "flex";
     isSettingBoardView = true;
 }
 
 function settingBoardHidden(){
     isPopupOpen = false;
-    _setting_board.style.zIndex = 0;
+    _setting_board.style.display = "none";
     isSettingBoardView= false;
 }
 
 function inventoryView(name){
     isPopupOpen = true;
-    _low_inven.style.zIndex = 999;
+    _inventory.style.display = "flex";
+    _item_use.style.display = "none";
     _item_text.data = name;
     isInventoryView = true;
 }
 
 function inventoryHidden(){
     isPopupOpen = false;
-    _item_use.style.zIndex = 0;
-    _low_inven.style.zIndex = 0;
+    _inventory.style.display = "none";
+    _item_use.style.display = "none";
     isInventoryView = false;
 }
 
 function quizeBoxHidden(){
     isPopupOpen = false;
     isQuizeBox = false;
-    _quize_box.style.zIndex = 0;
+    _quize_box.style.display = "none";
     _answer.innerHTML = "";
     _answer_input.data = "";
 }
@@ -53,7 +54,7 @@ function quizeBoxView(text, portalName, isKeyboard){
     _answer_input.focus();
     _answer_input.data = portalName;
     // console.log(_answer_input.data);
-    _quize_box.style.zIndex = 999;
+    _quize_box.style.display = "flex";
     _answer.innerHTML = text;
     // console.log(`_answer_input.value ${_answer_input.value}`);
     _answer_input.value = "";
