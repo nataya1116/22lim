@@ -6,6 +6,7 @@ function itemget(name, info, useing){
     let arr = isInventory.importList();
     // 추가한 아이템 배열(arr)을 updateItem 함수에 전달
     updateItem(arr);
+    console.log(isInventory);
 }
 
 function removeItem(name){
@@ -27,17 +28,35 @@ function updateItem(arr){
             items[i].innerHTML = arr[i].name;
             items[i].classList.add('have');
             items[i].onclick = function(){
-                _item_use.style.zIndex = 9999;
-                _item_text.querySelector('span').innerHTML = arr[i].info;       
+                _item_use.style.display = "flex";
+                _item_text.querySelector('span').innerHTML = arr[i].info;  
                 _item_text.querySelector('button').onclick = function(){
 
 
                     // TODO 사물과 충돌 상태인지 체크 구현
+                    const stuff = stuffsMapSt1.find((stuff) => {
+                        let col = rectangularCollision({
+                            rectangle1: playerRaycastSt1.raycast(),
+                            rectangle2: {width : stuff.width, height : stuff.height, position : stuff.position}
+                            // rectangle2: stuff
+                        });
+                
+                        if(!!col) {
+                            return stuff;
+                        }
+                    });
 
-                    // ---------------------테스트---------------------
-                    let ret = stuffTempArr2[2].putItem(arr[i]);
+                    if(!stuff){
+                        inventoryHidden();
+                        return;
+                    } 
+            
+                    // 세이브 생략
+                    if (stuff.name === "구급함") return;
+
+                    const ret = stuff.putItem(arr[i]);
                     if(!ret.item.name) arr[i].useing = false;
-                    console.log(ret);
+                    // console.log(ret);
                     // ---------------------테스트---------------------
 
                     // 배열안에 useing 정보가 false면 
@@ -48,9 +67,9 @@ function updateItem(arr){
                         // 배열안에 false인 useing 값을 가지고 있는 객체의 이름을 지워준다.     
                         removeItem( arr[i].name);
                     }
-
+                    // isPopupOpen = false;
                     inventoryHidden();
-                    textBoxView(ret.msg);
+                    // textBoxView(ret.msg);
                 }      
             };
         }   

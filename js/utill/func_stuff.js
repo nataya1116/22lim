@@ -1,5 +1,5 @@
 
-function createStuffObj(stuffData, ctx){
+function createStuffObj(stuffData, ctx, offSet){
     const stuffArr = [];
 
     stuffData.forEach(el => {
@@ -35,19 +35,19 @@ function createStuffObj(stuffData, ctx){
         });
 
         if(name === "구급함"){
-            stuffArr.push(new SavePoint({ctx, name, info, x, y, width, height, itemName, itemInfo}));
+            stuffArr.push(new SavePoint({ctx, name, info, x, y, width, height, itemName, itemInfo, offSet}));
         }else if(name === "엑스레이보드"){
-            stuffArr.push(new StuffHint({ctx, name, info, x, y, width, height, itemName, itemInfo, hintMsg}));
+            stuffArr.push(new StuffHint({ctx, name, info, x, y, width, height, itemName, itemInfo, offSet, hintMsg}));
         }
         else{
-            stuffArr.push(new Stuff({ctx, name, info, x, y, width, height, itemName, itemInfo}));
+            stuffArr.push(new Stuff({ctx, name, info, x, y, width, height, itemName, itemInfo, offSet}));
         }
         itemInfo = "";
     });
     return stuffArr;
 }
 
-function createPortalObj(portalData, ctx){
+function createPortalObj(portalData, ctx, offSet){
     const portalArr = [];
     
     portalData.forEach(el => {
@@ -104,7 +104,7 @@ function createPortalObj(portalData, ctx){
             
         });
 
-        portalArr.push(new Portal({ ctx, name, info, x, y, width, height, itemName, itemInfo, pw, isKeyboard, isPortal, isDead, nextStage, notAvailableMsg }));
+        portalArr.push(new Portal({ ctx, name, info, x, y, width, height, itemName, itemInfo, offSet, pw, isKeyboard, isPortal, isDead, nextStage, notAvailableMsg }));
     });
     return portalArr;
 }

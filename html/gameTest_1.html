@@ -21,7 +21,9 @@
     <!-- 게임 화면창 -->
     <div id="_play_page">
         
+        <div id="_stg_back"></div>
         <canvas id="_stg2"></canvas>
+
     </div>
     <!-- 메인페이지 그림(+게임로고) -->
     <div id="_start_page">
@@ -214,7 +216,8 @@
             <div id="_box_q">
                 <div id="_answer">암호 입력 후 enter를 누르세요.</div>
                 <div id="_answer_text">
-                    <input type="text" id="_answer_input"></div><button id="_answer_btn">입력</button>
+                    <input type="text" id="_answer_input"></div>
+                    <!-- <button id="_answer_btn">입력</button> -->
                     <div id="_return_text">값을 제대로 넣어 임마</div>
                 </div>
             </div>
@@ -236,7 +239,12 @@
 
     </body>
 
-        <!-- <script src="/data/objects.js"></script> -->
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
+        integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+        ></script>
         <script src="/data/collisions.js"></script>
         <script src="/data/portals.js"></script>
         <script src="/data/stuffs.js"></script>

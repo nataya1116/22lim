@@ -8,6 +8,7 @@ class Character {
     }
     // 레이케스트 4방향
     raycast(){
+        
         // console.log(this.raycast_direction);
         let x;
         let y;
