@@ -152,8 +152,13 @@ window.addEventListener(
                 return portal;
             }
         })
-
+        // !!느낌표 두개는 값이 있을 때를 말해줌
         if(!!portal){
+            if(portal.isDead){
+                portalDead = true;
+                console.log(portal.isDead);
+                return;
+            }
             console.log(portal);
             if(isQuizeBox){
                 quizeBoxHidden();
@@ -164,7 +169,7 @@ window.addEventListener(
 
                 const ret = portal.contact();
                 isQuizeBox = true;
-                console.log("dd")
+                // console.log("dd")
                 quizeBoxView(ret.msg, portal.name, portal.isKeyboard);
                 return;
             }

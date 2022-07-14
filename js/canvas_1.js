@@ -69,18 +69,11 @@ const knifeImage2 = new Image();
 knifeImage2.src = '/img/playimage/knife.png';
 
 
-// const awlImageShort = new Image();
-// awlImageShort.src = '/img/playImage/awl_1.png';
 
-// const awlImageMedium = new Image();
-// awlImageMedium.src = '/img/playImage/awl_2.png';
-
-// const awlImageLong = new Image();
-// awlImageLong.src = '/img/playImage/awl_3.png';
 
 let gameover = function(){
     console.log(mapState);
-    if(mapState !== "_game_over")return
+    if(mapState !== "_game_over")return;
     setTimeout(() => {
         mapState = "_start_page";
         if(mapState ==="_start_page"){
@@ -92,8 +85,8 @@ let gameover = function(){
 
 }
 
-// 송곳 이미지 불러옴
 
+// 송곳 이미지 불러옴
 const awlImageShort = new Image();
 awlImageShort.src = '/img/playImage/awl_1.png';
 
@@ -202,6 +195,8 @@ const knifeSt2 = new Sprite({
     image: knifeImage2
 })
 
+
+
 // 키가 눌리지 않았을 때
 const keys = {
     w: {
@@ -223,6 +218,7 @@ const keys = {
 }
 
 
+// 방향키 움직일 때 같이 움직일 맵요소를 넣어준 곳
 const movablesSt1 = [
     backgroundSt1, ...boundariesSt1,
     foregroundSt1, knifeSt1 ,knifeSt2
@@ -232,14 +228,13 @@ const movablesSt1 = [
 // 송곳 올라오게 이미지 교체해주는 함수
 function attack(start) {
     if(start) {
+    // 송곳을 여기서 그려준후 attack함수는 아래에 애니메이트 함수 내에서 실행한다
     awlSt1.draw();
-
         // 키입력 못하는 변수를 true로 넣어주면 된다
-        //
         // 송곳의 frames은 1이고 애니메이트 함수가 실행되면서 1씩 올라간다
         awlSt1.frames.elapsed++;
         // elapsed를 10으로 나눈 값에 따라 케이스가 달라진다
-        switch (awlSt1.frames.elapsed / 10) {
+        switch (awlSt1.frames.elapsed / 7) {
             // 0 / 10 은 0 이므로 case 0을 탄다
             case 0:
                 awlSt1.image =  awlSt1.Sprite.short;
@@ -306,22 +301,17 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
     })
 //  ===============오브젝트 충돌체를 그려주는 함수 끝 ==================
 
-// 문이랑 상호작용할때의 조건
-// 여기 지우고 수진언니가 만든 문이랑 상호작용하는 함수 넣기////////////////
-    window.onkeydown = function(e){
-        if(e.key == '1'){
-            
-            // 이 조건만 넣어주기!
+// 문이랑 상호작용할때의 조건///////////////////
+    if(portalDead) {
             // 전역으로 컨트롤러를 false였다가 true로 바꿔준다
             awlSt1Control = true;
+            // 송곳 나오는 함수 실행
+            attack(awlSt1Control);
         }
-    }
-    //////////////////////////////////////////////////////////////
-    // 송곳 나오는 함수 실행
-    attack(awlSt1Control);
+        //////////////////////////////////////////////////////////////
     // console.log(awlSt1.position.x);
     // console.log(awlSt1.position.y);
-    // 송곳을 캔버스에 그려준다
+    
     player.draw();
     playerCol.draw();
     if("_play_page" === mapState ){
@@ -666,11 +656,7 @@ function smash (player, knife1){
         player.position.y + player.height >= knife1.position.y)
     {
         _game_over.style.zIndex = 9999 ;
-<<<<<<< HEAD
-        _game_over.style.display = "block"
-=======
         _game_over.style.display = "block";
->>>>>>> develop
         console.log("죽음");
         mapState = '_game_over';
         console.log("됨")
@@ -686,13 +672,8 @@ function smash (player, knife2){
         player.position.y <= knife2.position.y + knife2.height &&
         player.position.y + player.height >= knife2.position.y)
     {
-<<<<<<< HEAD
-        _game_over.style.zIndex = 9999 ;
-        _game_over.style.display = "block"
-=======
         _game_over.style.zIndex = 9999  ;
         _game_over.style.display = "block";
->>>>>>> develop
         console.log("죽음");
         mapState = '_game_over';
     }

@@ -8,3 +8,5 @@ let isPopupOpen = false;
 let inventory = new Inventory();
 
 let boardCnt = 0;
+
+let portalDead = false;
