@@ -201,7 +201,7 @@ window.addEventListener(
             if(boardCnt === 2){
                 gsap.to('#_stg_back', {
                     zIndex : 1000,
-                    opacity: 0.9,
+                    opacity: 0.4,
                     repeat : 3,
                     yoyo : true,
                     duration:0.2,

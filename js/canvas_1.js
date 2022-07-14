@@ -241,7 +241,7 @@ function animateLoop(){
 animateLoop();
 // 전역으로 선언한 객체를 애니메이트의 파라미터로 받아준다
 function animate(background, foreground, boundaries, player, playerCol, playerRaycast, movables) {
-    // console.log(background); 아왜안ㅇㄷ9애ㅐ애애애
+    // console.log(background); 
     window.requestAnimationFrame(animateLoop);
     // console.log(background);
     background.draw();
@@ -465,95 +465,11 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
             });
         }
     }
-     
-	 //20220710 레이케스트 스페이스바--------------------------------------------------------------
-    // else if (keys.space.pressed && lastKey === 'space') {
-        
-        // stuffsMapSt1.forEach((stuff) => {
-        //     const stuffTemp = stuff;
-        //     let col = rectangularCollision({
-        //         rectangle1: playerRaycast.raycast(),
-        //         rectangle2: {width : stuffTemp.width, height : stuffTemp.height, position : stuffTemp.position}
-        //     });
-
-        //     if(!!col) {
-        //         // 수진언니가 준 함수를 나중에 여기다가 넣어준다.
-        //                 if(isTextBoxView){
-        //     isPopupOpen = false;
-        //     textBoxHidden();
-        // }else if(isPopupOpen === false){
-        //     isPopupOpen = true;
-        //     const temp = stuffTempArr[12].contact();
-   
-        //     textBoxView(temp.msg);
-        //     isInventory.insert(temp.item);
-        // }
-
-        //         console.log(col + " : 맞은 블럭임 이거");
-        //         console.log('레이저 맞았다..')
-        //         moving = false;
-        //         return false;
-        //     }
-        // });
-
-        // for (let i = 0; i < stuffsMapSt1.length; i++) {
-        //     // boundaries[i] 저장된 갯수 인덱스
-        //     const stuff = stuffsMapSt1[i]
-        //     let col = rectangularCollision({
-        //         rectangle1: playerRaycast.raycast(),
-        //         rectangle2: {
-        //             width : stuff.width,
-        //             height : stuff.height,
-        //             position: {
-        //                 x: stuff.position.x,
-        //                 y: stuff.position.y
-        //             }
-        //         }
-        //     })
-        //     // console.log(col);
-        //     // 레이캐스트 확인 하는 부분(벽에 맞으면 나옴)
-        //     if (!!col) {
-        //         // 수진언니가 준 함수를 나중에 여기다가 넣어준다.
-
-        //         console.log(col + " : 맞은 블럭임 이거");
-        //         console.log('레이저 맞았다..')
-        //         moving = false;
-        //         break;
-        //     }
-        // }
-
-        // for (let i = 0; i < boundaries.length; i++) {
-        //     // boundaries[i] 저장된 갯수 인덱스
-        //     const boundary = boundaries[i]
-        //     let col = rectangularCollision({
-        //         rectangle1: playerRaycast.raycast(),
-        //         rectangle2: {
-        //             ...boundary,
-        //             position: {
-        //                 x: boundary.position.x,
-        //                 y: boundary.position.y
-        //             }
-        //         }
-        //     })
-        //     // 레이캐스트 확인 하는 부분(벽에 맞으면 나옴)
-        //     if (col) {
-        //         // 수진언니가 준 함수를 나중에 여기다가 넣어준다.
-        //         // console.log(`${boundary.position.x}, ${boundary.position.y},${boundary.width},${boundary.height}`);
-        //         // console.log(`${playerRaycast.raycast().position.x}, ${playerRaycast.raycast().position.y},${playerRaycast.raycast().width},${playerRaycast.raycast().height}`);
-        //         // console.log(playerRaycast.raycast());
-        //         console.log(col + " : 맞은 블럭임 이거");
-        //         console.log('레이저 맞았다..')
-        //         moving = false;
-        //         break;
-        //     }
-        // }
-        // keys.space.pressed = false;
-    // }
-}
-// 반복하려는 함수의 무한 루프를 생성
 
 
-//console.log(backgroundSt1)
+
+
+
 const playPage = document.getElementById("_play_page");
 
 
@@ -585,11 +501,6 @@ window.addEventListener(
                 // console.log('pressed d key')
                 keys.d.pressed = true
                 lastKey = 'd'
-                break;
-   //20220710 레이케스트 스페이스바
-            case ' ':
-                keys.space.pressed = true
-                lastKey = 'space'
                 break;
             // 한글 키 추가
             case 'ㅈ':
@@ -661,8 +572,7 @@ window.addEventListener(
 const divArr = document.querySelectorAll('container_box>div');
 // forEach 이용
 
-console.log(divArr);
+// console.log(divArr);
 document.querySelectorAll('container_box>div').forEach(el => {
     el.style.zIndex = "";
-})
-
+})}
