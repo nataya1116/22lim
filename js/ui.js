@@ -197,7 +197,13 @@ window.addEventListener(
         if(!!stuff){
             // 세이브 생략
             if (stuff.name === "구급함") return;
-        
+
+            if(boardCnt === 2){
+                image.src = '/img/background/backgroundAfterStg1.png';
+                foregroundImage.src = '/img/background/foreGroundAfterStg1.png';
+            }
+
+            if (stuff.name === "게시판") boardCnt++;
             if(isTextBoxView){
                 textBoxHidden();
                 return;
@@ -205,7 +211,7 @@ window.addEventListener(
                 const ret = stuff.contact(); 
                 console.log(ret);
                 textBoxView(ret.msg);
-                itemget(ret.item.name, ret.item.info, true);
+                if(!!ret.item.name) itemget(ret.item.name, ret.item.info, true);
                 return;
             }
         }

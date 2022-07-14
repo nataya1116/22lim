@@ -609,6 +609,12 @@
     align-items: center;
 }
 
+#_answer_input {
+    font-family: 'NeoDunggeunmo';
+    font-size: 16px;
+    color: white;
+}
+
 #_box_q {
     display: flex;
     flex-direction: column;
