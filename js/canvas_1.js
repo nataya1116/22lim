@@ -241,7 +241,7 @@ function animateLoop(){
 animateLoop();
 // 전역으로 선언한 객체를 애니메이트의 파라미터로 받아준다
 function animate(background, foreground, boundaries, player, playerCol, playerRaycast, movables) {
-    // console.log(background); 
+    // console.log(background); 아왜안ㅇㄷ9애ㅐ애애애
     window.requestAnimationFrame(animateLoop);
     // console.log(background);
     background.draw();
@@ -464,12 +464,11 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
                 portal.position.x -= 3;
             });
         }
-    }
+    }	
+}
 
 
-
-
-
+//console.log(backgroundSt1)
 const playPage = document.getElementById("_play_page");
 
 
@@ -575,4 +574,5 @@ const divArr = document.querySelectorAll('container_box>div');
 // console.log(divArr);
 document.querySelectorAll('container_box>div').forEach(el => {
     el.style.zIndex = "";
-})}
+})
+
