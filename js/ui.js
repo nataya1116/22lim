@@ -149,17 +149,10 @@ let isInventory = new Inventory([]);
 // ++++++++++++++++++++++++++ 테스트 +++++++++++++++++++++++++++
 const ctx = "";
 
-<<<<<<< HEAD
-const stuffTempArr = createStuffObj(stuffsStg1, ctx);
-console.log(stuffTempArr); 
-const stuffTempArr2 = createStuffObj(stuffsStg2, ctx);
-console.log(stuffTempArr2);
-=======
 const stuffTempArr = createStuffObj(stuffsStg1, ctx, offsetSt1);
 // console.log(stuffTempArr); 
 const stuffTempArr2 = createStuffObj(stuffsStg2, ctx, offsetSt1);
 // console.log(stuffTempArr2);
->>>>>>> develop
 // ++++++++++++++++++++++++++ 테스트 +++++++++++++++++++++++++++
 
 // let settingBoardView = false
@@ -168,10 +161,6 @@ window.addEventListener(
     'keydown', function(event){
     if(mapState !== "_play_page") return;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> develop
     if(event.key == "i" || event.key == "ㅑ"){
         if(isInventoryView){
             inventoryHidden();
@@ -191,83 +180,6 @@ window.addEventListener(
         }
     }
 
-<<<<<<< HEAD
-    // 퀴즈 값 받을 때
-    if(event.key == "Enter"){
-        if(isQuizeBox){
-            
-        }
-    }
-
-// ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
-    if(event.key == "z"){
-        if(isTextBoxView){
-            
-            textBoxHidden();
-        }else if(isPopupOpen === false){
-
-            const temp = stuffTempArr[12].contact();
-   
-            textBoxView(temp.msg);
-            isInventory.insert(temp.item);
-        }
-    }
-// ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
-// ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
-    if(event.key == "x" ){
-        if(isTextBoxView){
-            
-            textBoxHidden();
-        }else if(isPopupOpen === false){
-            const temp = stuffTempArr[2].contact();
- 
-            textBoxView(temp.msg);
-            isInventory.insert(temp.item);
-        }
-    }
-
-    if(event.key == "c"){
-        if(isQuizeBox){
-            quizeBoxHidden();
-            textBoxHidden();
-        }else if(isPopupOpen === false){
-            const temp = portalsMapSt1[1];
-            const ret = temp.contact();
-
-            // 현재 이동을 구현하지 않아 스테이지를 이동하지 않는다.
-            if(ret.move || ret.type === "not") {
-                textBoxView(ret.msg);
-            }
-            else {
-                quizeBoxView(ret.msg);
-            }
-        }
-    }
-
-    // if(event.key == "v"){
-    //     if(isTextBoxView){
-            
-    //         quizeBoxHidden();
-    //     }else if(isPopupOpen === false){
-    //         const temp = portalsMapSt1[2]
-    //         quizeBoxView("ㅅㅂ");
-    //     }
-    // }
-
-    // if(event.key == "b"){
-    //     if(isTextBoxView){
-            
-    //         quizeBoxHidden();
-    //     }else if(isPopupOpen === false){
-    //         const temp = portalsMapSt1[4]
-    //         quizeBoxView("ㅅㅂ");
-    //     }
-    // }
-
-// ++++++++++++++++++++++++++ 사물 스페이스 테스트 +++++++++++++++++++++++++++
-
-}
-=======
     if(event.key == ' ') {
         const stuff = stuffsMapSt1.find((stuff) => {
             let col = rectangularCollision({
@@ -359,7 +271,6 @@ window.addEventListener(
 
         }
     }
->>>>>>> develop
 
 // function textBoxView(text){
 //     isPopupOpen = true;
@@ -368,47 +279,8 @@ window.addEventListener(
 //     _text.innerHTML = text;
 // }
 
-<<<<<<< HEAD
-function quizeBoxView(text){
-    isPopupOpen = true;
-    isQuizeBox = true;
-    _answer_input.focus();
-    _quize_box.style.zIndex = 999;
-    _answer.innerHTML = text;
-}
-
-function quizeBoxHidden(){
-    isPopupOpen = false;
-    isQuizeBox = false;
-    _quize_box.style.zIndex = 0;
-    _answer.innerHTML = "";
-}
-
-// window.onkeydown = function(event){
-//     if(mapState === "playPage")
-//     if(event.key == "Escape"){
-//         if(settingBoardView){
-//             console.log(settingBoard)
-//         }
-//     }
-// }
-
-// settingBoard
-// putitem
-// use 버튼 누르면 위 함수를 실행하게끔
-// 
-
-// 키보드 입력 이벤트
-// window.onkeydown = function(event){
-//     // _input 이기에 이벤트는 keyboardEvent
-//     console.log(event); // 이벤트 객체
-//     console.log(event.keyCode); // 키보드의 아스키코드가 나옴(한글은 229만 나옴)
-//     console.log(event.key);     // 키보드의 키(숫자, 영문만) 엔터도 나옴
-// }
-=======
 });
 
->>>>>>> develop
 let prolSkip = document.querySelector(".prolSkip")
  
 
@@ -423,13 +295,8 @@ prolSkip.onclick = function(){
             el.style.display = "none";
         })
         _play_page.style.zIndex = 999;
-<<<<<<< HEAD
         pauseBaseM()
         doorBgm()
-=======
-        _play_page.style.display = "block";
-        
->>>>>>> develop
         mapState = "_play_page";
         // // setTimeout(function() {
         // //     // event.prolSkip.style.fontSize = "27px";
