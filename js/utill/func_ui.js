@@ -1,4 +1,4 @@
-
+ 
 function textBoxView(text){
     isPopupOpen = true;
     isTextBoxView = true;
@@ -31,6 +31,7 @@ function inventoryView(name){
     _item_use.style.display = "none";
     _item_text.data = name;
     isInventoryView = true;
+
 }
 
 function inventoryHidden(){
@@ -38,6 +39,11 @@ function inventoryHidden(){
     _inventory.style.display = "none";
     _item_use.style.display = "none";
     isInventoryView = false;
+
+    let itemTdList = document.querySelectorAll(".item_td");
+    itemTdList.forEach((item)=>{
+        item.classList.remove("active");
+    });
 }
 
 function quizeBoxHidden(){
