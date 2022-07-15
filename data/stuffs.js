@@ -8,7 +8,7 @@ const stuffsStg1 = [
                {
                 "name":"info",
                 "type":"string",
-                "value":"서랍 안에는 무엇이 들어있을까"
+                "value":"서랍 안은 비어있다."
                }, 
                {
                 "name":"itemInfo",
@@ -35,7 +35,7 @@ const stuffsStg1 = [
                {
                 "name":"info",
                 "type":"string",
-                "value":"낡아보이는 서랍이다. 무엇이 들어있을까"
+                "value":"낡아보이는 서랍이다. 아무것도 들어있지 않다."
                }, 
                {
                 "name":"itemInfo",
@@ -62,7 +62,7 @@ const stuffsStg1 = [
                {
                 "name":"info",
                 "type":"string",
-                "value":"낡은 조화가 올라가 있는 협탁"
+                "value":"협탁에 낡은 조화가 올라가있다."
                }, 
                {
                 "name":"itemInfo",
@@ -89,7 +89,7 @@ const stuffsStg1 = [
                {
                 "name":"info",
                 "type":"string",
-                "value":"조화가 놓여져 있는 협탁"
+                "value":"협탁에 낡은 조화가 올라가있다."
                }, 
                {
                 "name":"itemInfo",
@@ -116,7 +116,7 @@ const stuffsStg1 = [
                {
                 "name":"info",
                 "type":"string",
-                "value":"혈액팩 낡은 링거. 녹슬어보인다. "
+                "value":"혈액팩이 매달려있다. 녹이 슬어 보인다."
                }, 
                {
                 "name":"itemInfo",
@@ -170,7 +170,7 @@ const stuffsStg1 = [
                {
                 "name":"info",
                 "type":"string",
-                "value":"낡아보이는 서랍이다."
+                "value":"낡아보이는 서랍이다. 아무것도 들어있지 않다."
                }, 
                {
                 "name":"itemInfo",
@@ -278,7 +278,7 @@ const stuffsStg1 = [
                {
                 "name":"info",
                 "type":"string",
-                "value":"낡아보이는 서랍이다."
+                "value":"낡아보이는 서랍이다. 아무것도 들어있지 않다."
                }, 
                {
                 "name":"itemInfo",
@@ -305,7 +305,7 @@ const stuffsStg1 = [
                {
                 "name":"info",
                 "type":"string",
-                "value":"고장난 시계"
+                "value":"시계가 멈춰있다. 고장난 것 같다."
                }, 
                {
                 "name":"itemInfo",
