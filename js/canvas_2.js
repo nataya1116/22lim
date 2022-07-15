@@ -93,7 +93,7 @@ const playerSt2 = new Sprite({
         //20220710 이미지 Y축 나눌 갯수
         maxY: 4,
         //20220710 이미지 Y축 인덱스(아래로 나눈거의 몇번째인지)
-        valY: 0,
+        valY: 3,
         // 이미지 X축 인덱스
         valX: 1
     },
