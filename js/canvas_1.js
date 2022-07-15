@@ -72,7 +72,7 @@ knifeImage2.src = '/img/playimage/knife.png';
 
 
 let gameover = function(){
-    console.log(mapState);
+    // console.log(mapState);
     if(mapState !== "_game_over")return;
     setTimeout(() => {
         mapState = "_start_page";

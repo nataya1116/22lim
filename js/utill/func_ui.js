@@ -34,6 +34,19 @@ function inventoryView(name){
 
 }
 
+
+function saveFileView(){
+    isPopupOpen = true;
+    _save_filed.style.display = "flex";
+    isSaveFileView = true;
+}
+
+function saveFileHidden(){
+    isPopupOpen = false;
+    _save_filed.style.display = "none";
+    isSaveFileView = false;
+}
+
 function inventoryHidden(){
     isPopupOpen = false;
     _inventory.style.display = "none";

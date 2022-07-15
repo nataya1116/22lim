@@ -105,8 +105,19 @@ window.addEventListener(
         });
 
         if(!!stuff){
-            // 세이브 생략
-            if(stuff.name === "구급함") return;
+
+            if(stuff.name === "구급함"){
+
+                console.log("구급함이다");
+                // 저장부분 보여주기만
+                if(isSaveFileView){
+                    saveFileHidden();
+                    return;
+                } else if(isPopupOpen === false) {
+                    saveFileView();
+                    return;
+                }
+            }
 
             if(stuff.name === "게시판" && boardCnt === 2){
                 gsap.to('#_stg_back', {
@@ -126,14 +137,15 @@ window.addEventListener(
                         foregroundImage.src = '/img/background/foreGroundAfterStg1.png';
                     }
                 });
-                pauseimgChM()
+                pauseimgChM();
             }
 
             if (stuff.name === "게시판") boardCnt++;
+
             if(isTextBoxView){
                 textBoxHidden();
                 return;
-            }else if(isPopupOpen === false){
+            }else if(isPopupOpen === false){ 
                 const ret = stuff.contact(); 
                 console.log(ret);
                 textBoxView(ret.msg);
@@ -172,12 +184,12 @@ window.addEventListener(
                 const ret = portal.contact();
                 isQuizeBox = true;
                 
-                // 이동 가능
-                if(ret.move) {
-                    // 이동 화면 또는 사진
+                // // 이동 가능
+                // if(ret.move) {
+                //     // 이동 화면 또는 사진
 
-                    return;
-                }
+                //     return;
+                // }
 
                 quizeBoxView(ret.msg, portal.name, portal.isKeyboard);
                 return;
@@ -191,12 +203,12 @@ window.addEventListener(
             const portal = portalsMapSt1.find(i => { return i.name  === _answer_input.data })
             const ret = portal.inputPw(_answer_input.value);
 
-            // 이동 가능
-            if(ret.move) {
-                // 이동 화면 또는 사진
+            // // 이동 가능
+            // if(ret.move) {
+            //     // 이동 화면 또는 사진
                 
-                return;
-            }
+            //     return;
+            // }
 
             quizeBoxView(ret.msg, "", false);
 
