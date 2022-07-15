@@ -294,6 +294,11 @@ animateLoop();
 function animate(background, foreground, boundaries, player, playerCol, playerRaycast, movables,knife1,knife2) {
     // console.log(background); 아왜안ㅇㄷ9애ㅐ애애애
     window.requestAnimationFrame(animateLoop);
+    speed++;
+
+    if(speed % 4 === 0) return;
+    
+    
     // console.log(background);
 
     background.draw();

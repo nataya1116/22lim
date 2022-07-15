@@ -13,3 +13,5 @@ let boardCnt = 0;
 
 let flyingKnife = false;
 let portalDead = false;
+
+let speed = 0;
