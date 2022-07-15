@@ -47,6 +47,18 @@ function saveFileHidden(){
     isSaveFileView = false;
 }
 
+function loadFileView(){
+    isPopupOpen = true;
+    _load_filed.style.display = "flex";
+    isLoadFileView = true;
+}
+
+function loadFileHidden(){
+    isPopupOpen = false;
+    _load_filed.style.display = "none";
+    isLoadFileView = false;
+}
+
 function inventoryHidden(){
     isPopupOpen = false;
     _inventory.style.display = "none";
