@@ -34,6 +34,19 @@ function inventoryView(name){
 
 }
 
+
+function saveFileView(){
+    isPopupOpen = true;
+    _save_filed.style.display = "flex";
+    isSaveFileView = true;
+}
+
+function saveFileHidden(){
+    isPopupOpen = false;
+    _save_filed.style.display = "none";
+    isSaveFileView = false;
+}
+
 function inventoryHidden(){
     isPopupOpen = false;
     _inventory.style.display = "none";
@@ -57,7 +70,6 @@ function quizeBoxHidden(){
 function quizeBoxView(text, portalName, isKeyboard){
     isPopupOpen = true;
     isQuizeBox = true;
-    _answer_input.focus();
     _answer_input.data = portalName;
     // console.log(_answer_input.data);
     _quize_box.style.display = "flex";
@@ -72,6 +84,8 @@ function quizeBoxView(text, portalName, isKeyboard){
         _return_text.style.visibility = "hidden";
         _answer_input.style.visibility = "hidden";
     }
+
+    _answer_input.focus();
 }
 
 function paragraph(element) {
@@ -106,4 +120,8 @@ function paragraph(element) {
     element.innerText = newText
     if (completeCount === numArray.length) clearInterval(timer)
   }, 120)
+}
+
+function chageMap(){
+    
 }

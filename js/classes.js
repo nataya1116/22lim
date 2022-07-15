@@ -328,6 +328,8 @@ class Portal extends Stuff {
         return {move : true, msg : "다음 스테이지는 본 게임에서 만나요.^^"};
     }
 
+    
+
     // 문을 사용할 수 없을 때 리턴할 객체를 생성
     // {msg : *notAvailable, item : ""} 객체로 만들어 리턴
     // =========== 보류 =============

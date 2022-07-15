@@ -72,7 +72,7 @@ knifeImage2.src = '/img/playimage/knife.png';
 
 
 let gameover = function(){
-    console.log(mapState);
+    // console.log(mapState);
     if(mapState !== "_game_over")return;
     setTimeout(() => {
         mapState = "_start_page";
@@ -323,8 +323,8 @@ function animate(background, foreground, boundaries, player, playerCol, playerRa
     
     player.draw();
     playerCol.draw();
-    if("_play_page" === mapState ){
-        smash(player,knife1);
+    if("_play_page" === mapState && flyingKnife){
+        smash (player,knife1);
         smash (player, knife2)
     }
     ///=============================================칼 날리는 조건문 
@@ -671,7 +671,7 @@ function smash (player, knife1){
         console.log("됨")
     }
     else{
-        knife1.position.y -= 10;
+        knife1.position.y -= 14;
         knife1.draw();
     }
 }
@@ -687,7 +687,7 @@ function smash (player, knife2){
         mapState = '_game_over';
     }
     else{
-        knife2.position.y -= 10;
+        knife2.position.y -= 14;
         knife2.draw();
     }
 }
