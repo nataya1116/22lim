@@ -182,15 +182,13 @@ class Stuff {
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
-    // 교수님
     // 사물 객체에서 item을 제거한다.
     // itemName/itemInfo 값을 ""(빈 값)로 바꿔준다.
     emptyItem(){
         this.item.name = "";
         this.item.info = "";
     }
-
-    // 교수님
+	
     // 사물 객체에 아이템이 없을 경우 리턴해줄 내용을 객체로 생성한다.
     // { msg : this.info, item : "" } 객체를 만들어 리턴한다.
     // =========== 보류 =============
@@ -199,7 +197,6 @@ class Stuff {
     // }
     // =========== 보류 =============
 
-    // 교수님
     // 사물 객체에서 아이템을 제거할 때 사용할 함수로 리턴해줄 내용을 객체로 생성한다.
     // { msg : this.item+this.takeMsg, item : "" }  객체를 만들어 리턴한다.
     // =========== 보류 =============
@@ -403,7 +400,6 @@ class Inventory {
         this.list = [];
     }
 
-    // 교수님
     // 인벤토리 리스트에 아이템 추가
     insert(item){
         this.list.push(item);
@@ -420,7 +416,6 @@ class Inventory {
     }
 }
 
-// 교수님
 class Item {
     constructor(name, info , useing){
         this.name = name;
